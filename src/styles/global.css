@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: "Noto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-display: "Bowlby One", var(--font-sans);
+
+  /* Couleurs custom */
+  --color-primary: #4A738E;      /* Primaire : Bleu doux CPEP */
+  --color-accent: #FF2D95;       /* Secondaire accent : Rose électrique ! CPEP */
+  --color-bg: #FAF9F6;           /* Blanc cassé (fond principal) */
+  --color-text: #585858;         /* Anthracite (texte sombre) */
+  --color-bg-light: #C8D8E4;     /* Fond clair : Bleu clair */
+  --color-hover: #FFD1E6;        /* Rose pâle (hover bouton) */
+  --color-bg-alt: #EDEDED;       /* Gris clair (fond alternatif) */
+  --color-creative: #E5D8EF;     /* Lilas doux */
+
+  --color-success: #4CAF50;      /* Succès : Vert */
+  --color-warning: #FFC107;      /* Warning : Orange */
+  --color-error: #F44336;        /* Erreur : Rouge */
+  --color-info: #2196F3;         /* Information : Bleu Vif */
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-bg text-text font-sans; }
+  /* a { @apply text-primary hover:text-accent; } */
+  h1,h2,h3,h4 { @apply text-gray-900; }
+  /* Citations = Noto Serif */
+  blockquote { @apply font-serif italic border-l-4 pl-4 border-bg-light text-gray-700; }
+}

@@ -1,0 +1,35 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+const { title, description, image = '/favicon.svg', type = 'website', noindex = false } = Astro.props as Props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL(image, Astro.site).toString();
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script type="application/ld+json">
+{JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': type === 'article' ? 'Article' : 'WebPage',
+  headline: title,
+  description,
+  url: canonical,
+})}
+</script>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cpep.fr/sitemap-index.xml

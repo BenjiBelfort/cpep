@@ -1,16 +1,29 @@
 ---
+import Layout from '../layouts/Base.astro';
+import NavBar from '../components/NavBar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Footer from '../components/Footer.astro';
 
+const seo = {
+  title: 'CPEP — Emballages personnalisés sur mesure',
+  description: 'Conception et fabrication d’emballages personnalisés sur mesure : boîtes, sacs, étiquettes et plus. Devis rapide. Basé en France.',
+  image: '/og-default.jpg',
+};
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout {seo}>
+  <NavBar />
+  <main id="main">
+    <Hero />
+    <section id="services" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">Nos solutions</h2>
+      <p class="mt-4 max-w-2xl">Boîtes rigides, boîtes pliantes, sacs papier, étiquettes, calages, stickers… bientôt le catalogue 😉</p>
+    </section>
+    <About />
+    <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-semibold text-gray-900">Contact</h2>
+      <p class="mt-4">Écrivez‑nous à <a class="underline" href="mailto:contact@cpep.fr">contact@cpep.fr</a> — réponse rapide.</p>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,29 @@
+---
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+const { seo } = Astro.props;
+---
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#4A738E" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Préconnect pour réduire la latence -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Noto+Serif:ital,wght@0,400..900;1,400..900&family=Work+Sans:wght@300..800&display=swap" rel="stylesheet">
+
+
+    <SEO {...seo} />
+    <slot name="head" />
+  </head>
+  <body class="bg-bg text-text font-sans antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-3 focus:py-2 focus:rounded">Aller au contenu</a>
+    <slot />
+  </body>
+</html>

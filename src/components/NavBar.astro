@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<header class="sticky top-0 z-50 bg-primary shadow-sm text-white">
+  <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between" aria-label="Navigation principale">
+    <a
+      href="/"
+      class="flex items-baseline"
+      aria-label="CPEP — La plus juste expression de votre identité (Accueil)"
+    >
+        <div class="flex items-center text-shadow-black text-shadow-xs">
+            <span class="font-display text-3xl mr-0.5">CPEP</span>
+            <span class="font-display text-accent text-4xl rotate-4">!</span>
+        </div>
+
+        <p class="hidden md:block text-shadow-sm ml-3">La plus juste expression de votre identité</p>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-6">
+<ul class="hidden md:flex items-center gap-6">
+  <li><a href="#services" class="hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Services</a></li>
+  <li><a href="#about" class="hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">À propos</a></li>
+  <li><a href="#contact" class="hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Contact</a></li>
+</ul>
+
+    </ul>
+
+    <a href="#contact" class="inline-flex items-center gap-2 rounded-xl border px-3 py-2 hover:bg-bg-alt hover:border-creative">
+      <Icon name="lucide:mail" class="w-4 h-4" /> Devis
+    </a>
+  </nav>
+</header>

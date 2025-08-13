@@ -1,0 +1,12 @@
+{
+  "name": "CPEP",
+  "short_name": "CPEP",
+  "description": "Emballages personnalisés sur mesure",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF9F6",
+  "theme_color": "#4A738E",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ]
+}
