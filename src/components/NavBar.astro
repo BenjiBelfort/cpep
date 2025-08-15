@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<header class="sticky top-0 z-50 bg-primary shadow-sm text-white">
+<header class="sticky top-0 z-50 bg-gray-800 border-b-2 border-b-gray-900 text-bg">
   <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between" aria-label="Navigation principale">
     <a
       href="/"
@@ -18,16 +18,15 @@ import { Icon } from 'astro-icon/components';
     </a>
 
     <ul class="hidden md:flex items-center gap-6">
-<ul class="hidden md:flex items-center gap-6">
-  <li><a href="#services" class="hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Services</a></li>
-  <li><a href="#about" class="hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">À propos</a></li>
-  <li><a href="#contact" class="hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Contact</a></li>
-</ul>
-
+        <ul class="hidden md:flex items-center gap-6">
+        <li><a href="#services" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Services</a></li>
+        <li><a href="#about" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">À propos</a></li>
+        <li><a href="#contact" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Contact</a></li>
+        </ul>
     </ul>
 
-    <a href="#contact" class="inline-flex items-center gap-2 rounded-xl border px-3 py-2 hover:bg-bg-alt hover:border-creative">
-      <Icon name="lucide:mail" class="w-4 h-4" /> Devis
+    <a href="#user" class="inline-flex items-center gap-2 rounded-xl border px-3 py-2 hover:border-accent">
+      <Icon name="lucide:circle-user" class="w-4 h-4" />Connexion
     </a>
   </nav>
 </header>

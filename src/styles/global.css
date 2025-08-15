@@ -10,7 +10,7 @@
   --color-primary: #4A738E;      /* Primaire : Bleu doux CPEP */
   --color-accent: #FF2D95;       /* Secondaire accent : Rose électrique ! CPEP */
   --color-bg: #FAF9F6;           /* Blanc cassé (fond principal) */
-  --color-text: #585858;         /* Anthracite (texte sombre) */
+  --color-text: #585858;         /* Anthracite (texte sombre) plus gray*/
   --color-bg-light: #C8D8E4;     /* Fond clair : Bleu clair */
   --color-hover: #FFD1E6;        /* Rose pâle (hover bouton) */
   --color-bg-alt: #EDEDED;       /* Gris clair (fond alternatif) */
