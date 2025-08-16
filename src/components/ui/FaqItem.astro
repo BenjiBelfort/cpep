@@ -1,0 +1,49 @@
+---
+/** Props:
+ *  question: string
+ *  answer: string
+ *  defaultOpen?: boolean
+ *  icon?: string // ex: "lucide:chevron-left"
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  question: string;
+  answer: string;
+  defaultOpen?: boolean;
+  icon?: string;
+}
+const { question, answer, defaultOpen = false, icon = 'lucide:chevron-left' } = Astro.props as Props;
+
+// id a11y (basé sur la question)
+const uid = `faq-${question.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
+---
+
+<details class="group border border-bg-alt rounded-xl bg-white overflow-hidden" open={defaultOpen}>
+  <summary
+    class="flex items-center justify-between gap-4 cursor-pointer select-none px-4 py-3 list-none
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+    aria-controls={uid}
+  >
+    <h3 class="text-base md:text-lg font-semibold text-gray-900 m-0">{question}</h3>
+
+    <!-- Chevron : gauche par défaut, vers le bas quand open -->
+    <Icon
+      name={icon}
+      class="faq-arrow w-5 h-5 shrink-0 transition-transform duration-200 ease-out text-primary group-open:-rotate-180 rotate-0"
+      aria-hidden="true"
+    />
+  </summary>
+
+  <!-- Slide-down pur CSS (grid trick) -->
+  <div class="grid grid-rows-[0fr] group-open:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out">
+    <div id={uid} class="overflow-hidden px-4 pb-4 pt-0 text-sm md:text-base text-gray-700">
+      {answer}
+    </div>
+  </div>
+</details>
+
+<style is:global>
+/* Fallback si group-open non dispo : flèche vers le bas à l'ouverture */
+details.group[open] .faq-arrow { transform: rotate(90deg); }
+</style>

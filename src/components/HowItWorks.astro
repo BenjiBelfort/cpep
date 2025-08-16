@@ -4,17 +4,17 @@ import ProcessCard from '../components/ui/ProcessCard.astro';
 ---
 
 <section id="methode" aria-labelledby="titre-methode" class="mx-auto max-w-3xl px-4 py-16  scroll-m-4">
-  <h2 id="titre-methode" class="text-center text-2xl md:text-3xl font-bold text-gray-900">Comment ça marche</h2>
+  <h2 id="titre-methode" class="text-center text-2xl md:text-3xl font-medium text-gray-900">Comment ça marche ?</h2>
 
   <p class="text-center mt-4 md:mx-12 text-gray-700">
-    Une méthode unique et efficace — valable pour le <strong>print</strong> comme pour le <strong>web</strong> :
+    Une méthode simple et efficace pour tous vos projets <strong>de sacs personnalisés</strong>, <strong>print</strong> et pour votre <strong>site web</strong> : 
     <strong>expression des besoins</strong>, <strong>étude meilleur prix &amp; design</strong>, 
     <strong>proposition budgétaire &amp; plan d’action</strong>, puis <strong>mise en production</strong>.
   </p>
 
     <p class="mt-6 text-center text-sm text-gray-500">4 étapes pour un résultat optimal.</p>
   <!-- Timeline verticale -->
-  <ol class="relative mt-10 space-y-6 before:absolute before:left-4 before:top-0 before:h-full before:w-px before:bg-bg-alt">
+  <ol class="relative mt-10 space-y-6 before:absolute before:left-4 before:top-0 before:h-full before:w-px">
     <ProcessCard
       step={1}
       title="Expression des besoins"
@@ -36,7 +36,7 @@ import ProcessCard from '../components/ui/ProcessCard.astro';
     <!-- NEW: Step 4 -->
     <ProcessCard
         step={4}
-        title="Success ! Ça part en prod !!!"
+        title="et... Ça part en prod !"
         icon="lucide:rocket"
         description="Validation finale : (print) lancement fabrication & contrôle qualité · (web) déploiement & suivi post-mise en ligne. CPEP! et c’est parti."
         variant="highlight"

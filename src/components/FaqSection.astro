@@ -1,0 +1,53 @@
+---
+import FaqItem from './ui/FaqItem.astro';
+
+const faqs = [
+  { q: "Quels types d’emballages personnalisez-vous ?",
+    a: "Sacs papier/coton, boîtes rigides et pliantes, étuis, coffrets, calages, étiquettes & stickers, rubans, PLV. Impression premium, finitions (dorure, vernis, embossage)." },
+  { q: "Faites-vous aussi des sites web ?",
+    a: "Oui : sites rapides (Astro), SEO technique (balises, JSON-LD, maillage), accessibilité, intégrations et maintenance." },
+  { q: "Quels sont vos délais moyens ?",
+    a: "Selon la complexité : de quelques jours (web vitrine simple) à 2–6 semaines (print avec finitions spécifiques). On fournit un rétroplanning clair." },
+  { q: "Comment obtenir un devis ?",
+    a: "Envoyez votre besoin via la section Contact (formats/quantités/finitions ou fonctionnalités web). Réponse sous 24–48 h avec un budget indicatif." },
+];
+---
+
+<section id="faq" aria-labelledby="faq-title" class="mx-auto max-w-6xl px-4 py-16" data-faq-root>
+  <h2 id="faq-title" class="text-2xl md:text-3xl font-bold text-gray-900">FAQ</h2>
+  <p class="mt-4 max-w-3xl text-gray-700">
+    Les réponses aux questions que l’on nous pose le plus souvent — emballages personnalisés et services web.
+  </p>
+
+  <div id="faq-list" class="mt-8 grid gap-4">
+    {faqs.map((item, i) => (
+      <FaqItem question={item.q} answer={item.a} defaultOpen={i === 0} icon="lucide:chevron-left" />
+    ))}
+  </div>
+
+  <!-- JSON-LD SEO : FAQPage -->
+  <script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(({ q, a }) => ({
+      "@type": "Question", "name": q, "acceptedAnswer": { "@type": "Answer", "text": a }
+    }))
+  })}
+  </script>
+
+      <!-- Mini-script (inline, 10 lignes) pour n'avoir qu'un seul dropdown ouvert -->
+    <script is:inline>
+        (function () {
+        const root = document.currentScript.closest('[data-faq-root]');
+        if (!root) return;
+        const items = Array.from(root.querySelectorAll('details'));
+        items.forEach((d) => {
+            d.addEventListener('toggle', () => {
+            if (d.open) items.forEach((x) => x !== d && (x.open = false));
+            });
+        });
+        })();
+    </script>
+
+</section>

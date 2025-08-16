@@ -23,9 +23,9 @@ const isHighlight = variant === 'highlight';
   <!-- pastille étape -->
   <span
     class:list={{
-        'absolute left-0 top-1/2 -translate-y-1/2 inline-grid place-items-center leading-none select-none h-8 w-8 rounded-full text-sm font-semibold': true,      
+        'absolute left-0 top-1/2 -translate-y-1/2 inline-grid place-items-center leading-none select-none h-8 w-8 rounded-full text-sm font-display': true,      
         'bg-info text-white': !isHighlight,
-        'bg-success text-white': isHighlight,
+        'bg-accent text-white': isHighlight,
     }}
     aria-hidden="true"
   >
@@ -37,14 +37,14 @@ const isHighlight = variant === 'highlight';
     class:list={{
       'rounded-xl border p-5 transition': true,
       'bg-white border-bg-alt': !isHighlight,
-      'bg-primary text-white border-primary shadow-sm': isHighlight,
+      'bg-primary text-white border-primary': isHighlight,
     }}
   >
     <div class="flex items-start gap-3">
       <Icon
         name={icon}
         class:list={{
-          'w-5 h-5 mt-0.5 hidden md:block': true,
+          'w-6 h-6 mt-0.5 hidden md:block': true,
           'text-primary': !isHighlight,
           'text-white/90': isHighlight,
         }}
@@ -55,7 +55,7 @@ const isHighlight = variant === 'highlight';
           class:list={{
             'font-semibold': true,
             'text-gray-900': !isHighlight,
-            'text-white': isHighlight,
+            'text-white uppercase': isHighlight,
           }}
         >
           {title}
@@ -64,7 +64,7 @@ const isHighlight = variant === 'highlight';
           class:list={{
             'mt-1 text-sm': true,
             'text-gray-700': !isHighlight,
-            'text-white/90': isHighlight,
+            'text-white': isHighlight,
           }}
         >
           {description}
