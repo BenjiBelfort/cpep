@@ -1,0 +1,72 @@
+---
+/* src/components/HowItWorksTimeline.astro */
+import ProcessCard from '../components/ui/ProcessCard.astro';
+---
+
+<section id="methode" aria-labelledby="titre-methode" class="mx-auto max-w-3xl px-4 py-16  scroll-m-4">
+  <h2 id="titre-methode" class="text-center text-2xl md:text-3xl font-bold text-gray-900">Comment ça marche</h2>
+
+  <p class="text-center mt-4 md:mx-12 text-gray-700">
+    Une méthode unique et efficace — valable pour le <strong>print</strong> comme pour le <strong>web</strong> :
+    <strong>expression des besoins</strong>, <strong>étude meilleur prix &amp; design</strong>, 
+    <strong>proposition budgétaire &amp; plan d’action</strong>, puis <strong>mise en production</strong>.
+  </p>
+
+    <p class="mt-6 text-center text-sm text-gray-500">4 étapes pour un résultat optimal.</p>
+  <!-- Timeline verticale -->
+  <ol class="relative mt-10 space-y-6 before:absolute before:left-4 before:top-0 before:h-full before:w-px before:bg-bg-alt">
+    <ProcessCard
+      step={1}
+      title="Expression des besoins"
+      icon="lucide:message-square"
+      description="Objectifs, contraintes, quantités, formats & matières (print) / contenus, fonctionnalités, SEO & RGPD (web)."
+    />
+    <ProcessCard
+      step={2}
+      title="Étude meilleur prix & design"
+      icon="lucide:palette"
+      description="Comparatif techniques & finitions, éco-conception, maquettes/BATs (print) / UX-UI, perfs, stack & intégrations (web)."
+    />
+    <ProcessCard
+      step={3}
+      title="Proposition budget & plan d’action"
+      icon="lucide:clipboard-check"
+      description="Devis détaillé, jalons, rétroplanning, préparation production/mise en ligne et logistique de livraison."
+    />
+    <!-- NEW: Step 4 -->
+    <ProcessCard
+        step={4}
+        title="Success ! Ça part en prod !!!"
+        icon="lucide:rocket"
+        description="Validation finale : (print) lancement fabrication & contrôle qualité · (web) déploiement & suivi post-mise en ligne. CPEP! et c’est parti."
+        variant="highlight"
+    />
+  </ol>
+
+
+  <!-- CTA vers la page Méthode (on l’ajoutera plus tard) -->
+  <div class="mt-10">
+    <!--
+    <a href="/methode" class="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-white hover:opacity-90">
+      Découvrir la méthode CPEP!
+    </a>
+    -->
+  </div>
+
+  <!-- JSON-LD HowTo -->
+  <script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "La méthode CPEP — Print & Web",
+    "description": "Expression des besoins, étude meilleur prix & design, proposition budgétaire & plan d’action, puis mise en production.",
+    "step": [
+      { "@type": "HowToStep", "name": "Expression des besoins", "text": "Objectifs, contraintes, quantités, formats & matières (print) / contenus, fonctionnalités, SEO & RGPD (web)." },
+      { "@type": "HowToStep", "name": "Étude meilleur prix & design", "text": "Comparatif techniques & finitions, éco-conception, maquettes et BATs (print) / UX-UI, performances, stack et intégrations (web)." },
+      { "@type": "HowToStep", "name": "Proposition budget & plan d’action", "text": "Devis détaillé, jalons, rétroplanning, préparation production/mise en ligne et logistique de livraison." },
+      { "@type": "HowToStep", "name": "Mise en production", "text": "Validation finale puis lancement : fabrication & contrôle qualité (print) / déploiement et suivi post-mise en ligne (web)." }
+    ],
+    "provider": { "@type": "Organization", "name": "CPEP" }
+  })}
+  </script>
+</section>

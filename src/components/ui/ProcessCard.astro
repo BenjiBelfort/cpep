@@ -1,0 +1,75 @@
+---
+/** Props:
+ *  step: number (1..4)
+ *  title: string
+ *  description: string
+ *  icon: string        // ex: "lucide:rocket"
+ *  variant?: 'default' | 'highlight'
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  step: number;
+  title: string;
+  description: string;
+  icon: string;
+  variant?: 'default' | 'highlight';
+}
+const { step, title, description, icon, variant = 'default' } = Astro.props as Props;
+const isHighlight = variant === 'highlight';
+---
+
+<li class="relative pl-10">
+  <!-- pastille étape -->
+  <span
+    class:list={{
+        'absolute left-0 top-1/2 -translate-y-1/2 inline-grid place-items-center leading-none select-none h-8 w-8 rounded-full text-sm font-semibold': true,      
+        'bg-info text-white': !isHighlight,
+        'bg-success text-white': isHighlight,
+    }}
+    aria-hidden="true"
+  >
+    {step}
+  </span>
+
+  <!-- carte -->
+  <article
+    class:list={{
+      'rounded-xl border p-5 transition': true,
+      'bg-white border-bg-alt': !isHighlight,
+      'bg-primary text-white border-primary shadow-sm': isHighlight,
+    }}
+  >
+    <div class="flex items-start gap-3">
+      <Icon
+        name={icon}
+        class:list={{
+          'w-5 h-5 mt-0.5 hidden md:block': true,
+          'text-primary': !isHighlight,
+          'text-white/90': isHighlight,
+        }}
+        aria-hidden="true"
+      />
+      <div>
+        <h3
+          class:list={{
+            'font-semibold': true,
+            'text-gray-900': !isHighlight,
+            'text-white': isHighlight,
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          class:list={{
+            'mt-1 text-sm': true,
+            'text-gray-700': !isHighlight,
+            'text-white/90': isHighlight,
+          }}
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+  </article>
+</li>
