@@ -1,8 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
+
 ---
 
-<header class="sticky top-0 z-50 bg-gray-800 border-b-2 border-b-gray-900 text-bg">
+<header class="sticky top-0 z-50 bg-bg border-b-1 border-b-primary text-primary">
   <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between" aria-label="Navigation principale">
     <a
       href="/"
@@ -14,11 +15,12 @@ import { Icon } from 'astro-icon/components';
             <span class="font-display text-accent text-5xl rotate-4">!</span>
         </div>
 
-        <p class="leading-5 hidden md:block text-shadow-sm ml-4">La plus juste expression <br> de votre identité</p>
+        <p class="leading-5 hidden md:block ml-4">La plus juste expression <br> de votre identité</p>
     </a>
 
     <ul class="hidden md:flex items-center gap-6">
         <ul class="hidden md:flex items-center gap-6">
+        <li><a href="#print" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Print</a></li>
         <li><a href="#services" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Services</a></li>
         <li><a href="#about" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">À propos</a></li>
         <li><a href="#contact" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Contact</a></li>
