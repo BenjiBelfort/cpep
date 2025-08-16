@@ -6,20 +6,20 @@ import { Icon } from 'astro-icon/components';
   id="hero"
   class="mx-auto max-w-6xl px-4 min-h-[100svh] grid gap-8 md:grid-cols-2 items-center"
 >
-  <div>
+  <div class="">
     <h1 class="text-center md:text-left font-sans font-medium text-4xl md:text-5xl text-gray-900">
-      Sacs <span class="text-accent">personnalisés</span> et <span class="text-accent">sites web </span>sur mesure !
+      Sacs <span class="text-accent">personnalisés</span>, <span class="text-accent">print</span> et <span class="text-accent">sites web </span>sur mesure !
     </h1>
-    <h2 class="mt-4 text-lg text-text text-center md:text-left">
+    <h2 class="font-serif mt-4 text-lg text-text text-center md:text-left">
       Vos outils de communication visuelle pour la mise en valeur de votre identité
     </h2>
 
     <!-- Boutons -->
-    <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center md:justify-start" role="group" aria-label="Accès rapide">
+    <div class="mx-12 md:mx-0 mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start" role="group" aria-label="Accès rapide">
       <!-- 1) Print -->
       <a
         href="#print"
-        class="inline-flex items-center gap-2 rounded-xl bg-primary text-white px-4 py-3 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        class="inline-flex justify-center items-center gap-2 rounded-full bg-gray-500 text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
         <Icon name="lucide:package" class="w-4 h-4" aria-hidden="true" />
         Print
@@ -28,16 +28,16 @@ import { Icon } from 'astro-icon/components';
       <!-- 2) Web -->
       <a
         href="#web"
-        class="inline-flex items-center gap-2 rounded-xl border border-bg-alt bg-white px-4 py-3 hover:border-accent hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        class="inline-flex justify-center items-center gap-2 rounded-full bg-gray-500 text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
-        <Icon name="lucide:code-2" class="w-4 h-4 text-primary" aria-hidden="true" />
+        <Icon name="lucide:code-2" class="w-4 h-4" aria-hidden="true" />
         Web
       </a>
 
       <!-- 3) Contact -->
       <a
         href="#contact"
-        class="inline-flex items-center gap-2 rounded-xl bg-accent text-white px-4 py-3 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        class="inline-flex justify-center items-center gap-2 rounded-full bg-accent text-white px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
         <Icon name="lucide:mail" class="w-4 h-4" aria-hidden="true" />
         Contact
@@ -45,6 +45,14 @@ import { Icon } from 'astro-icon/components';
     </div>
   </div>
 
-  <!-- visuel / placeholder -->
-  <div class="aspect-[4/3] bg-creative/40 border border-bg-alt rounded-xl"></div>
+    <div class="relative aspect-[4/3]">
+        <img
+            src="/logo/Logo-bleu.png"
+            alt="Exemples d’emballages personnalisés et interface web"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+        />
+    </div>
 </section>
