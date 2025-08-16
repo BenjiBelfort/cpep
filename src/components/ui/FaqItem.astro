@@ -19,7 +19,11 @@ const { question, answer, defaultOpen = false, icon = 'lucide:chevron-left' } = 
 const uid = `faq-${question.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
 ---
 
-<details class="group border border-bg-alt rounded-xl bg-white overflow-hidden" open={defaultOpen}>
+<details
+  class="group border border-bg-alt rounded-xl bg-white overflow-hidden
+         transition-colors duration-200 hover:border-accent/30 [&[open]]:border-accent [&[open]]:bg-hover/10"
+  open={defaultOpen}
+>
   <summary
     class="flex items-center justify-between gap-4 cursor-pointer select-none px-4 py-3 list-none
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
