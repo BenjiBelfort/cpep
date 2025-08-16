@@ -1,11 +1,50 @@
-<section class="mx-auto max-w-6xl px-4 pt-12 md:pt-20 grid gap-8 md:grid-cols-2 items-center">
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section
+  id="hero"
+  class="mx-auto max-w-6xl px-4 min-h-[100svh] grid gap-8 md:grid-cols-2 items-center"
+>
   <div>
-    <h1 class="text-center md:text-left font-sans font-medium text-4xl md:text-5xl text-gray-900">Sacs <span class="text-accent">personnalisés</span> et <span class="text-accent">sites web </span>sur mesure !</h1>
-    <h2 class="mt-4 text-lg text-text">Vos outils de communication visuelle pour la mise en valeur de votre identité</h2>
-    <div class="mt-6 flex gap-3">
-      <a href="#contact" class="rounded-xl border px-4 py-3 hover:bg-hover">Demander un devis</a>
-      <a href="#services" class="rounded-xl px-4 py-3 underline">Voir nos solutions</a>
+    <h1 class="text-center md:text-left font-sans font-medium text-4xl md:text-5xl text-gray-900">
+      Sacs <span class="text-accent">personnalisés</span> et <span class="text-accent">sites web </span>sur mesure !
+    </h1>
+    <h2 class="mt-4 text-lg text-text text-center md:text-left">
+      Vos outils de communication visuelle pour la mise en valeur de votre identité
+    </h2>
+
+    <!-- Boutons -->
+    <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center md:justify-start" role="group" aria-label="Accès rapide">
+      <!-- 1) Print -->
+      <a
+        href="#print"
+        class="inline-flex items-center gap-2 rounded-xl bg-primary text-white px-4 py-3 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        <Icon name="lucide:package" class="w-4 h-4" aria-hidden="true" />
+        Print
+      </a>
+
+      <!-- 2) Web -->
+      <a
+        href="#web"
+        class="inline-flex items-center gap-2 rounded-xl border border-bg-alt bg-white px-4 py-3 hover:border-accent hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        <Icon name="lucide:code-2" class="w-4 h-4 text-primary" aria-hidden="true" />
+        Web
+      </a>
+
+      <!-- 3) Contact -->
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 rounded-xl bg-accent text-white px-4 py-3 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        <Icon name="lucide:mail" class="w-4 h-4" aria-hidden="true" />
+        Contact
+      </a>
     </div>
   </div>
-  <div class="aspect-[4/3] bg-creative/40 border border-bg-alt"></div>
+
+  <!-- visuel / placeholder -->
+  <div class="aspect-[4/3] bg-creative/40 border border-bg-alt rounded-xl"></div>
 </section>

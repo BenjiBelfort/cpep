@@ -1,35 +1,73 @@
 ---
 export interface Props {
-  title: string;
-  description: string;
-  image?: string;
+  title?: string;
+  description?: string;
+  image?: string;                 // ex: '/og-default.jpg'
   type?: 'website' | 'article';
   noindex?: boolean;
 }
-const { title, description, image = '/favicon.svg', type = 'website', noindex = false } = Astro.props as Props;
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImage = new URL(image, Astro.site).toString();
+
+const SITE_NAME = 'CPEP';
+const DEFAULT_TITLE = 'CPEP — Emballages personnalisés & sites web sur mesure';
+const DEFAULT_DESC =
+  "Sacs, boîtes, étuis, calages et sites web rapides. Finitions premium, éco-conception & SEO technique. De l’idée à la prod, propre et réactif.";
+const DEFAULT_IMAGE = '/og-default.jpg';
+
+const {
+  title,
+  description,
+  image = DEFAULT_IMAGE,
+  type = 'website',
+  noindex = false,
+} = (Astro.props || {}) as Props;
+
+const pathname = Astro.url?.pathname || '/';
+const isHome = pathname === '/';
+
+// Canonical/OG absolus seulement si Astro.site est défini dans astro.config.mjs
+const canonical = Astro.site ? new URL(pathname, Astro.site).toString() : undefined;
+
+const pageTitle = (() => {
+  if (title && title.trim()) {
+    return isHome ? title.trim() : `${title.trim()} — ${SITE_NAME}`;
+  }
+  return DEFAULT_TITLE;
+})();
+
+const pageDesc = (description && description.trim()) ? description.trim() : DEFAULT_DESC;
+const ogImageAbs = Astro.site ? new URL(image, Astro.site).toString() : image;
 ---
-<title>{title}</title>
-<meta name="description" content={description} />
+
+<title>{pageTitle}</title>
+<meta name="description" content={pageDesc} />
 {noindex && <meta name="robots" content="noindex,nofollow" />}
-<link rel="canonical" href={canonical} />
+
+{canonical && <link rel="canonical" href={canonical} />}
+{canonical && <link rel="alternate" href={canonical} hreflang="fr" />}
+
+<!-- Open Graph -->
 <meta property="og:type" content={type} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:url" content={canonical} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={pageDesc} />
+{canonical && <meta property="og:url" content={canonical} />}
+<meta property="og:image" content={ogImageAbs} />
+<meta property="og:locale" content="fr_FR" />
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={pageDesc} />
+<meta name="twitter:image" content={ogImageAbs} />
 
 <script type="application/ld+json">
 {JSON.stringify({
   '@context': 'https://schema.org',
   '@type': type === 'article' ? 'Article' : 'WebPage',
-  headline: title,
-  description,
-  url: canonical,
+  headline: pageTitle,
+  description: pageDesc,
+  ...(canonical ? { url: canonical } : {}),
+  inLanguage: 'fr-FR',
+  isPartOf: { '@type': 'WebSite', name: SITE_NAME }
 })}
 </script>
