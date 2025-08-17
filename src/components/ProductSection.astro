@@ -1,118 +1,89 @@
 ---
 import { Icon } from 'astro-icon/components';
+import ProductCard from '../components/ui/ProductCard.astro';
+
+const products = [
+  {
+    title: 'Sacs papier poignées plates',
+    desc: 'Kraft blanc/brun, poignées plates renforcées. Formats retail, impression 1 à 4 couleurs + vernis.',
+    slug: 'sac-papier-poignees-plates',
+    best: true, eco: true, economy: true,  // 3 badges
+  },
+  {
+    title: 'Sacs papier poignées torsadées',
+    desc: 'Kraft/offset, poignées torsadées solides. Large choix de formats, encres et finitions.',
+    slug: 'sac-papier-poignees-torsadees',
+    eco: true, best: true,                 // 2 badges
+  },
+  {
+    title: 'Sacs papier poignées découpées',
+    desc: 'Découpe “die-cut”, renfort carton. Idéal boutiques & events. Quadri/tons directs.',
+    slug: 'sac-papier-poignees-decoupees',
+    economy: true,                         // 1 badge
+  },
+  {
+    title: 'Sacs réutilisables',
+    desc: 'Non-tissé, coton, jute, rPET. Sérigraphie, transfert, broderie. Durable et valorisant.',
+    slug: 'sacs-reutilisables',
+    eco: true,
+  },
+  {
+    title: 'Packaging haut de gamme',
+    desc: 'Boîtes rigides/cloche/tiroir, papiers de création, dorure/gaufrage. Calages sur mesure.',
+    slug: 'packaging-haut-de-gamme',
+    best: true,
+  },
+  {
+    title: 'Gamme food',
+    desc: 'Sacs/boîtes pâtissières, barquettes. Contact alimentaire, anti-graisse, fermetures sûres.',
+    slug: 'gamme-food',
+    economy: true,
+  },
+  {
+    title: 'Étiquettes adhésives',
+    desc: 'Bobine/planche, vernis sélectif, dorure. Adhésifs adaptés (vini, cosméto, logistique).',
+    slug: 'etiquettes-adhesives',
+  },
+  {
+    title: 'Print',
+    desc: 'Cartes, plaquettes, flyers, affiches, brochures. Papiers certifiés, finitions pro.',
+    slug: 'print',
+  },
+  {
+    title: 'PLV & présentoirs',
+    desc: 'Comptoir/sol, totems, stop-rayon. Carton & mixtes, montage facile.',
+    slug: 'plv-et-presentoirs',
+    eco: true,
+  },
+];
+
+const href = (slug: string) => `/produits/${slug}`;
 ---
 
-<!-- Product Section -->
 <section id="print" aria-labelledby="titre-print" class="mx-auto max-w-6xl px-4 py-16 scroll-m-4">
-    <h2 id="titre-print" class="text-center text-5xl md:text-7xl text-gray-900">
-        <span class="inline-flex items-center justify-center gap-3 align-middle">
-            <Icon
-            name="lucide:package"
-            class="w-8 h-8 md:w-14 md:h-14"
-            aria-hidden="true"
-            />
-            <span>Print</span>
-        </span>
-    </h2>
+  <h2 id="titre-print" class="text-center text-5xl md:text-7xl text-text">
+    <span class="inline-flex items-center justify-center gap-3 align-middle">
+      <Icon name="lucide:handbag" class="w-8 h-8 md:w-14 md:h-14" aria-hidden="true" />
+      <span>Print</span>
+    </span>
+  </h2>
 
-  <!-- Intro SEO -->
-  <p class="mx-auto text-center mt-4 max-w-3xl text-text">
-    Emballages personnalisés sur mesure pour marques exigeantes : <strong>sacs papier/coton</strong>, 
-    <strong>boîtes rigides</strong> et <strong>boîtes pliantes</strong>, <strong>étuis</strong>, 
-    <strong>coffrets</strong>, <strong>calages</strong>, <strong>étiquettes & stickers</strong>, 
-    <strong>rubans & scellés</strong>, <strong>PLV</strong>. Impression haute qualité, finitions premium 
-    (dorure, vernis, embossage), petites et grandes séries, délais maîtrisés.
+  <p class="mx-auto text-center mt-4 max-w-3xl text-gray-800">
+    Emballages personnalisés sur mesure pour marques exigeantes : <strong>sacs papier/coton</strong>, <strong>boîtes rigides</strong> et <strong>boîtes pliantes</strong>,
+    <strong>étuis</strong>, <strong>coffrets</strong>, <strong>calages</strong>, <strong>étiquettes & stickers</strong>, <strong>rubans & scellés</strong>, <strong>PLV</strong>.
+    Impression haute qualité, finitions premium (dorure, vernis, embossage), petites et grandes séries, délais maîtrisés.
   </p>
 
-  <!-- GRID 9 cards -->
   <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    <!-- 1 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Sacs personnalisés</h3>
-      <p class="mt-2 text-sm text-gray-700">Papier, kraft, coton &amp; tissus — poignées, formats, encres, finitions premium.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 2 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Boîtes rigides</h3>
-      <p class="mt-2 text-sm text-gray-700">Coffrets aimantés, tiroir, cloche — papiers de création, dorure, rubans.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 3 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Boîtes pliantes</h3>
-      <p class="mt-2 text-sm text-gray-700">Carton compact, micro-cannelure — vernis, fenêtres, inserts, à plat livrées.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 4 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Étuis carton</h3>
-      <p class="mt-2 text-sm text-gray-700">Étuis droits, 4/6 coins, auto-bloquants — impression quadri, finitions.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 5 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Coffrets cadeau</h3>
-      <p class="mt-2 text-sm text-gray-700">Papiers texturés, mousses &amp; calages, rubans — rendu premium prêt à offrir.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 6 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Calages sur mesure</h3>
-      <p class="mt-2 text-sm text-gray-700">Carton, mousse, pulpe moulée — protection, présentation &amp; éco-conception.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 7 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Étiquettes & stickers</h3>
-      <p class="mt-2 text-sm text-gray-700">Bobine/planche, vernis sélectif, dorure — formats &amp; adhésifs adaptés.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 8 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">Rubans & scellés</h3>
-      <p class="mt-2 text-sm text-gray-700">Rubans satin/coton imprimés, scellés adhésifs, finitions soignées.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
-
-    <!-- 9 -->
-    <article class="rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
-      <div class="aspect-[4/3] rounded-lg bg-creative/40 border border-bg-alt"></div>
-      <h3 class="mt-4 font-semibold text-gray-900">PLV & présentoirs</h3>
-      <p class="mt-2 text-sm text-gray-700">Présentoirs comptoir/sol, chevalets, vitrines — carton &amp; matériaux mixtes.</p>
-      <div class="mt-4"><a href="#contact" class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4">Demander un devis</a></div>
-    </article>
+    {products.map((p) => (
+      <ProductCard
+        title={p.title}
+        description={p.desc}
+        href={href(p.slug)}
+        best={p.best}
+        eco={p.eco}
+        economy={p.economy}
+      />
+    ))}
   </div>
-
-  <!-- JSON-LD : ItemList des familles produits (sans URL tant que les pages n’existent pas) -->
-  <script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Familles de produits CPEP",
-    "itemListElement": [
-      "Sacs personnalisés","Boîtes rigides","Boîtes pliantes","Étuis carton",
-      "Coffrets cadeau","Calages sur mesure","Étiquettes & stickers","Rubans & scellés","PLV & présentoirs"
-    ].map((name, i) => ({
-      "@type": "ListItem",
-      "position": i + 1,
-      "item": { "@type": "Product", "name": name }
-    }))
-  })}
-  </script>
 </section>

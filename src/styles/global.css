@@ -30,3 +30,26 @@
   /* Citations = Noto Serif */
   blockquote { @apply font-serif italic border-l-4 pl-4 border-bg-light text-gray-700; }
 }
+
+/* strong { @apply text-accent; } */
+
+/* === Nav mobile: morph align-right ↔ x === */
+#mobile-toggle .icon-open,
+#mobile-toggle .icon-close {
+  transition: transform .30s ease, opacity .30s ease;
+  transform-origin: 50% 50%;
+}
+
+/* Fermé */
+#mobile-toggle[data-open="false"] .icon-open { opacity: 1; transform: rotate(0); }
+#mobile-toggle[data-open="false"] .icon-close { opacity: 0; transform: rotate(180deg); }
+
+/* Ouvert */
+#mobile-toggle[data-open="true"] .icon-open  { opacity: 0; transform: rotate(-180deg); }
+#mobile-toggle[data-open="true"] .icon-close { opacity: 1; transform: rotate(0); }
+
+/* Respecte les préférences d’animation */
+@media (prefers-reduced-motion: reduce) {
+  #mobile-toggle .icon-open,
+  #mobile-toggle .icon-close { transition: none; }
+}

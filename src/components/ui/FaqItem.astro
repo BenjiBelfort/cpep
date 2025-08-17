@@ -29,7 +29,7 @@ const uid = `faq-${question.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     aria-controls={uid}
   >
-    <h3 class="text-base md:text-lg font-semibold text-gray-900 m-0">{question}</h3>
+    <h3 class="text-base md:text-lg font-semibold text-text m-0">{question}</h3>
 
     <!-- Chevron : gauche par défaut, vers le bas quand open -->
     <Icon
@@ -41,7 +41,7 @@ const uid = `faq-${question.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`;
 
   <!-- Slide-down pur CSS (grid trick) -->
   <div class="grid grid-rows-[0fr] group-open:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out">
-    <div id={uid} class="overflow-hidden px-4 pb-4 pt-0 text-sm md:text-base text-gray-700">
+    <div id={uid} class="overflow-hidden px-4 pb-4 pt-0 text-sm md:text-base text-gray-800">
       {answer}
     </div>
   </div>

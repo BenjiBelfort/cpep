@@ -50,7 +50,7 @@ const values: ValueItem[] = [
 <section id="about" aria-labelledby="about-title" class="w-full bg-linear-to-t from-primary to-creative scroll-m-4">
   <div class="mx-auto max-w-6xl px-4 py-16">
     <div class="mx-auto max-w-3xl text-center">
-      <h2 id="about-title" class="mt-3 text-2xl md:text-3xl font-semibold text-text">
+      <h2 id="about-title" class="mt-3 text-2xl md:text-3xl font-medium text-text">
         Mission, vision & valeurs
       </h2>
       <p class="mt-4 text-text">
@@ -62,23 +62,23 @@ const values: ValueItem[] = [
     </div>
 
     <!-- Mission / Vision -->
-    <section class="mt-10 grid gap-6 md:grid-cols-[1fr,2fr] items-start">
-      <div class="rounded-xl border border-bg-alt bg-white p-5">
-        <h3 class="inline-flex items-center gap-2 text-lg font-semibold text-gray-900">
+    <section class="mt-10 grid gap-6 grid-cols-1 md:grid-cols-2 items-stretch">
+      <div class="h-full rounded-xl border border-bg-alt bg-white p-5">
+        <h3 class="inline-flex items-center gap-2 text-lg font-medium text-text">
           <Icon name="lucide:target" class="h-5 w-5 text-primary" aria-hidden="true" /> Mission
         </h3>
-        <p class="mt-3 text-gray-700">
+        <p class="mt-3 text-gray-800">
           Accompagner nos clients dans leur <strong>communication digitale et physique</strong> avec des
           <strong>sites éco-conçus</strong> et des <strong>supports utiles & durables</strong>. Des partenariats
           de confiance, majoritairement en France et en Europe, avec une <strong>expérience fluide, réactive et humaine</strong>.
         </p>
       </div>
 
-      <div class="rounded-xl border border-bg-alt bg-white p-5">
-        <h3 class="inline-flex items-center gap-2 text-lg font-semibold text-gray-900">
+      <div class="h-full rounded-xl border border-bg-alt bg-white p-5">
+        <h3 class="inline-flex items-center gap-2 text-lg font-medium text-text">
           <Icon name="lucide:sparkles" class="h-5 w-5 text-primary" aria-hidden="true" /> Vision
         </h3>
-        <p class="mt-3 text-gray-700">
+        <p class="mt-3 text-gray-800">
           Faire de la communication un <strong>levier de transformation positive</strong> : <strong>responsable, utile, élégante, durable</strong>.
           Devenir la référence d’une <strong>com’ qui a du sens</strong> — sans jetable ni bullshit — où une bonne idée,
           bien exécutée, <strong>dure</strong>.
@@ -88,7 +88,24 @@ const values: ValueItem[] = [
 
     <!-- Valeurs (mappées) -->
     <section class="mt-10">
-        <h3 class="text-lg font-semibold text-gray-900">Nos valeurs</h3>
+            <!-- Callout ultra-simple : macaron + résumé des 3 valeurs clés -->
+    <aside class="mx-auto w-fit mt-10 text-2xl">
+        <div class="flex items-center gap-4">
+            <img
+                src="/logo/certified.png"
+                alt=""
+                width="40"
+                height="40"
+                loading="lazy"
+                decoding="async"
+                class="h-12 w-12 object-contain drop-shadow-md"
+            />
+            <div class="flex-1">
+                <h3 class="font-semibold text-white">Nos valeurs clés !</h3>
+                <p class="text-white">Seulement <strong>l’essentiel</strong>. Échanges <strong>simples</strong>. Partenaires <strong>proches</strong>.</p>
+            </div>
+        </div>
+    </aside>
 
         <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((v) => (
@@ -112,8 +129,8 @@ const values: ValueItem[] = [
                 <div class="flex items-start gap-3">
                 <Icon name={v.icon} class="h-7 w-7 mt-0.5 text-primary" aria-hidden="true" />
                 <div>
-                    <p class="font-semibold text-gray-900">{v.title}</p>
-                    <p class="mt-1 text-sm text-gray-700">{v.desc}</p>
+                    <p class="font-semibold text-text">{v.title}</p>
+                    <p class="mt-1 text-sm text-gray-800">{v.desc}</p>
                 </div>
                 </div>
             </li>
@@ -121,25 +138,6 @@ const values: ValueItem[] = [
         </ul>
     </section>
 
-
-    <!-- Callout ultra-simple : macaron + résumé des 3 valeurs clés -->
-    <aside class="mt-10 rounded-xl border border-bg-alt bg-white p-5">
-    <div class="flex items-start gap-4">
-        <img
-            src="/logo/certified.png"
-            alt=""
-            width="40"
-            height="40"
-            loading="lazy"
-            decoding="async"
-            class="h-10 w-10 object-contain drop-shadow-md"
-        />
-        <div class="flex-1">
-            <h3 class="font-semibold text-gray-900">Nos valeurs clés !</h3>
-            <p>des prix clairs, des promesses tenues. beaucoup d’attention, échanges simples. Partenaires proches.</p>
-        </div>
-    </div>
-    </aside>
 
     <!-- JSON-LD AboutPage -->
     <script type="application/ld+json">

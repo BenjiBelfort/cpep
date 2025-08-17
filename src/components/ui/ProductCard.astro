@@ -1,0 +1,90 @@
+---
+/** Props:
+ *  title: string
+ *  description: string
+ *  href: string
+ *  imageSrc?: string
+ *  imageAlt?: string
+ *  best?: boolean       // top ventes
+ *  eco?: boolean        // écolo
+ *  economy?: boolean    // économique (l’argent)
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  best?: boolean;
+  eco?: boolean;
+  economy?: boolean;
+}
+
+const {
+  title, description, href,
+  imageSrc, imageAlt = '',
+  best = false, eco = false, economy = false,
+} = Astro.props as Props;
+
+// -- Définition des badges + ordre de priorité : 1 économie, 2 écolo, 3 best
+type BadgeDef = { key: 'economy'|'eco'|'best'; src: string; prio: number; };
+const badgePool: BadgeDef[] = [
+  ...(economy ? [{ key: 'economy', src: '/logo/save-badge.png', prio: 1 } as const] : []),
+  ...(eco     ? [{ key: 'eco',     src: '/logo/ecologo.png',   prio: 2 } as const] : []),
+  ...(best    ? [{ key: 'best',    src: '/logo/best-sale.png', prio: 3 } as const] : []),
+];
+
+// tri par priorité ascendante
+const badges = badgePool.sort((a, b) => a.prio - b.prio);
+---
+
+<article class="group relative rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
+  <!-- Badges empilés (haut-droite) -->
+  {badges.length > 0 && (
+    <span class="absolute -top-2 -right-2 z-10 select-none pointer-events-none" aria-hidden="true">
+      <span class="flex flex-row-reverse items-start">
+        {badges.map((b, i) => (
+          <img
+            src={b.src}
+            alt=""
+            width="32" height="32"
+            class="relative h-8 w-8 object-contain drop-shadow-md"
+            style={`z-index:${30 - i};${i > 0 ? 'margin-right:-0.5rem;' : ''}`}
+          />
+        ))}
+      </span>
+    </span>
+  )}
+
+  <div class="relative aspect-[4/3] rounded-lg bg-creative/30 border border-bg-alt overflow-hidden">
+    {imageSrc ? (
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+      />
+    ) : (
+      <div class="absolute inset-0 grid place-items-center">
+        <Icon name="lucide:image" class="w-8 h-8 text-primary/60" aria-hidden="true" />
+      </div>
+    )}
+  </div>
+
+  <h3 class="mt-4 font-semibold text-text">{title}</h3>
+  <p class="mt-2 text-sm text-gray-800">{description}</p>
+
+  <div class="mt-auto pt-4">
+    <a
+      href={href}
+      class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4"
+      aria-label={`Voir les produits : ${title}`}
+    >
+      Voir les produits
+      <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
+    </a>
+  </div>
+</article>

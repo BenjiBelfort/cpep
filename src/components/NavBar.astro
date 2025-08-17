@@ -2,14 +2,10 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<header class="sticky top-0 z-50 bg-bg border-b border-b-primary text-primary">
+<header id="site-header" class="sticky top-0 z-50 bg-bg border-b border-b-primary text-primary">
   <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between" aria-label="Navigation principale">
     <!-- Logo -->
-    <a
-      href="/"
-      class="flex items-center"
-      aria-label="CPEP — La plus juste expression de votre identité (Accueil)"
-    >
+    <a href="/" class="flex items-center" aria-label="CPEP — La plus juste expression de votre identité (Accueil)">
       <div class="flex items-center">
         <span class="font-display text-4xl mr-0.5">CPEP</span>
         <span class="font-display text-accent text-5xl rotate-4">!</span>
@@ -37,46 +33,32 @@ import { Icon } from 'astro-icon/components';
 
       <!-- Bouton menu mobile -->
       <button
-        type="button"
-        id="mobile-open"
-        class="md:hidden inline-flex items-center justify-center rounded-lg p-2 border border-bg-alt"
-        aria-label="Ouvrir le menu"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-      >
-        <Icon name="lucide:align-right" class="w-5 h-5" />
-      </button>
+        id="mobile-toggle"
+        class="md:hidden inline-flex items-center justify-center rounded-xl p-3"
+        aria-expanded="false" data-open="false" aria-controls="mobile-panel" aria-label="Ouvrir le menu"
+        >
+        <span class="relative w-8 h-8">
+            <Icon name="lucide:align-right" class="icon-open absolute inset-0 w-full h-full" aria-hidden="true" />
+            <Icon name="lucide:x" class="icon-close absolute inset-0 w-full h-full opacity-0 scale-90" aria-hidden="true" />
+        </span>
+        </button>
+
+
     </div>
   </nav>
 </header>
 
-<!-- PANNEAU MOBILE (glisse du haut) -->
+<!-- PANNEAU MOBILE : glisse depuis sous la navbar -->
 <div
-  id="mobile-menu"
-  class="fixed inset-0 z-50 md:hidden bg-bg -translate-y-full transition-transform duration-300 ease-out flex flex-col"
+  id="mobile-panel"
+  class="fixed inset-x-0 bottom-0 md:hidden bg-bg z-40 -translate-y-full transition-transform duration-300 ease-out border-b border-bg-alt"
   hidden
   role="dialog"
   aria-modal="true"
   aria-labelledby="mobile-menu-title"
 >
-  <!-- Barre du haut du panneau (logo + close) -->
-  <div class="mx-auto max-w-6xl px-4 py-3 w-full flex items-center justify-between">
-      <div class="flex items-center">
-        <span class="font-display text-4xl text-primary mr-0.5">CPEP</span>
-        <span class="font-display text-accent text-5xl rotate-4">!</span>
-      </div>
-    <button
-      type="button"
-      id="mobile-close"
-      class="inline-flex items-center justify-center rounded-lg p-2 border border-bg-alt"
-      aria-label="Fermer le menu"
-    >
-      <Icon name="lucide:x" class="w-5 h-5" />
-    </button>
-  </div>
-
   <!-- Liens centrés -->
-  <div class="flex-1 flex items-center justify-center px-4 py-12">
+  <div class="min-h-[60svh] flex items-center justify-center px-4 py-12">
     <nav aria-label="Menu mobile">
       <h2 id="mobile-menu-title" class="sr-only">Menu mobile</h2>
       <ul class="flex flex-col items-center gap-6 text-xl">
@@ -96,43 +78,71 @@ import { Icon } from 'astro-icon/components';
   </div>
 </div>
 
+<!-- Morph/rotation du bouton -->
+<style is:global>
+  /* rotation du bouton quand ouvert */
+  button[data-open="true"] { transform: rotate(180deg); }
+  /* morph icons */
+  button[data-open="true"] .icon-open { opacity: 0; transform: scale(0.75) rotate(90deg); }
+  button[data-open="true"] .icon-close { opacity: 1; transform: scale(1) rotate(0deg); }
+</style>
+
 <!-- Script minimal -->
 <script is:inline>
   (function () {
-    const openBtn = document.getElementById('mobile-open');
-    const closeBtn = document.getElementById('mobile-close');
-    const panel = document.getElementById('mobile-menu');
-    if (!openBtn || !closeBtn || !panel) return;
+    const header = document.getElementById('site-header');
+    const panel = document.getElementById('mobile-panel');
+    const toggle = document.getElementById('mobile-toggle');
+    if (!header || !panel || !toggle) return;
+
+    function placePanel() {
+      // le panneau commence sous la navbar
+      panel.style.top = header.offsetHeight + 'px';
+    }
 
     function openMenu() {
+      placePanel();
       panel.hidden = false;
       requestAnimationFrame(() => {
         panel.classList.remove('-translate-y-full');
-        openBtn.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden'; // bloque le scroll en fond
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('data-open', 'true');
+        document.body.style.overflow = 'hidden';
       });
     }
+
     function closeMenu() {
       panel.classList.add('-translate-y-full');
       panel.addEventListener('transitionend', () => {
         panel.hidden = true;
         document.body.style.overflow = '';
       }, { once: true });
-      openBtn.setAttribute('aria-expanded', 'false');
-      openBtn.focus();
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('data-open', 'false');
+      toggle.focus();
     }
 
-    openBtn.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('data-open') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    // Fermer au clic sur un lien
     panel.addEventListener('click', (e) => {
       const a = e.target.closest('a');
       if (a) closeMenu();
     });
+
+    // ESC pour fermer
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeMenu();
     });
-    // Auto-ferme si on passe en md+
-    const mq = window.matchMedia('(min-width: 768px)');
-    mq.addEventListener('change', (e) => e.matches && closeMenu());
+
+    // Recalcule la position si resize (ou si la navbar change de hauteur)
+    window.addEventListener('resize', () => {
+      if (!panel.hidden) placePanel();
+      // auto-ferme si on passe en md+
+      if (window.matchMedia('(min-width: 768px)').matches) closeMenu();
+    });
   })();
 </script>

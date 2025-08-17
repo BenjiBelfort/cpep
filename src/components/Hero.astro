@@ -4,55 +4,48 @@ import { Icon } from 'astro-icon/components';
 
 <section
   id="hero"
-  class="mx-auto max-w-6xl px-4 min-h-[100svh] grid gap-8 md:grid-cols-2 items-center"
+  class="relative isolate min-h-[100svh]"
+  aria-labelledby="hero-title"
 >
-  <div class="">
-    <h1 class="text-center md:text-left font-sans font-medium text-4xl md:text-5xl text-text">
-      Sacs <span class="text-accent">personnalisés</span>, <span class="text-accent">print</span> et <span class="text-accent">sites web </span>sur mesure !
+  <!-- BG image plein écran -->
+    <picture>
+    <source srcset="/photos/hero-bag-mobile.webp"  media="(max-width: 767px)" />
+    <source srcset="/photos/hero-bag.webp" media="(min-width: 768px)" />
+    <img
+        src="/photos/hero-bag.webp"
+        alt="" aria-hidden="true"
+        class="absolute inset-0 -z-10 h-full w-full object-cover"
+        loading="eager" decoding="async" fetchpriority="high"
+    />
+    </picture>
+
+  <!-- Contenu -->
+<div class="mx-auto max-w-6xl px-4 py-16 md:py-24 min-h-[100svh] grid items-center md:grid-cols-[1.1fr,1fr] gap-8">
+  <!-- Colonne gauche : texte -->
+  <div class="max-w-[56ch] md:max-w-[52ch] justify-self-start">
+    <h1 id="hero-title" class="text-left font-sans font-medium text-4xl md:text-5xl text-text">
+      Sacs <strong>personnalisés</strong>, <strong>print</strong> et
+      <strong>sites web</strong> sur mesure !
     </h1>
-    <h2 class="font-serif mt-4 text-lg text-text text-center md:text-left">
-      Vos outils de communication visuelle pour la mise en valeur de votre identité
+    <h2 class="font-serif mt-4 pr-8 md:pr-0 text-lg text-text text-left">
+      Vos outils de <strong>communication</strong> visuelle pour la mise en valeur de votre <strong>identité</strong>
     </h2>
 
-    <!-- Boutons -->
-    <div class="mx-12 md:mx-0 mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start" role="group" aria-label="Accès rapide">
-      <!-- 1) Print -->
-      <a
-        href="#print"
-        class="inline-flex justify-center items-center gap-2 rounded-full bg-primary text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-      >
-        <Icon name="lucide:package" class="w-4 h-4" aria-hidden="true" />
-        Print
-      </a>
 
-      <!-- 2) Web -->
-      <a
-        href="#web"
-        class="inline-flex justify-center items-center gap-2 rounded-full bg-primary text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-      >
-        <Icon name="lucide:code-2" class="w-4 h-4" aria-hidden="true" />
-        Web
+    <div class="mt-6 flex flex-row flex-wrap gap-4 justify-start" role="group" aria-label="Accès rapide">
+      <a href="#print" class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+        <Icon name="lucide:handbag" class="w-4 h-4" aria-hidden="true" /> Print
       </a>
-
-      <!-- 3) Contact -->
-      <a
-        href="#contact"
-        class="inline-flex justify-center items-center gap-2 rounded-full bg-accent text-white px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-      >
-        <Icon name="lucide:mail" class="w-4 h-4" aria-hidden="true" />
-        Contact
+      <a href="#web" class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+        <Icon name="lucide:code-2" class="w-4 h-4" aria-hidden="true" /> Web
       </a>
     </div>
   </div>
 
-    <div class="relative aspect-[4/3]">
-        <img
-            src="/logo/Logo-bleu.png"
-            alt="Exemples d’emballages personnalisés et interface web"
-            class="absolute inset-0 h-full w-full object-cover"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-        />
-    </div>
+  <div class="absolute md:hidden inset-0 -z-10 bg-gradient-to-r from-bg/100 via-bg/30 to-transparent"></div>
+
+  <!-- Colonne droite : espace pour laisser voir l'image de fond -->
+  <div class="hidden md:block"></div>
+</div>
+
 </section>
