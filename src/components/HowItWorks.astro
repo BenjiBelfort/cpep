@@ -1,72 +1,119 @@
 ---
-/* src/components/HowItWorksTimeline.astro */
+/* src/components/HowItWorks.astro */
+import { Icon } from 'astro-icon/components';
 import ProcessCard from '../components/ui/ProcessCard.astro';
+
+type Step = { step: number; title: string; description: string; icon: string; highlight?: boolean };
+
+/* ✅ Définis les variants ici (pas dans le template) */
+const variants = ['Base', 'Print', 'Web'] as const;
+type Variant = typeof variants[number];
+
+const timelines: Record<Variant, Step[]> = {
+  'Base': [
+    { step: 1, title: 'Détection des besoins', icon: 'lucide:search', description: "Quelle est votre problématique ? Prix, délai, qualité… On cadre ensemble le besoin." },
+    { step: 2, title: 'Étude de prix & design', icon: 'lucide:pencil-ruler', description: "Solution adaptée à vos objectifs et contraintes. Chiffrage clair et design pertinent." },
+    { step: 3, title: 'Proposition budget & plan d’action', icon: 'lucide:clipboard-check', description: "Devis détaillé, étapes clés, délais. La réponse la plus juste selon vos objectifs." },
+    { step: 4, title: 'Et… ça part en prod !', icon: 'lucide:rocket', description: "Validation → lancement. Suivi qualité et satisfaction client au centre.", highlight: true },
+  ],
+  'Print': [
+    { step: 1, title: 'Expression des besoins', icon: 'lucide:file-text', description: "Formats, matières, quantités, finitions, usages et délais. On fixe le cadre." },
+    { step: 2, title: 'Étude technique & chiffrage', icon: 'lucide:calculator', description: "Comparatif techniques d’impression & finitions, éco-conception, budget optimisé." },
+    { step: 3, title: 'BAT & planning de production', icon: 'lucide:calendar-check-2', description: "Maquettes/BAT, jalons de validation, rétroplanning et contrôle qualité." },
+    { step: 4, title: 'Fabrication & livraison', icon: 'lucide:truck', description: "Lancement atelier, suivi de prod, contrôle, logistique et livraison au propre.", highlight: true },
+  ],
+  'Web': [
+    { step: 1, title: 'Expression des besoins', icon: 'lucide:message-square', description: "Objectifs, contenu, cibles, fonctionnalités, contraintes RGPD & SEO." },
+    { step: 2, title: 'UX/UI & chiffrage', icon: 'lucide:layout', description: "Arborescence, maquettes, perfs (Core Web Vitals), intégrations. Budget clair." },
+    { step: 3, title: 'Plan d’action & SEO technique', icon: 'lucide:clipboard-check', description: "Roadmap, jalons, données structurées, accessibilité et recette." },
+    { step: 4, title: 'Mise en ligne & suivi', icon: 'lucide:rocket', description: "Déploiement, monitoring et optimisations continues. On reste à bord.", highlight: true },
+  ],
+};
+
+const defaultVariant: Variant = 'Base';
 ---
 
-<section id="methode" aria-labelledby="titre-methode" class="mx-auto max-w-3xl px-4 py-16 scroll-m-4">
-  <h2 id="titre-methode" class="text-center text-2xl md:text-3xl font-medium text-gray-900">Comment ça marche ?</h2>
 
+<section
+  id="methode"
+  data-howitworks
+  aria-labelledby="titre-methode"
+  class="mx-auto max-w-3xl px-4 py-16 scroll-m-4 min-h-[60svh]"
+>
+  <h2 id="titre-methode" class="text-center text-2xl md:text-3xl font-medium text-text">Comment ça marche ?</h2>
   <p class="text-center mt-4 md:mx-12 text-text">
-    Une méthode simple et efficace pour tous vos projets <strong>de sacs personnalisés</strong>, <strong>print</strong> et pour votre <strong>site web</strong> : 
-    <strong>expression des besoins</strong>, <strong>étude meilleur prix &amp; design</strong>, 
-    <strong>proposition budgétaire &amp; plan d’action</strong>, puis <strong>mise en production</strong>.
+    La méthode CPEP! simple et efficace pour vos projets <strong>print</strong> & <strong>web</strong> :
+    <strong>expression des besoins</strong>, <strong>étude prix & design</strong>,
+    <strong>plan d’action</strong>, puis <strong>mise en production</strong>.
   </p>
 
-    <p class="mt-6 text-center text-sm text-gray-500">4 étapes pour un résultat optimal.</p>
-  <!-- Timeline verticale -->
-  <ol class="relative mt-10 space-y-6 before:absolute before:left-4 before:top-0 before:h-full before:w-px">
-    <ProcessCard
-      step={1}
-      title="Expression des besoins"
-      icon="lucide:message-square"
-      description="Objectifs, contraintes, quantités, formats & matières (print) / contenus, fonctionnalités, SEO & RGPD (web)."
-    />
-    <ProcessCard
-      step={2}
-      title="Étude meilleur prix & design"
-      icon="lucide:palette"
-      description="Comparatif techniques & finitions, éco-conception, maquettes/BATs (print) / UX-UI, perfs, stack & intégrations (web)."
-    />
-    <ProcessCard
-      step={3}
-      title="Proposition budget & plan d’action"
-      icon="lucide:clipboard-check"
-      description="Devis détaillé, jalons, rétroplanning, préparation production/mise en ligne et logistique de livraison."
-    />
-    <!-- NEW: Step 4 -->
-    <ProcessCard
-        step={4}
-        title="et... Ça part en prod !"
-        icon="lucide:rocket"
-        description="Validation finale : (print) lancement fabrication & contrôle qualité · (web) déploiement & suivi post-mise en ligne. CPEP! et c’est parti."
-        variant="highlight"
-    />
-  </ol>
+  <!-- Boutons -->
+    <div class="mt-6 flex justify-center gap-2" role="tablist" aria-label="Choisir la méthode">
+    {variants.map((key) => (
+        <button
+        id={`tab-${key}`}
+        type="button"
+        data-variant-btn={key}
+        role="tab"
+        aria-selected={key === defaultVariant ? 'true' : 'false'}
+        class="inline-flex items-center gap-2 rounded-full border border-bg-alt px-3 py-1 text-sm
+                hover:border-accent transition
+                aria-selected:bg-accent aria-selected:text-white"
+        >
+        <Icon
+            name={key === 'Print' ? 'lucide:package' : key === 'Web' ? 'lucide:code-2' : 'lucide:star'}
+            class="w-4 h-4"
+            aria-hidden="true"
+        />
+        <span>{key}</span>
+        </button>
+    ))}
+    </div>
 
-
-  <!-- CTA vers la page Méthode (on l’ajoutera plus tard) -->
-  <div class="mt-10">
-    <!--
-    <a href="/methode" class="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-white hover:opacity-90">
-      Découvrir la méthode CPEP!
-    </a>
-    -->
+    <!-- Panels (sans animation, sans absolute) -->
+  <div data-panels class="py-6 md:p-12">
+    {variants.map((key) => (
+      <ol
+        id={`panel-${key}`}
+        data-panel={key}
+        role="tabpanel"
+        aria-labelledby={`tab-${key}`}
+        class={`space-y-6 ${key === defaultVariant ? '' : 'hidden'}`}
+      >
+        {timelines[key].map(({ step, title, icon, description, highlight }) => (
+          <ProcessCard
+            step={step}
+            title={title}
+            icon={icon}
+            description={description}
+            variant={highlight ? 'highlight' : 'default'}
+          />
+        ))}
+      </ol>
+    ))}
   </div>
 
-  <!-- JSON-LD HowTo -->
-  <script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "La méthode CPEP — Print & Web",
-    "description": "Expression des besoins, étude meilleur prix & design, proposition budgétaire & plan d’action, puis mise en production.",
-    "step": [
-      { "@type": "HowToStep", "name": "Expression des besoins", "text": "Objectifs, contraintes, quantités, formats & matières (print) / contenus, fonctionnalités, SEO & RGPD (web)." },
-      { "@type": "HowToStep", "name": "Étude meilleur prix & design", "text": "Comparatif techniques & finitions, éco-conception, maquettes et BATs (print) / UX-UI, performances, stack et intégrations (web)." },
-      { "@type": "HowToStep", "name": "Proposition budget & plan d’action", "text": "Devis détaillé, jalons, rétroplanning, préparation production/mise en ligne et logistique de livraison." },
-      { "@type": "HowToStep", "name": "Mise en production", "text": "Validation finale puis lancement : fabrication & contrôle qualité (print) / déploiement et suivi post-mise en ligne (web)." }
-    ],
-    "provider": { "@type": "Organization", "name": "CPEP" }
-  })}
+  <script is:inline>
+    (function () {
+      const root = document.currentScript.closest('[data-howitworks]');
+      if (!root) return;
+      const panels = Array.from(root.querySelectorAll('[data-panel]'));
+      const btns = Array.from(root.querySelectorAll('[data-variant-btn]'));
+
+      function show(key) {
+        panels.forEach(p => {
+          const on = p.getAttribute('data-panel') === key;
+          p.classList.toggle('hidden', !on);
+        });
+      }
+
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-variant-btn');
+          btns.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+          show(key || 'Base');
+        });
+      });
+    })();
   </script>
 </section>

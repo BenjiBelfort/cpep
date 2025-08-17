@@ -7,16 +7,16 @@
   --font-display: "Bowlby One", var(--font-sans);
 
   /* Couleurs custom */
-  --color-primary: #4A738E;      /* Primaire : Bleu doux CPEP */
-  --color-accent: #FF2D95;       /* Secondaire accent : Rose électrique ! CPEP */
-  --color-bg: #FAF9F6;           /* Blanc cassé (fond principal) */
-  --color-text: #585858;         /* Anthracite (texte sombre) plus gray*/
+  --color-primary: #3C6E71;      /* Primaire : Bleu doux CPEP */
+  --color-accent: #F9564F;       /* Secondaire accent : Rose électrique ! CPEP idée orange : #F9564F*/
+  --color-bg: #F6F4F3;           /* Blanc cassé (fond principal) */
+  --color-text: #080708;         /* TEXTES Raisin Black, avant : #585858*/
   --color-bg-light: #C8D8E4;     /* Fond clair : Bleu clair */
-  --color-hover: #FFD1E6;        /* Rose pâle (hover bouton) */
+  --color-hover: #D0BCD5;        /* Rose pâle (hover bouton) */
   --color-bg-alt: #EDEDED;       /* Gris clair (fond alternatif) */
-  --color-creative: #E5D8EF;     /* Lilas doux */
+  --color-creative: #D4E6B5;     /* Lilas doux */
 
-  --color-success: #4CAF50;      /* Succès : Vert */
+  --color-success: #4CAF50;      /* Succès : Vert - variante turquoise : #44BBA4*/
   --color-warning: #FFC107;      /* Warning : Orange */
   --color-error: #F44336;        /* Erreur : Rouge */
   --color-info: #2196F3;         /* Information : Bleu Vif */

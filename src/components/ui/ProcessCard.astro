@@ -44,9 +44,9 @@ const isHighlight = variant === 'highlight';
       <Icon
         name={icon}
         class:list={{
-          'w-6 h-6 mt-0.5 hidden md:block': true,
-          'text-primary': !isHighlight,
-          'text-white/90': isHighlight,
+          'w-8 h-8 self-center shrink-0 mr-2 hidden md:block': true,
+          'text-text': !isHighlight,
+          'text-white': isHighlight,
         }}
         aria-hidden="true"
       />
@@ -54,7 +54,7 @@ const isHighlight = variant === 'highlight';
         <h3
           class:list={{
             'font-semibold': true,
-            'text-gray-900': !isHighlight,
+            'text-text': !isHighlight,
             'text-white uppercase': isHighlight,
           }}
         >
@@ -63,8 +63,8 @@ const isHighlight = variant === 'highlight';
         <p
           class:list={{
             'mt-1 text-sm': true,
-            'text-gray-700': !isHighlight,
-            'text-white': isHighlight,
+            'text-gray-800': !isHighlight,
+            'text-white/90': isHighlight,
           }}
         >
           {description}

@@ -1,37 +1,138 @@
 ---
 import { Icon } from 'astro-icon/components';
-
 ---
 
-<header class="sticky top-0 z-50 bg-bg border-b-1 border-b-primary text-primary">
+<header class="sticky top-0 z-50 bg-bg border-b border-b-primary text-primary">
   <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between" aria-label="Navigation principale">
+    <!-- Logo -->
     <a
       href="/"
       class="flex items-center"
       aria-label="CPEP — La plus juste expression de votre identité (Accueil)"
     >
-        <div class="flex items-center text-shadow-xs">
-            <span class="font-display text-4xl mr-0.5">CPEP</span>
-            <span class="font-display text-accent text-5xl rotate-4">!</span>
-        </div>
-
-        <p class="font-serif text-sm leading-4 hidden md:block ml-3">La plus juste expression <br> de votre identité</p>
+      <div class="flex items-center">
+        <span class="font-display text-4xl mr-0.5">CPEP</span>
+        <span class="font-display text-accent text-5xl rotate-4">!</span>
+      </div>
+      <p class="font-serif text-sm leading-4 hidden md:block ml-3">
+        La plus juste expression <br /> de votre identité
+      </p>
     </a>
 
+    <!-- Desktop nav -->
     <ul class="hidden md:flex items-center gap-6">
-        <ul class="hidden md:flex items-center gap-6">
-        <li><a href="#print" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Print</a></li>
-        <li><a href="#web" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Web</a></li>
-        <li><a href="#methode" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Méthode CPEP!</a></li>
-
-        <li><a href="#about" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">À propos</a></li>
-        <li><a href="#faq" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">FAQ</a></li>
-        <li><a href="#contact" class="hover:underline hover:decoration-accent hover:decoration-1 hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Contact</a></li>
-        </ul>
+      <li><a href="#print" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Print</a></li>
+      <li><a href="#web" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Web</a></li>
+      <li><a href="#methode" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Méthode CPEP!</a></li>
+      <li><a href="#about" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">À propos</a></li>
+      <li><a href="#faq" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">FAQ</a></li>
+      <li><a href="#contact" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Contact</a></li>
     </ul>
 
-    <a href="#user" class="inline-flex items-center gap-2 rounded-full border px-3 py-1 hover:border-accent">
-      <Icon name="lucide:circle-user" class="w-4 h-4" />Connexion
-    </a>
+    <!-- Actions -->
+    <div class="flex items-center gap-3">
+      <a href="#user" class="hidden md:inline-flex items-center gap-2 rounded-full border px-3 py-1 hover:border-accent">
+        <Icon name="lucide:circle-user" class="w-4 h-4" />Connexion
+      </a>
+
+      <!-- Bouton menu mobile -->
+      <button
+        type="button"
+        id="mobile-open"
+        class="md:hidden inline-flex items-center justify-center rounded-lg p-2 border border-bg-alt"
+        aria-label="Ouvrir le menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <Icon name="lucide:align-right" class="w-5 h-5" />
+      </button>
+    </div>
   </nav>
 </header>
+
+<!-- PANNEAU MOBILE (glisse du haut) -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-50 md:hidden bg-bg -translate-y-full transition-transform duration-300 ease-out flex flex-col"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="mobile-menu-title"
+>
+  <!-- Barre du haut du panneau (logo + close) -->
+  <div class="mx-auto max-w-6xl px-4 py-3 w-full flex items-center justify-between">
+      <div class="flex items-center">
+        <span class="font-display text-4xl text-primary mr-0.5">CPEP</span>
+        <span class="font-display text-accent text-5xl rotate-4">!</span>
+      </div>
+    <button
+      type="button"
+      id="mobile-close"
+      class="inline-flex items-center justify-center rounded-lg p-2 border border-bg-alt"
+      aria-label="Fermer le menu"
+    >
+      <Icon name="lucide:x" class="w-5 h-5" />
+    </button>
+  </div>
+
+  <!-- Liens centrés -->
+  <div class="flex-1 flex items-center justify-center px-4 py-12">
+    <nav aria-label="Menu mobile">
+      <h2 id="mobile-menu-title" class="sr-only">Menu mobile</h2>
+      <ul class="flex flex-col items-center gap-6 text-xl">
+        <li><a href="#print" class="hover:underline hover:decoration-accent hover:underline-offset-6">Print</a></li>
+        <li><a href="#web" class="hover:underline hover:decoration-accent hover:underline-offset-6">Web</a></li>
+        <li><a href="#methode" class="hover:underline hover:decoration-accent hover:underline-offset-6">Méthode CPEP!</a></li>
+        <li><a href="#about" class="hover:underline hover:decoration-accent hover:underline-offset-6">À propos</a></li>
+        <li><a href="#faq" class="hover:underline hover:decoration-accent hover:underline-offset-6">FAQ</a></li>
+        <li><a href="#contact" class="hover:underline hover:decoration-accent hover:underline-offset-6">Contact</a></li>
+        <li class="pt-2">
+          <a href="#user" class="inline-flex items-center gap-2 rounded-full border px-3 py-1 hover:border-accent">
+            <Icon name="lucide:circle-user" class="w-4 h-4" />Connexion
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Script minimal -->
+<script is:inline>
+  (function () {
+    const openBtn = document.getElementById('mobile-open');
+    const closeBtn = document.getElementById('mobile-close');
+    const panel = document.getElementById('mobile-menu');
+    if (!openBtn || !closeBtn || !panel) return;
+
+    function openMenu() {
+      panel.hidden = false;
+      requestAnimationFrame(() => {
+        panel.classList.remove('-translate-y-full');
+        openBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden'; // bloque le scroll en fond
+      });
+    }
+    function closeMenu() {
+      panel.classList.add('-translate-y-full');
+      panel.addEventListener('transitionend', () => {
+        panel.hidden = true;
+        document.body.style.overflow = '';
+      }, { once: true });
+      openBtn.setAttribute('aria-expanded', 'false');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    panel.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+    // Auto-ferme si on passe en md+
+    const mq = window.matchMedia('(min-width: 768px)');
+    mq.addEventListener('change', (e) => e.matches && closeMenu());
+  })();
+</script>
