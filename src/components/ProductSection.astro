@@ -57,7 +57,7 @@ const products = [
   },
 ];
 
-const href = (slug: string) => `/produits/${slug}`;
+const href = (slug: string) => `/${slug}`;
 ---
 
 <section id="print" aria-labelledby="titre-print" class="mx-auto max-w-6xl px-4 py-16 scroll-m-4">
@@ -86,4 +86,34 @@ const href = (slug: string) => `/produits/${slug}`;
       />
     ))}
   </div>
+
+  <!-- Callout repères produits -->
+    <aside class="mt-10 w-fit mx-auto">
+    <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+        <!-- Économique -->
+        <div class="inline-flex items-center gap-3">
+        <span class="inline-grid place-items-center h-10 w-10 rounded-full bg-white shadow-sm">
+            <img src="/logo/save-badge.png" alt="Produit économique" class="h-9 w-9 object-contain" loading="lazy" decoding="async" />
+        </span>
+        <span class="text-text font-medium">Économique</span>
+        </div>
+
+        <!-- Écologique -->
+        <div class="inline-flex items-center gap-3">
+        <span class="inline-grid place-items-center h-10 w-10 rounded-full bg-white shadow-sm">
+            <img src="/logo/ecologo.png" alt="Produits écologiques" class="h-9 w-9 object-contain" loading="lazy" decoding="async" />
+        </span>
+        <span class="text-text font-medium">Environnement friendly</span>
+        </div>
+
+        <!-- Best seller -->
+        <div class="inline-flex items-center gap-3">
+        <span class="inline-grid place-items-center h-10 w-10 rounded-full bg-white shadow-sm">
+            <img src="/logo/best-sale.png" alt="Meilleures ventes" class="h-9 w-9 object-contain" loading="lazy" decoding="async" />
+        </span>
+        <span class="text-text font-medium">Top ventes</span>
+        </div>
+    </div>
+    </aside>
+
 </section>

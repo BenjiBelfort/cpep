@@ -1,0 +1,44 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  type?: 'info' | 'warn' | 'success';
+  title?: string;
+}
+const { type = 'info', title } = Astro.props as Props;
+
+const styles = {
+  info:    { bg: 'bg-info/10',    border: 'border-info/30',    text: 'text-info',    icon: 'lucide:info' },
+  warn:    { bg: 'bg-warning/10', border: 'border-warning/30', text: 'text-warning', icon: 'lucide:alert-triangle' },
+  success: { bg: 'bg-success/10', border: 'border-success/30', text: 'text-success', icon: 'lucide:check-circle-2' },
+}[type];
+
+const uid = title ? `callout-${title.toLowerCase().replace(/[^a-z0-9]+/g,'-')}` : undefined;
+---
+
+<aside
+  class:list={{
+    'rounded-xl border p-4': true,
+    [styles.bg]: true,
+    [styles.border]: true,
+  }}
+  role="note"
+  aria-labelledby={uid}
+>
+  <div class="flex items-start gap-3">
+    <Icon name={styles.icon} class:list={{ 'h-5 w-5 mt-0.5': true, [styles.text]: true }} aria-hidden="true" />
+    <div class="min-w-0">
+      {title && (
+        <p id={uid} class:list={{ 'm-0 font-semibold': true, [styles.text]: true }}>
+          {title}
+        </p>
+      )}
+      <div class="mt-1 text-sm text-gray-800
+                  [&_strong]:text-gray-900
+                  [&_a]:underline [&_a]:decoration-accent [&_a]:underline-offset-4
+                  [&_ul]:list-disc [&_ul]:pl-5">
+        <slot />
+      </div>
+    </div>
+  </div>
+</aside>

@@ -28,7 +28,7 @@
   /* a { @apply text-primary hover:text-accent; } */
   h1,h2,h3,h4 { @apply text-gray-900; }
   /* Citations = Noto Serif */
-  blockquote { @apply font-serif italic border-l-4 pl-4 border-bg-light text-gray-700; }
+  blockquote { @apply font-serif border-l-4 pl-4 border-bg-light text-gray-700; }
 }
 
 /* strong { @apply text-accent; } */

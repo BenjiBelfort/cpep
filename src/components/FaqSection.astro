@@ -1,27 +1,35 @@
 ---
-import FaqItem from './ui/FaqItem.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import FaqItem from './ui/FaqItem.astro'; // ajuste le chemin si besoin
 
-const faqs = [
-  { q: "Quels types d’emballages personnalisez-vous ?",
-    a: "Sacs papier/coton, boîtes rigides et pliantes, étuis, coffrets, calages, étiquettes & stickers, rubans, PLV. Impression premium, finitions (dorure, vernis, embossage)." },
-  { q: "Faites-vous aussi des sites web ?",
-    a: "Oui : sites rapides (Astro), SEO technique (balises, JSON-LD, maillage), accessibilité, intégrations et maintenance." },
-  { q: "Quels sont vos délais moyens ?",
-    a: "Selon la complexité : de quelques jours (web vitrine simple) à 2–6 semaines (print avec finitions spécifiques). On fournit un rétroplanning clair." },
-  { q: "Comment obtenir un devis ?",
-    a: "Envoyez votre besoin via la section Contact (formats/quantités/finitions ou fonctionnalités web). Réponse sous 24–48 h avec un budget indicatif." },
-];
+// 1) On récupère et trie
+const entries = await getCollection('faq');
+const items: Array<CollectionEntry<'faq'>> = entries
+  .slice()
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+
+// 2) On "render" chaque entrée pour récupérer le composant Content
+const rendered = await Promise.all(
+  items.map(async (entry) => {
+    const { Content } = await entry.render();
+    return { entry, Content };
+  })
+);
 ---
 
 <section id="faq" aria-labelledby="faq-title" class="mx-auto max-w-3xl px-4 py-16 scroll-m-4" data-faq-root>
   <h2 id="faq-title" class="text-center text-2xl md:text-3xl font-medium text-text">FAQ</h2>
   <p class="text-center mt-4 md:mx-12 text-gray-800">
-    Les réponses aux questions que l’on nous pose le plus souvent — emballages personnalisés et services web.
+    Les réponses aux questions que l’on nous pose le plus souvent — emballages personnalisés & web.
   </p>
 
   <div id="faq-list" class="mt-8 grid gap-4">
-    {faqs.map((item, i) => (
-      <FaqItem question={item.q} answer={item.a} icon="lucide:chevron-left" />
+    {rendered.map(({ entry, Content }) => (
+      <FaqItem question={entry.data.question} icon="lucide:chevron-left">
+        <Fragment slot="answer">
+          <Content />
+        </Fragment>
+      </FaqItem>
     ))}
   </div>
 
@@ -30,24 +38,25 @@ const faqs = [
   {JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map(({ q, a }) => ({
-      "@type": "Question", "name": q, "acceptedAnswer": { "@type": "Answer", "text": a }
+    "mainEntity": items.map(({ data }) => ({
+      "@type": "Question",
+      "name": data.question,
+      "acceptedAnswer": { "@type": "Answer", "text": data.answer }
     }))
   })}
   </script>
 
-      <!-- Mini-script (inline, 10 lignes) pour n'avoir qu'un seul dropdown ouvert -->
-    <script is:inline>
-        (function () {
-        const root = document.currentScript.closest('[data-faq-root]');
-        if (!root) return;
-        const items = Array.from(root.querySelectorAll('details'));
-        items.forEach((d) => {
-            d.addEventListener('toggle', () => {
-            if (d.open) items.forEach((x) => x !== d && (x.open = false));
-            });
+  <!-- Un seul dropdown ouvert à la fois -->
+  <script is:inline>
+    (function () {
+      const root = document.currentScript.closest('[data-faq-root]');
+      if (!root) return;
+      const items = Array.from(root.querySelectorAll('details'));
+      items.forEach((d) => {
+        d.addEventListener('toggle', () => {
+          if (d.open) items.forEach((x) => x !== d && (x.open = false));
         });
-        })();
-    </script>
-
+      });
+    })();
+  </script>
 </section>

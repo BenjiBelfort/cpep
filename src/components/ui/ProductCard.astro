@@ -40,23 +40,28 @@ const badgePool: BadgeDef[] = [
 const badges = badgePool.sort((a, b) => a.prio - b.prio);
 ---
 
-<article class="group relative rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm hover:border-accent transition">
+<article class="group relative rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm transition">
   <!-- Badges empilés (haut-droite) -->
-  {badges.length > 0 && (
+    {badges.length > 0 && (
     <span class="absolute -top-2 -right-2 z-10 select-none pointer-events-none" aria-hidden="true">
-      <span class="flex flex-row-reverse items-start">
+        <span class="flex flex-row-reverse items-start">
         {badges.map((b, i) => (
-          <img
-            src={b.src}
-            alt=""
-            width="32" height="32"
-            class="relative h-8 w-8 object-contain drop-shadow-md"
-            style={`z-index:${30 - i};${i > 0 ? 'margin-right:-0.5rem;' : ''}`}
-          />
+            <span
+            class="relative inline-grid place-items-center h-8 w-8 rounded-full bg-white shadow-sm"
+            style={`z-index:${30 - i};${i > 0 ? 'margin-right:-0.625rem;' : ''}`}
+            >
+            <img
+                src={b.src}
+                alt=""
+                width="20" height="20"
+                class="h-7 w-7 object-contain"
+            />
+            </span>
         ))}
-      </span>
+        </span>
     </span>
-  )}
+    )}
+
 
   <div class="relative aspect-[4/3] rounded-lg bg-creative/30 border border-bg-alt overflow-hidden">
     {imageSrc ? (
