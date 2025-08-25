@@ -47,7 +47,7 @@ const badges = badgePool.sort((a, b) => a.prio - b.prio);
         <span class="flex flex-row-reverse items-start">
         {badges.map((b, i) => (
             <span
-            class="relative inline-grid place-items-center h-8 w-8 rounded-full bg-white shadow-sm"
+            class="relative inline-grid drop-shadow-sm"
             style={`z-index:${30 - i};${i > 0 ? 'margin-right:-0.625rem;' : ''}`}
             >
             <img
