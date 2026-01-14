@@ -6,7 +6,8 @@ import { Icon } from 'astro-icon/components';
   <header class="text-center max-w-2xl mx-auto">
     <h2 id="contact-title" class="text-2xl md:text-3xl font-bold text-gray-900">Contact</h2>
     <p class="mt-3 text-text">
-      Dites-nous ce dont vous avez besoin. Réponse sous <strong>24–48 h</strong>. Pas de blabla, du concret.
+      Dites-nous quel est votre projet<br />
+      Réponse sous <strong>24–48 h</strong>
     </p>
   </header>
 
@@ -32,15 +33,22 @@ import { Icon } from 'astro-icon/components';
           <Icon name="lucide:map-pin" class="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />
           <div>
             <p class="font-semibold text-text">Zone</p>
-            <p class="text-gray-800">France & Europe — partenaires proches, délais maîtrisés</p>
+            <p class="text-gray-800">France & Europe <br>
+              partenaires proches, délais et qualité maîtrisés</p>
           </div>
         </li>
       </ul>
 
       <div class="mt-6 rounded-lg bg-primary/5 p-4 text-sm text-text">
         <p class="font-medium">Astuce</p>
-        <p class="mt-1">Pour un <strong>devis précis</strong>, indiquez les <em>quantités</em>, <em>formats</em>, <em>matières/finitions</em> (print) ou les <em>fonctionnalités</em> (web).</p>
+        <p class="mt-1">
+          Pour un <strong>devis précis</strong>, indiquez les <em>quantités</em>, <em>formats</em>, <em>matières/finitions</em> (print) ou les <em>fonctionnalités</em> (web).
+        </p>
+        <p class="mt-2">
+          Plus vous nous donnerez de détails, plus notre proposition sera précise et correspondante à vos besoins.
+        </p>
       </div>
+
     </aside>
 
     <!-- Form Netlify -->
@@ -51,7 +59,6 @@ import { Icon } from 'astro-icon/components';
       data-netlify="true"
       netlify-honeypot="bot-field"
       class="rounded-xl border border-bg-alt bg-white p-5"
-      aria-describedby="contact-help"
     >
       <!-- Netlify needs this -->
       <input type="hidden" name="form-name" value="contact-cpep" />
@@ -62,12 +69,17 @@ import { Icon } from 'astro-icon/components';
 
       <div class="grid gap-4 md:grid-cols-2">
         <label class="block">
-          <span class="text-sm font-medium text-text">Votre nom *</span>
+          <span class="text-sm font-medium text-text">
+            Votre nom <span class="text-accent">*</span>
+          </span>
+
           <input name="name" required autocomplete="name" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" />
         </label>
 
         <label class="block">
-          <span class="text-sm font-medium text-text">Email *</span>
+          <span class="text-sm font-medium text-text">
+            Email <span class="text-accent">*</span>
+          </span>
           <input type="email" name="email" required autocomplete="email" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" />
         </label>
 
@@ -91,23 +103,15 @@ import { Icon } from 'astro-icon/components';
         </label>
 
         <label class="block md:col-span-2">
-          <span class="text-sm font-medium text-text">Budget indicatif</span>
-          <select name="budget" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent">
-            <option>À définir</option>
-            <option>&lt; 1 000 €</option>
-            <option>1 000 – 3 000 €</option>
-            <option>3 000 – 8 000 €</option>
-            <option>&gt; 8 000 €</option>
-          </select>
-        </label>
-
-        <label class="block md:col-span-2">
-          <span class="text-sm font-medium text-text">Votre message *</span>
+          <span class="text-sm font-medium text-text">
+            Votre message <span class="text-accent">*</span>
+          </span>
           <textarea name="message" required rows={6} class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
         </label>
 
         <label class="md:col-span-2 flex items-start gap-2">
-          <input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-bg-alt" />
+          <input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-bg-alt consent-checkbox" />
+
           <span class="text-sm text-gray-800">
             J’accepte que mes données soient utilisées pour répondre à ma demande. (Pas de spam, jamais.)
           </span>
@@ -117,7 +121,6 @@ import { Icon } from 'astro-icon/components';
           <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
             <Icon name="lucide:send" class="h-4 w-4" aria-hidden="true" /> Envoyer
           </button>
-          <p id="contact-help" class="mt-2 text-xs text-gray-700">Réponse sous 24–48 h ouvrées.</p>
         </div>
       </div>
     </form>

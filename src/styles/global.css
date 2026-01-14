@@ -8,7 +8,7 @@
 
   /* Couleurs custom */
   --color-primary: #3C6E71;      /* Primaire : Bleu doux CPEP */
-  --color-accent: #F9564F;       /* Secondaire accent : Rose électrique ! CPEP idée orange : #F9564F*/
+  --color-accent: #F9564F;       /* Secondaire accent : CPEP orange : #F9564F*/
   --color-bg: #F6F4F3;           /* Blanc cassé (fond principal) */
   --color-text: #080708;         /* TEXTES Raisin Black, avant : #585858*/
   --color-bg-light: #C8D8E4;     /* Fond clair : Bleu clair */
@@ -52,4 +52,10 @@
 @media (prefers-reduced-motion: reduce) {
   #mobile-toggle .icon-open,
   #mobile-toggle .icon-close { transition: none; }
+}
+
+
+/* checkbox custom cochée */
+.consent-checkbox{
+  accent-color: var(--color-accent);
 }

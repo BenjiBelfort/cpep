@@ -26,10 +26,14 @@ import { Icon } from 'astro-icon/components';
       </ul>
     </div>
   </div>
-  <div class="border-t border-bg-alt">
-    <div class="mx-auto max-w-6xl px-4 py-5 text-xs text-gray-500 flex items-center justify-between">
+  <div class="border-t bg-primary border-bg-alt">
+    <div class="mx-auto max-w-6xl px-4 py-5 text-xs text-bg flex items-center justify-between">
       <span>© {new Date().getFullYear()} CPEP</span>
-      <span>Fabriqué avec Astro ⚡</span>
+      <span class="flex items-center gap-1 opacity-90 hover:opacity-100 transition">
+        <span>Site créé avec</span>
+        <img src="/logo/astro-logo-light-gradient.svg" class="w-auto h-8 translate-y-[1px]" />
+      </span>
+
     </div>
   </div>
   <script type="application/ld+json">
