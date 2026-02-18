@@ -1,0 +1,146 @@
+---
+// src/layouts/Base.astro
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+import { site as SITE } from '../config/site';
+
+const { seo } = Astro.props;
+
+// ✅ helpers : URL absolue (important pour SEO & JSON-LD)
+const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).toString() : p);
+
+// ✅ IDs stables = graphe Schema propre (évite de créer plusieurs entités "CPEP")
+const ORG_ID = '#org-cpep';
+const WEBSITE_ID = '#website-cpep';
+
+/**
+ * ✅ Organization (sitewide)
+ * Ici on met le "qui" : CPEP.
+ * On pousse le packaging en "knowsAbout".
+ */
+const ORG_LD: any = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': ORG_ID,
+
+  // ✅ Nom + URL officiels
+  name: SITE.name,
+  url: abs('/'),
+
+  // ✅ Logo absolu (meilleur pour crawlers)
+  logo: abs(SITE.logo),
+
+  // ✅ Slogan/branding
+  slogan: SITE.slogan,
+
+  // ✅ Zone
+  areaServed: SITE.areaServed ?? 'FR',
+
+  // ✅ Positionnement thématique : packaging first
+  knowsAbout: [
+    'Emballage personnalisé',
+    'Sacs papier personnalisés',
+    'Boîtes et étuis sur mesure',
+    'Calage, papier de soie, rubans',
+    'Étiquettes et finitions premium',
+    'Sourcing France et Europe',
+    'Sites web éco-conçus',
+    'SEO technique',
+  ],
+
+  // ✅ Ajoute email/tel uniquement si existants
+  ...(SITE.email ? { email: SITE.email } : {}),
+  ...(SITE.phone ? { telephone: SITE.phone } : {}),
+
+  // ✅ ContactPoint : utile si tu as email/tel (sinon on évite la clé)
+  ...((SITE.email || SITE.phone)
+    ? {
+        contactPoint: [{
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          ...(SITE.email ? { email: SITE.email } : {}),
+          ...(SITE.phone ? { telephone: SITE.phone } : {}),
+          areaServed: 'FR',
+          availableLanguage: ['fr'],
+        }],
+      }
+    : {}),
+
+  // ✅ Réseaux sociaux (important pour entité/brand signals)
+  sameAs: (SITE.sameAs || []).filter(Boolean),
+};
+
+/**
+ * ✅ WebSite (sitewide)
+ * Ici on met le "quoi" : le site CPEP.
+ * On le relie à l’Organization via publisher.
+ */
+const WEBSITE_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': WEBSITE_ID,
+
+  // ✅ URL canonique du site
+  url: abs('/'),
+
+  // ✅ Nom orienté packaging (répète le thème principal)
+  name: `${SITE.name} — Emballages personnalisés sur mesure`,
+  inLanguage: 'fr-FR',
+
+  // ✅ Lien propre vers l'Organization (évite les duplications)
+  publisher: { '@id': ORG_ID },
+};
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <!-- ✅ Charset + viewport : base saine -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- (UX, pas SEO direct, mais propre) -->
+    <meta name="theme-color" content="#4A738E" />
+
+    <!-- ✅ Icons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Google Fonts (perf) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Noto+Serif:ital,wght@0,400..900;1,400..900&family=Work+Sans:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ✅ SEO "par page" : title/desc/canonical/OG/Twitter -->
+    <SEO {...seo} />
+
+    <!-- ✅ JSON-LD sitewide : 1 seul script avec @graph (clean + scalable) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [ORG_LD, WEBSITE_LD],
+      })}
+    />
+
+    <!-- Slot pour head spécifique aux pages (ex: meta robots, scripts, etc.) -->
+    <slot name="head" />
+  </head>
+
+  <body class="bg-bg font-sans antialiased">
+    <!-- Accessibilité (pas SEO direct, mais bon signal global qualité) -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-3 focus:py-2 focus:rounded"
+    >
+      Aller au contenu
+    </a>
+
+    <main id="main" role="main">
+      <slot />
+    </main>
+  </body>
+</html>

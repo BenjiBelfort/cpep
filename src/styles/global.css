@@ -20,6 +20,34 @@
   --color-warning: #FFC107;      /* Warning : Orange */
   --color-error: #F44336;        /* Erreur : Rouge */
   --color-info: #2196F3;         /* Information : Bleu Vif */
+
+  /* enrichissement palette */
+  --color-primary-50:  #EFF3F4;
+  --color-primary-100: #E0E8E8;
+  --color-primary-200: #C1D1D2;
+  --color-primary-300: #A1B9BB;
+  --color-primary-400: #82A2A4;
+  --color-primary-500: #3C6E71; /* = primary */
+  --color-primary-600: #356163;
+  --color-primary-700: #2E5456;
+  --color-primary-800: #264648;
+  --color-primary-900: #1D3536;
+
+  --color-accent-50:  #FFF1F1;
+  --color-accent-100: #FEE4E3;
+  --color-accent-200: #FDC9C7;
+  --color-accent-300: #FCAEAB;
+  --color-accent-400: #FB938E;
+  --color-accent-500: #F9564F; /* = accent */
+  --color-accent-600: #DB4C46;
+  --color-accent-700: #BD413C;
+  --color-accent-800: #9F3733;
+  --color-accent-900: #782926;
+
+  /* Neutres “UI” (plus lisible que bg-alt partout) */
+  --color-surface: #FFFFFF;   /* cartes / surfaces */
+  --color-muted:   #6B7280;   /* textes secondaires (équivalent gray-500/600) */
+  --color-border:  #E5E7EB;   /* bordures génériques */
 }
 
 @layer base {

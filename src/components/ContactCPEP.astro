@@ -125,22 +125,4 @@ import { Icon } from 'astro-icon/components';
       </div>
     </form>
   </div>
-
-  <!-- JSON-LD ContactPage -->
-  <script type="application/ld+json">
-  {JSON.stringify({
-    "@context":"https://schema.org",
-    "@type":"ContactPage",
-    "name":"Contact CPEP",
-    "description":"Demande de devis et d’informations pour emballages personnalisés et services web.",
-    "url": Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : "/#contact",
-    "publisher": { "@type":"Organization", "name":"CPEP" },
-    "contactPoint": [{
-      "@type":"ContactPoint",
-      "contactType":"customer support",
-      "email":"contact@cpep.fr",
-      "areaServed":"FR"
-    }]
-  })}
-  </script>
 </section>

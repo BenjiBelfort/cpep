@@ -1,67 +1,50 @@
 ---
-import Base from '../layouts/Base.astro';
-import NavBar from '../components/NavBar.astro';
-import Footer from '../components/Footer.astro';
-import { Icon } from 'astro-icon/components';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Icon } from "astro-icon/components";
 
 const seo = {
-  title: 'Connexion — Espace client CPEP',
+  title: "Connexion — Espace client CPEP",
   description:
-    "Bientôt : connectez-vous, suivez vos commandes, retrouvez vos documents, signez vos BAT et gérez vos données. Propulsé par Odoo."
+    "Bientôt : connectez-vous, suivez vos commandes, retrouvez vos documents, signez vos BAT et gérez vos données. Propulsé par Odoo.",
 };
 ---
 
-<Base {seo}>
-  <NavBar />
-
-  <main id="main" class="mx-auto max-w-3xl px-4 py-24 min-h-[70svh] grid place-items-center text-center">
-    <section class="w-full">
+<PageLayout {seo}>
+  <section class="mx-auto max-w-3xl px-4 py-24 min-h-[70svh] grid place-items-center text-center">
+    <div class="w-full">
       <h1 class="text-2xl md:text-3xl font-medium text-text">
         Cette fonctionnalité est en cours de développement
       </h1>
+
       <p class="mt-6 text-gray-800">Bientôt&nbsp;:</p>
 
-        <ul class="mt-6 text-left mx-auto max-w-lg space-y-3">
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">Connectez-vous à votre compte</span>
-        </li>
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">Suivez vos commandes</span>
-        </li>
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">Retrouvez l’historique de vos commandes</span>
-        </li>
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">Accédez à vos documents : devis, confirmations de commande, factures, avoirs</span>
-        </li>
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">Signez vos Bons à Tirer</span>
-        </li>
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">Accédez à vos fichiers</span>
-        </li>
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">Mettez à jour vos données personnelles</span>
-        </li>
-        <li class="flex items-center gap-3">
-            <Icon name="lucide:check-circle-2" class="h-5 w-5 flex-none self-center text-success" stroke-width="2.2" aria-hidden="true" />
-            <span class="leading-snug">…et bien d’autres informations pratiques</span>
-        </li>
-        </ul>
-
+      <ul class="mt-6 text-left mx-auto max-w-lg space-y-3">
+        {[
+          "Connectez-vous à votre compte",
+          "Suivez vos commandes",
+          "Retrouvez l’historique de vos commandes",
+          "Accédez à vos documents : devis, confirmations de commande, factures, avoirs",
+          "Signez vos Bons à Tirer",
+          "Accédez à vos fichiers",
+          "Mettez à jour vos données personnelles",
+          "…et bien d’autres informations pratiques",
+        ].map((t) => (
+          <li class="flex items-center gap-3">
+            <Icon
+              name="lucide:check-circle-2"
+              class="h-5 w-5 flex-none self-center text-success"
+              stroke-width="2.2"
+              aria-hidden="true"
+            />
+            <span class="leading-snug">{t}</span>
+          </li>
+        ))}
+      </ul>
 
       <p class="mt-6 text-gray-800">
         Pour vous apporter la <strong>meilleure expérience utilisateur</strong>.
       </p>
 
-      <!-- Powered by Odoo -->
       <div class="mt-10 inline-flex items-center gap-3 rounded-full border border-bg-alt bg-white px-4 py-2 shadow-sm">
         <span class="text-sm text-gray-700">Powered by</span>
         <img
@@ -75,22 +58,21 @@ const seo = {
         />
       </div>
 
-      <!-- Retour à l’accueil -->
       <p class="mt-6">
         <a
           href="/"
           class="group inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label="Retour à la page d’accueil"
         >
-          <Icon name="lucide:arrow-left" class="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-1" aria-hidden="true" />
-
+          <Icon
+            name="lucide:arrow-left"
+            class="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-1"
+            aria-hidden="true"
+          />
           <span>Retour à l’accueil</span>
         </a>
       </p>
-
-    </section>
-  </main>
-
-  <Footer />
-</Base>
+    </div>
+  </section>
+</PageLayout>

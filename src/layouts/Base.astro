@@ -1,49 +1,66 @@
 ---
-import SEO from '../components/SEO.astro';
-import '../styles/global.css';
-import { site as SITE } from '../config/site';
+// src/layouts/Base.astro
+import SEO from "../components/SEO.astro";
+import "../styles/global.css";
+import { site as SITE } from "../config/site";
 
 const { seo } = Astro.props;
 
 // helpers
 const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).toString() : p);
-const ORG_ID = '#org-cpep';
 
-/** ✅ Pré-calcul en frontmatter = TS voit bien l’usage de SITE */
-const ORG_LD = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  '@id': ORG_ID,
+const ORG_ID = "#org-cpep";
+const WEBSITE_ID = "#website-cpep";
+
+const ORG_LD: any = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": ORG_ID,
   name: SITE.name,
-  url: abs('/'),
+  url: abs("/"),
   logo: abs(SITE.logo),
   slogan: SITE.slogan,
-  areaServed: SITE.areaServed,
-  // On n'ajoute email/tel que s'ils existent
+  areaServed: SITE.areaServed ?? "FR",
+  knowsAbout: [
+    "Emballage personnalisé",
+    "Sacs papier personnalisés",
+    "Boîtes et étuis sur mesure",
+    "Calage, papier de soie, rubans",
+    "Étiquettes et finitions premium",
+    "Sourcing France et Europe",
+    "Sites web éco-conçus",
+    "SEO technique",
+  ],
   ...(SITE.email ? { email: SITE.email } : {}),
   ...(SITE.phone ? { telephone: SITE.phone } : {}),
-  contactPoint: (SITE.email || SITE.phone)
-    ? [{
-        '@type': 'ContactPoint',
-        contactType: 'customer support',
-        ...(SITE.email ? { email: SITE.email } : {}),
-        ...(SITE.phone ? { telephone: SITE.phone } : {}),
-        areaServed: 'FR',
-        availableLanguage: ['fr'],
-      }]
-    : [],
+  ...((SITE.email || SITE.phone)
+    ? {
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            ...(SITE.email ? { email: SITE.email } : {}),
+            ...(SITE.phone ? { telephone: SITE.phone } : {}),
+            areaServed: "FR",
+            availableLanguage: ["fr"],
+          },
+        ],
+      }
+    : {}),
   sameAs: (SITE.sameAs || []).filter(Boolean),
 };
 
 const WEBSITE_LD = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  url: abs('/'),
-  name: `${SITE.name} — Emballages personnalisés & sites web sur mesure`,
-  inLanguage: 'fr-FR',
-  publisher: { '@id': ORG_ID },
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": WEBSITE_ID,
+  url: abs("/"),
+  name: `${SITE.name} — Emballages personnalisés sur mesure`,
+  inLanguage: "fr-FR",
+  publisher: { "@id": ORG_ID },
 };
 ---
+
 <!doctype html>
 <html lang="fr" class="scroll-smooth">
   <head>
@@ -54,23 +71,36 @@ const WEBSITE_LD = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Noto+Serif:ital,wght@0,400..900;1,400..900&family=Work+Sans:wght@300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Noto+Serif:ital,wght@0,400..900;1,400..900&family=Work+Sans:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
 
     <SEO {...seo} />
 
-    <!-- JSON-LD sitewide -->
-    <script type="application/ld+json">{JSON.stringify(ORG_LD)}</script>
-    <script type="application/ld+json">{JSON.stringify(WEBSITE_LD)}</script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [ORG_LD, WEBSITE_LD],
+      })}
+    />
 
     <slot name="head" />
   </head>
+
   <body class="bg-bg font-sans antialiased">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-3 focus:py-2 focus:rounded">Aller au contenu</a>
-    <main id="main" role="main">
-      <slot />
-    </main>
+    <!-- ✅ unique skip link -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-3 focus:py-2 focus:rounded"
+    >
+      Aller au contenu
+    </a>
+
+    <!-- ✅ Base ne contient PAS <main>. C’est le job d’un layout de page -->
+    <slot />
   </body>
 </html>

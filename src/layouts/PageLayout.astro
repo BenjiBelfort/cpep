@@ -1,0 +1,19 @@
+---
+// src/layouts/PageLayout.astro
+import Base from "./Base.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+const { seo } = Astro.props;
+---
+
+<Base {seo}>
+  <NavBar />
+
+  <!-- ✅ un seul main dans tout le site -->
+  <main id="main" role="main">
+    <slot />
+  </main>
+
+  <Footer />
+</Base>

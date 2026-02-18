@@ -1,33 +1,31 @@
 ---
-import Layout from '../layouts/Base.astro';
-import NavBar from '../components/NavBar.astro';
-import Hero from '../components/Hero.astro';
-import ProductSection from '../components/ProductSection.astro';
-import WebServicesSection from '../components/WebServicesSection.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import About from '../components/About.astro';
-import FaqSection from '../components/FaqSection.astro';
-import ContactCPEP from '../components/ContactCPEP.astro';
-import Footer from '../components/Footer.astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import Hero from "../components/Hero.astro";
+import PackagingTeaserSection from "../components/PackagingTeaserSection.astro";
+import WebTeaserSection from "../components/WebTeaserSection.astro";
+import ProductSection from "../components/ProductSection.astro";
+import WebServicesSection from "../components/WebServicesSection.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import About from "../components/About.astro";
+import FaqSection from "../components/FaqSection.astro";
+import ContactCPEP from "../components/ContactCPEP.astro";
 
 const seo = {
-  title: 'CPEP — Emballages personnalisés sur mesure',
-  description: 'Conception et fabrication d’emballages personnalisés sur mesure : boîtes, sacs, étiquettes et plus. Devis rapide. Basé en France.',
-  image: '/og-default.jpg',
+  title: "CPEP — Emballages personnalisés sur mesure",
+  description:
+    "Conception et fabrication d’emballages personnalisés sur mesure : boîtes, sacs, étiquettes et plus. Devis rapide. Basé en France.",
+  image: "/og-default.jpg",
 };
 ---
-<Layout {seo}>
-  <NavBar />
-  <main id="main">
-    <Hero />
-    <ProductSection />
-	<WebServicesSection />
 
-	<HowItWorks />
-    <About />
-    <FaqSection />
-	<ContactCPEP />
-
-  </main>
-  <Footer />
-</Layout>
+<PageLayout {seo}>
+  <Hero />
+  <PackagingTeaserSection />
+  <WebTeaserSection />
+  <ProductSection />
+  <WebServicesSection />
+  <HowItWorks />
+  <About />
+  <FaqSection />
+  <ContactCPEP />
+</PageLayout>

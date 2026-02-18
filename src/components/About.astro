@@ -1,5 +1,5 @@
 ---
-// src/components/sections/AboutCPEP.astro
+// src/components/sections/About.astro
 import { Icon } from 'astro-icon/components';
 
 type ValueItem = {
@@ -20,7 +20,7 @@ const values: ValueItem[] = [
         icon: 'lucide:handshake',
         title: 'Relation',
         desc: "Peu de clients, beaucoup d’attention. Des relations longues, pas à la chaîne.",
-        badge: true, // 👈 macaron certif
+        badge: true,
     },
     {
         icon: 'lucide:factory',
@@ -45,8 +45,6 @@ const values: ValueItem[] = [
     },
 ];
 ---
-
-<!-- Fond plein largeur en dégradé -->
 <section id="about" aria-labelledby="about-title" class="w-full bg-linear-to-t from-primary to-creative scroll-m-4">
   <div class="mx-auto max-w-6xl px-4 py-16">
     <div class="mx-auto max-w-3xl text-center">
@@ -61,7 +59,6 @@ const values: ValueItem[] = [
       </p>
     </div>
 
-    <!-- Mission / Vision -->
     <section class="mt-10 grid gap-6 grid-cols-1 md:grid-cols-2 items-stretch">
       <div class="h-full rounded-xl border border-bg-alt bg-white p-5">
         <h3 class="inline-flex items-center gap-2 text-lg font-medium text-text">
@@ -86,80 +83,54 @@ const values: ValueItem[] = [
       </div>
     </section>
 
-    <!-- Valeurs (mappées) -->
     <section class="mt-10">
-            <!-- Callout ultra-simple : macaron + résumé des 3 valeurs clés -->
-            <aside class="mx-auto w-fit mt-10 text-2xl">
-                <div class="flex items-center gap-4">
-                    <img
-                        src="/logo/certified.png"
-                        alt=""
-                        width="40"
-                        height="40"
-                        loading="lazy"
-                        decoding="async"
-                        class="h-12 w-12 object-contain drop-shadow-md"
-                    />
-                    <div class="flex-1 mb-4">
-                        <h3 class="font-semibold text-white font-serif">Nos valeurs clés !</h3>
-                        <p class="text-white font-serif">Seulement <strong>l’essentiel</strong>. Échanges <strong>simples</strong>. Partenaires <strong>proches</strong>.</p>
-                    </div>
-                </div>
-            </aside>
+      <aside class="mx-auto w-fit mt-10 text-2xl">
+          <div class="flex items-center gap-4">
+              <img
+                  src="/logo/certified.png"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-12 w-12 object-contain drop-shadow-md"
+              />
+              <div class="flex-1 mb-4">
+                  <h3 class="font-semibold text-white font-serif">Nos valeurs clés !</h3>
+                  <p class="text-white font-serif">Seulement <strong>l’essentiel</strong>. Échanges <strong>simples</strong>. Partenaires <strong>proches</strong>.</p>
+              </div>
+          </div>
+      </aside>
 
-        <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((v) => (
-            <li class="relative rounded-xl border border-bg-alt bg-white p-5 hover:shadow-sm transition">
-                {/* Badge certif en haut-droite (seulement si v.badge === true) */}
-                {v.badge && (
-                <span class="absolute -top-2 -right-2 z-10 pointer-events-none select-none" aria-hidden="true">
-                    <img
-                    src="/logo/certified.png"
-                    alt=""
-                    width="28"
-                    height="28"
-                    loading="lazy"
-                    decoding="async"
-                    class="h-7 w-7 object-contain drop-shadow-sm"
-                    />
-                </span>
-                )}
+      <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {values.map((v) => (
+          <li class="relative rounded-xl border border-bg-alt bg-white p-5 hover:shadow-sm transition">
+              {/* Badge certif en haut-droite (seulement si v.badge === true) */}
+              {v.badge && (
+              <span class="absolute -top-2 -right-2 z-10 pointer-events-none select-none" aria-hidden="true">
+                  <img
+                  src="/logo/certified.png"
+                  alt=""
+                  width="28"
+                  height="28"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-7 w-7 object-contain drop-shadow-sm"
+                  />
+              </span>
+              )}
 
 
-                <div class="flex items-start gap-3">
-                <Icon name={v.icon} class="h-10 w-10 text-primary" aria-hidden="true" />
-                <div>
-                    <p class="font-semibold text-primary">{v.title}</p>
-                    <p class="mt-1 text-sm text-gray-800">{v.desc}</p>
-                </div>
-                </div>
-            </li>
-            ))}
-        </ul>
+              <div class="flex items-start gap-3">
+              <Icon name={v.icon} class="h-10 w-10 text-primary" aria-hidden="true" />
+              <div>
+                  <p class="font-semibold text-primary">{v.title}</p>
+                  <p class="mt-1 text-sm text-gray-800">{v.desc}</p>
+              </div>
+              </div>
+          </li>
+          ))}
+      </ul>
     </section>
-
-
-    <!-- JSON-LD AboutPage -->
-    <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "À propos de CPEP",
-      "description": "CPEP conçoit des outils de communication durables et responsables — web éco-conçu et supports print utiles — avec des partenariats européens et un service fluide, réactif et humain.",
-      "about": {
-        "@type": "Organization",
-        "name": "CPEP",
-        "slogan": "La plus juste expression de votre identité",
-        "areaServed": "FR",
-        "brand": "CPEP",
-        "knowsAbout": [
-          "Emballages personnalisés durables",
-          "Sacs, boîtes, étuis, calages, étiquettes",
-          "Éco-conception web, SEO technique",
-          "Sourcing européen"
-        ]
-      }
-    })}
-    </script>
   </div>
 </section>

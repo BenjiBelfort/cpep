@@ -1,0 +1,800 @@
+---
+// src/pages/design-system.astro
+// ✅ Architecture : tu as gardé Base + Page → ici on utilise PageLayout (nav + footer + main)
+// ✅ La page est une référence interne : pas besoin de JSON-LD spécifique (déjà en Base)
+
+import PageLayout from "../layouts/PageLayout.astro";
+import { Icon } from "astro-icon/components";
+
+// ✅ Composants UI réels (à montrer en premier)
+import ProductCard from "../components/ui/ProductCard.astro";
+import ProcessCard from "../components/ui/ProcessCard.astro";
+
+const seo = {
+  title: "Design system — CPEP",
+  description:
+    "Design system CPEP : couleurs, typographies, logo, icônes, badges, boutons et composants UI.",
+};
+
+// ✅ Tokens “réellement utilisés”
+const colorsUsed = [
+  { name: "primary", hex: "#3C6E71", classText: "text-primary", classBg: "bg-primary", usage: "CTA, liens forts, éléments clés" },
+  { name: "accent", hex: "#F9564F", classText: "text-accent", classBg: "bg-accent", usage: "Accent, highlights, underline, focus" },
+  { name: "bg", hex: "#F6F4F3", classText: "text-bg", classBg: "bg-bg", usage: "Fond principal" },
+  { name: "text", hex: "#080708", classText: "text-text", classBg: "bg-text", usage: "Texte principal" },
+  { name: "bg-light", hex: "#C8D8E4", classText: "text-bg-light", classBg: "bg-bg-light", usage: "Fonds doux, repères" },
+  { name: "bg-alt", hex: "#EDEDED", classText: "text-bg-alt", classBg: "bg-bg-alt", usage: "Bordures, fonds alternatifs" },
+  { name: "hover", hex: "#D0BCD5", classText: "text-hover", classBg: "bg-hover", usage: "Hover doux (à doser)" },
+  { name: "creative", hex: "#D4E6B5", classText: "text-creative", classBg: "bg-creative", usage: "Blocs créatifs, fonds illustratifs" },
+
+  // ✅ feedback / UI states
+  { name: "success", hex: "#4CAF50", classText: "text-success", classBg: "bg-success", usage: "Validation, check, statut OK" },
+  { name: "warning", hex: "#FFC107", classText: "text-warning", classBg: "bg-warning", usage: "Avertissement (soft)" },
+  { name: "error", hex: "#F44336", classText: "text-error", classBg: "bg-error", usage: "Erreur / destructive" },
+  { name: "info", hex: "#2196F3", classText: "text-info", classBg: "bg-info", usage: "Info / état neutre (process default)" },
+];
+
+// ✅ Palettes étendues (si tu les as ajoutées dans ton CSS/tokens)
+const palettePrimary = [
+  ["primary-50",  "#EFF3F4"],
+  ["primary-100", "#E0E8E8"],
+  ["primary-200", "#C1D1D2"],
+  ["primary-300", "#A1B9BB"],
+  ["primary-400", "#82A2A4"],
+  ["primary-500", "#3C6E71"],
+  ["primary-600", "#356163"],
+  ["primary-700", "#2E5456"],
+  ["primary-800", "#264648"],
+  ["primary-900", "#1D3536"],
+];
+
+const paletteAccent = [
+  ["accent-50",  "#FFF1F1"],
+  ["accent-100", "#FEE4E3"],
+  ["accent-200", "#FDC9C7"],
+  ["accent-300", "#FCAEAB"],
+  ["accent-400", "#FB938E"],
+  ["accent-500", "#F9564F"],
+  ["accent-600", "#DB4C46"],
+  ["accent-700", "#BD413C"],
+  ["accent-800", "#9F3733"],
+  ["accent-900", "#782926"],
+];
+
+// ✅ Icônes réellement utilisées (vu dans tes composants)
+const iconsUsed = [
+  "lucide:handbag",
+  "lucide:code-2",
+  "lucide:circle-user",
+  "lucide:align-right",
+  "lucide:x",
+  "lucide:target",
+  "lucide:sparkles",
+  "lucide:scale",
+  "lucide:handshake",
+  "lucide:factory",
+  "lucide:check-circle-2",
+  "lucide:wand-2",
+  "lucide:heart-handshake",
+  "lucide:search",
+  "lucide:pencil-ruler",
+  "lucide:clipboard-check",
+  "lucide:rocket",
+  "lucide:file-text",
+  "lucide:calculator",
+  "lucide:calendar-check-2",
+  "lucide:truck",
+  "lucide:message-square",
+  "lucide:layout",
+  "lucide:star",
+  "lucide:arrow-right",
+  "lucide:arrow-left",
+  "lucide:image",
+];
+
+const badges = [
+  { name: "Certified", src: "/logo/certified.png" },
+  { name: "Économique", src: "/logo/save-badge.png" },
+  { name: "Eco", src: "/logo/ecologo.png" },
+  { name: "Best sale", src: "/logo/best-sale.png" },
+];
+---
+
+<PageLayout {seo}>
+  <section class="mx-auto max-w-6xl px-4 py-14">
+    <header class="max-w-3xl">
+      <h1 class="text-4xl md:text-5xl font-medium text-text">Design system CPEP</h1>
+      <p class="mt-4 text-gray-800">
+        Référence UI : couleurs, typographies, logo, icônes, badges, boutons et composants.
+        <span class="font-serif"> (Oui, c’est la page “on arrête de deviner”.)</span>
+      </p>
+    </header>
+
+    <!-- ✅ 1) UI réels (toujours en premier) -->
+    <section class="mt-14">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Composants UI (utilisés)</h2>
+      <p class="mt-3 text-gray-800 max-w-3xl">
+        D’abord ce que tu utilises vraiment : <strong>ProductCard</strong> (produits) et <strong>ProcessCard</strong> (méthode).
+      </p>
+
+      <!-- ProductCard -->
+      <div class="mt-8 rounded-xl border border-bg-alt bg-white p-6">
+        <h3 class="font-semibold text-text">ProductCard</h3>
+        <p class="mt-2 text-sm text-gray-700">
+          Badges empilés (économie → éco → best), image optionnelle, CTA underline accent.
+        </p>
+
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ProductCard
+            title="Sacs papier poignées plates"
+            description="Kraft blanc/brun, poignées plates renforcées. Impression 1 à 4 couleurs + vernis."
+            href="#"
+            economy={true}
+            eco={true}
+            best={true}
+          />
+
+          <ProductCard
+            title="Packaging haut de gamme"
+            description="Boîtes rigides/cloche/tiroir, dorure/gaufrage. Calages sur mesure."
+            href="#"
+            best={true}
+          />
+
+          <ProductCard
+            title="Étiquettes adhésives"
+            description="Bobine/planche, vernis sélectif, dorure. Adhésifs adaptés."
+            href="#"
+            imageSrc="/photos/hero-bag.webp"
+            imageAlt="Exemple de visuel packaging"
+            eco={true}
+          />
+        </div>
+      </div>
+
+      <!-- ProcessCard -->
+      <div class="mt-6 rounded-xl border border-bg-alt bg-white p-6">
+        <h3 class="font-semibold text-text">ProcessCard</h3>
+        <p class="mt-2 text-sm text-gray-700">
+          Variant <code>default</code> (pastille info) + <code>highlight</code> (carte primary + pastille accent).
+        </p>
+
+        <ol class="mt-6 space-y-6">
+          <ProcessCard
+            step={1}
+            title="Détection des besoins"
+            icon="lucide:search"
+            description="Quelle est votre problématique ? Prix, délai, qualité… On cadre ensemble le besoin."
+            variant="default"
+          />
+          <ProcessCard
+            step={4}
+            title="Et… ça part en prod !"
+            icon="lucide:rocket"
+            description="Validation → lancement. Suivi qualité et satisfaction client au centre."
+            variant="highlight"
+          />
+        </ol>
+
+        <p class="mt-4 text-xs text-gray-600">
+          Note : si le <code>bg-info</code> te paraît trop “bleu material”, tu peux le remplacer par un <code>bg-primary</code> soft plus CPEP.
+        </p>
+      </div>
+    </section>
+
+    <!-- ✅ Couleurs -->
+    <section class="mt-16">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Couleurs</h2>
+      <p class="mt-3 text-gray-800 max-w-3xl">
+        Tokens actuels + palette étendue pour hover, fonds doux, bordures et contrastes.
+      </p>
+
+      <h3 class="mt-8 font-semibold text-text">Couleurs utilisées (actuelles)</h3>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {colorsUsed.map((c) => (
+          <div class="rounded-xl border border-bg-alt bg-white p-4">
+            <div class={`h-12 rounded-lg ${c.classBg} border border-bg-alt`}></div>
+            <div class="mt-3 flex items-center justify-between gap-3">
+              <p class="font-semibold text-text">{c.name}</p>
+              <code class="text-xs text-gray-700">{c.hex}</code>
+            </div>
+            <p class="mt-2 text-sm text-gray-700">{c.usage}</p>
+            <p class="mt-2 text-xs text-gray-600">
+              classes: <code>{c.classBg}</code> • <code>{c.classText}</code>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <!-- palettes (démo) -->
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl border border-bg-alt bg-white p-5">
+          <h3 class="font-semibold text-text">Primary scale</h3>
+          <div class="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-3">
+            {palettePrimary.map(([name, hex]) => (
+              <div class="rounded-lg border border-bg-alt overflow-hidden">
+                <div class={`h-10 bg-[${hex}]`}></div>
+                <div class="p-2">
+                  <p class="text-xs font-medium text-text">{name}</p>
+                  <code class="text-[11px] text-gray-700">{hex}</code>
+                  <p class="mt-1 text-[11px] text-gray-600">class: <code>bg-{name}</code></p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-bg-alt bg-white p-5">
+          <h3 class="font-semibold text-text">Accent scale</h3>
+          <div class="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-3">
+            {paletteAccent.map(([name, hex]) => (
+              <div class="rounded-lg border border-bg-alt overflow-hidden">
+                <div class={`h-10 bg-[${hex}]`}></div>
+                <div class="p-2">
+                  <p class="text-xs font-medium text-text">{name}</p>
+                  <code class="text-[11px] text-gray-700">{hex}</code>
+                  <p class="mt-1 text-[11px] text-gray-600">class: <code>bg-{name}</code></p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside class="mt-8 rounded-xl border border-bg-alt bg-white p-5">
+        <h4 class="font-semibold text-text">Recommandations d’usage (rapide)</h4>
+        <ul class="mt-3 text-sm text-gray-800 list-disc pl-5 space-y-1">
+          <li><strong>Primary</strong> = structure & confiance (CTA, sections, titres).</li>
+          <li><strong>Accent</strong> = punch (underline, focus ring, highlight). À petite dose.</li>
+          <li><strong>bg-alt</strong> = bordures / séparateurs. <strong>bg-light</strong> = fonds doux.</li>
+          <li><strong>Success/Warning/Error/Info</strong> = états UI (statuts, feedback, messages).</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- ✅ Typo -->
+    <section class="mt-16">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Typographies</h2>
+      <p class="mt-3 text-gray-800 max-w-3xl">
+        3 polices : <strong>Work Sans</strong> (UI), <strong>Noto Serif</strong> (citations/second niveau),
+        <strong>Bowlby One</strong> (logo / display).
+      </p>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Hiérarchie titres (alignée au site)</h3>
+
+          <div class="mt-5 space-y-4">
+            <div>
+              <p class="text-xs text-gray-600 mb-1">H1 — Work Sans / medium</p>
+              <h1 class="text-4xl md:text-5xl font-medium text-text">
+                Emballages personnalisés sur mesure
+              </h1>
+              <p class="mt-1 text-xs text-gray-600">classes: <code>text-4xl md:text-5xl font-medium font-sans</code></p>
+            </div>
+
+            <div>
+              <p class="text-xs text-gray-600 mb-1">H2 section — grand titre</p>
+              <h2 class="text-5xl md:text-7xl text-text">Print</h2>
+              <p class="mt-1 text-xs text-gray-600">classes: <code>text-5xl md:text-7xl</code></p>
+            </div>
+
+            <div>
+              <p class="text-xs text-gray-600 mb-1">H3 card — UI</p>
+              <h3 class="text-lg font-semibold text-text">Packaging haut de gamme</h3>
+              <p class="mt-1 text-xs text-gray-600">classes: <code>text-lg font-semibold</code></p>
+            </div>
+
+            <div>
+              <p class="text-xs text-gray-600 mb-1">Tagline / citation — Noto Serif</p>
+              <p class="font-serif text-lg text-text">La plus juste expression de votre identité</p>
+              <p class="mt-1 text-xs text-gray-600">classes: <code>font-serif</code></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Paragraphes</h3>
+
+          <div class="mt-5 space-y-6">
+            <div>
+              <p class="text-xs text-gray-600 mb-1">Paragraphe standard</p>
+              <p class="text-gray-800">
+                Sacs papier, boîtes, étuis, calages, étiquettes. Finitions premium, sourcing France/Europe, délais maîtrisés.
+              </p>
+              <p class="mt-1 text-xs text-gray-600">classes: <code>text-gray-800</code></p>
+            </div>
+
+            <div>
+              <p class="text-xs text-gray-600 mb-1">Paragraphe “soft” (secondaire)</p>
+              <p class="text-sm text-gray-700">
+                Moins de volume, plus de qualité — et une obsession du détail.
+              </p>
+              <p class="mt-1 text-xs text-gray-600">classes: <code>text-sm text-gray-700</code></p>
+            </div>
+
+            <div>
+              <p class="text-xs text-gray-600 mb-1">Highlight (bloc)</p>
+              <p class="rounded-xl border border-bg-alt bg-primary-50 p-4 text-gray-800">
+                Sérieux d’un bon brief, énergie d’un{" "}
+                <span class="font-display">
+                  CPEP<span class="inline-block text-accent rotate-[8deg] origin-bottom-left">!</span>
+                </span>
+                : ça part en prod, propre.
+              </p>
+              <p class="mt-1 text-xs text-gray-600">classes: <code>bg-primary-50 border-bg-alt</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Logo -->
+    <section class="mt-16">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Logo</h2>
+      <p class="mt-3 text-gray-800 max-w-3xl">
+        2 versions : <strong>SVG</strong> (officiel) + <strong>version typographique</strong> (Bowlby One) utilisée dans la navbar.
+      </p>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Logo SVG</h3>
+          <p class="mt-2 text-sm text-gray-700">
+            Place-le en <code>/public/logo/cpep.svg</code>.
+          </p>
+          <div class="mt-5 rounded-xl border border-bg-alt bg-bg p-6 flex items-center justify-center">
+            <img src="/logo/cpep.svg" alt="Logo CPEP" class="h-24 w-auto" loading="lazy" decoding="async" />
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Logo typographique (navbar)</h3>
+          <div class="mt-5 rounded-xl border border-bg-alt bg-bg p-6 flex items-center justify-center">
+            <div class="flex items-center">
+              <span class="font-display text-primary text-5xl mr-1">CPEP</span>
+              <span class="font-display text-accent text-6xl rotate-4">!</span>
+            </div>
+          </div>
+          <p class="mt-3 text-xs text-gray-600">
+            classes: <code>font-display</code> + <code>text-primary</code>/<code>text-accent</code> + rotation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Icônes & badges -->
+    <section class="mt-16">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Icônes & badges</h2>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Icônes Lucide utilisées</h3>
+          <div class="mt-4 grid grid-cols-4 sm:grid-cols-6 gap-4">
+            {iconsUsed.map((name) => (
+              <div class="rounded-xl border border-bg-alt bg-bg p-3 flex flex-col items-center justify-center gap-2">
+                <Icon name={name} class="w-6 h-6 text-primary" aria-hidden="true" />
+                <code class="text-[10px] text-gray-600 text-center">{name.replace("lucide:", "")}</code>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Badges</h3>
+
+          <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {badges.map((b) => (
+              <div class="rounded-xl border border-bg-alt bg-bg p-4 flex flex-col items-center gap-3">
+                <img src={b.src} alt={b.name} class="h-12 w-12 object-contain drop-shadow-sm" loading="lazy" decoding="async" />
+                <p class="text-xs text-gray-700">{b.name}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- ✅ Empilement (comme ProductCard) -->
+          <div class="mt-6 rounded-xl border border-bg-alt bg-white p-4">
+            <h4 class="font-semibold text-text text-sm">Empilement (comme ProductCard)</h4>
+            <p class="mt-2 text-sm text-gray-700">
+              Règle : économie → éco → best. Affichage en haut-droite avec overlap.
+            </p>
+
+            <div class="mt-4 relative rounded-xl border border-bg-alt bg-bg p-10 overflow-hidden">
+              <div class="absolute -top-2 -right-2 select-none pointer-events-none" aria-hidden="true">
+                <span class="flex flex-row-reverse items-start">
+                  <span class="relative inline-grid drop-shadow-sm" style="z-index:30;">
+                    <img src="/logo/save-badge.png" alt="" width="20" height="20" class="h-7 w-7 object-contain" />
+                  </span>
+                  <span class="relative inline-grid drop-shadow-sm" style="z-index:29;margin-right:-0.625rem;">
+                    <img src="/logo/ecologo.png" alt="" width="20" height="20" class="h-7 w-7 object-contain" />
+                  </span>
+                  <span class="relative inline-grid drop-shadow-sm" style="z-index:28;margin-right:-0.625rem;">
+                    <img src="/logo/best-sale.png" alt="" width="20" height="20" class="h-7 w-7 object-contain" />
+                  </span>
+                </span>
+              </div>
+
+              <p class="text-sm text-gray-700">Carte démo (juste pour voir les badges empilés).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Boutons + états -->
+    <section class="mt-16">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Boutons & états</h2>
+      <p class="mt-3 text-gray-800 max-w-3xl">
+        D’abord tes styles actuels (pills), puis les variantes utiles + focus-visible (A11Y).
+      </p>
+
+      <div class="mt-8 rounded-xl border border-bg-alt bg-white p-6">
+        <h3 class="font-semibold text-text">Boutons actuels (à garder)</h3>
+
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a
+            class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-4 py-2 hover:opacity-90 transition
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            href="#"
+          >
+            <Icon name="lucide:handbag" class="w-4 h-4" aria-hidden="true" /> Primary (pills)
+          </a>
+
+          <a
+            class="inline-flex items-center gap-2 rounded-full border border-bg-alt bg-white px-4 py-2 hover:border-accent transition text-primary
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            href="#"
+          >
+            <Icon name="lucide:circle-user" class="w-4 h-4" aria-hidden="true" /> Outline
+          </a>
+
+          <a
+            class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4 rounded-md px-1 py-0.5
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            href="#"
+          >
+            Lien (underline accent)
+          </a>
+        </div>
+
+        <p class="mt-4 text-xs text-gray-600">
+          Reco : mets toujours un <code>focus-visible:ring-2 focus-visible:ring-accent</code> sur les CTA/lien importants.
+        </p>
+      </div>
+
+      <div class="mt-6 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Déclinaisons utiles (manquantes)</h3>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a
+              class="inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 hover:opacity-90 transition
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              href="#"
+            >
+              <Icon name="lucide:sparkles" class="w-4 h-4" aria-hidden="true" /> Accent (promo)
+            </a>
+
+            <a
+              class="inline-flex items-center gap-2 rounded-full bg-primary-50 text-primary px-4 py-2 hover:bg-primary-100 transition border border-primary-200
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              href="#"
+            >
+              <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" /> Soft
+            </a>
+
+            <a
+              class="inline-flex items-center gap-2 rounded-full bg-white text-text px-4 py-2 hover:bg-bg transition border border-bg-alt
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              href="#"
+            >
+              <Icon name="lucide:layout" class="w-4 h-4 text-primary" aria-hidden="true" /> Neutral
+            </a>
+
+            <a
+              class="inline-flex items-center gap-2 rounded-full bg-error text-white px-4 py-2 hover:opacity-90 transition
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              href="#"
+            >
+              <Icon name="lucide:x" class="w-4 h-4" aria-hidden="true" /> Destructive
+            </a>
+
+            <button
+              type="button"
+              disabled
+              class="inline-flex items-center gap-2 rounded-full bg-primary/40 text-bg px-4 py-2 cursor-not-allowed opacity-60"
+            >
+              Disabled
+            </button>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-bg-alt bg-white p-6">
+          <h3 class="font-semibold text-text">Tailles (pills)</h3>
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <a class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-3 py-1 text-sm" href="#">Small</a>
+            <a class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-4 py-2" href="#">Default</a>
+            <a class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-6 py-3 text-lg" href="#">Large</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Cards + variantes -->
+    <section class="mt-16">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Cards (patterns)</h2>
+      <p class="mt-3 text-gray-800 max-w-3xl">
+        Pattern dominant : <code>rounded-xl</code> + <code>border</code> + <code>bg-white</code> + hover shadow.
+        Variantes utiles selon contexte.
+      </p>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        <article class="rounded-xl border border-bg-alt bg-white p-5 hover:shadow-sm transition">
+          <p class="text-xs text-gray-600">Variant: default</p>
+          <h3 class="mt-2 font-semibold text-text">Card standard</h3>
+          <p class="mt-2 text-sm text-gray-800">
+            Bordure légère, fond blanc. Parfait pour listes produits/services.
+          </p>
+          <div class="mt-4">
+            <a class="inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4" href="#">
+              Voir exemple
+            </a>
+          </div>
+        </article>
+
+        <article class="rounded-2xl border border-bg-alt bg-white p-6 shadow-sm hover:shadow-md transition">
+          <p class="text-xs text-gray-600">Variant: elevated</p>
+          <h3 class="mt-2 font-semibold text-text">Card “premium”</h3>
+          <p class="mt-2 text-sm text-gray-800">
+            Plus de rayon + ombre douce. Parfait pour “packaging haut de gamme”.
+          </p>
+          <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-sm text-primary border border-primary-200">
+            <Icon name="lucide:sparkles" class="w-4 h-4" aria-hidden="true" /> Recommandée
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-accent-300 bg-accent-50 p-6 hover:shadow-sm transition">
+          <p class="text-xs text-gray-600">Variant: highlight</p>
+          <h3 class="mt-2 font-semibold text-text">Card highlight</h3>
+          <p class="mt-2 text-sm text-gray-800">
+            Pour un CTA, une offre, ou un “best seller”.
+          </p>
+          <div class="mt-4">
+            <a class="inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 hover:opacity-90 transition" href="#">
+              Action
+              <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-6 grid gap-6 lg:grid-cols-2">
+        <article class="rounded-2xl border border-primary/15 bg-white/60 p-6 backdrop-blur-md">
+          <p class="text-xs text-gray-600">Variant: glass</p>
+          <h3 class="mt-2 font-semibold text-text">Card glass (fond photo)</h3>
+          <p class="mt-2 text-sm text-gray-800">
+            À utiliser sur une section avec image (hero / bandeau) pour garder la lisibilité.
+          </p>
+        </article>
+
+        <article class="rounded-xl border border-transparent bg-bg p-6">
+          <p class="text-xs text-gray-600">Variant: minimal</p>
+          <h3 class="mt-2 font-semibold text-text">Card minimal</h3>
+          <p class="mt-2 text-sm text-gray-800">
+            Pas de bordure, juste du spacing. Idéal pour grilles “infos rapides”.
+          </p>
+        </article>
+      </div>
+
+            <!-- ✅ Variant: banner (sans photo) -->
+      <div class="mt-8">
+        
+
+        <!-- ✅ Variant: banner (avec photo hero) -->
+        <article class="relative overflow-hidden rounded-2xl border border-bg-alt">
+          <p class="absolute top-4 left-4 z-10 text-xs text-white/90">Variant: banner (avec photo)</p>
+
+          <!-- Photo de fond (hero) -->
+          <img
+            src="/photos/hero-bag.webp"
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <!-- Overlay pour lisibilité -->
+          <div class="absolute inset-0 bg-gradient-to-r from-bg/95 via-bg/55 to-transparent"></div>
+
+          <!-- Contenu -->
+          <div class="relative p-6 md:p-7">
+            <p class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/60 px-4 py-2 text-sm text-primary backdrop-blur-md">
+              <Icon name="lucide:zap" class="w-4 h-4" aria-hidden="true" />
+              Ça part en prod, propre.
+            </p>
+
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold text-text max-w-xl">
+              Besoin d’un site rapide (et qui ranke) ?
+            </h3>
+
+            <p class="mt-2 text-sm text-gray-800 max-w-xl">
+              SEO technique, accessibilité, Core Web Vitals au vert, maintenance. Du sur-mesure utile.
+            </p>
+
+            <div class="mt-5 flex flex-col sm:flex-row gap-3">
+              <a
+                href="#"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-bg font-medium hover:opacity-95 transition
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Voir l’offre web
+                <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
+              </a>
+
+              <a
+                href="#"
+                class="inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 bg-white/60 px-5 py-3 text-primary font-medium hover:bg-white/80 transition backdrop-blur-md
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Demander un devis
+                <Icon name="lucide:mail" class="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
+
+            <!-- Mini points (optionnel mais ça claque) -->
+            <ul class="mt-5 grid gap-2 sm:grid-cols-3 text-sm text-gray-700 max-w-2xl">
+              <li class="inline-flex items-center gap-2">
+                <Icon name="lucide:search" class="w-4 h-4 text-primary" aria-hidden="true" />
+                SEO technique
+              </li>
+              <li class="inline-flex items-center gap-2">
+                <Icon name="lucide:gauge" class="w-4 h-4 text-primary" aria-hidden="true" />
+                Perf au vert
+              </li>
+              <li class="inline-flex items-center gap-2">
+                <Icon name="lucide:shield-check" class="w-4 h-4 text-primary" aria-hidden="true" />
+                Stable & sécurisé
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+
+    </section>
+
+        <!-- ✅ Listes (patterns) -->
+    <section class="mt-16">
+      <h2 class="text-2xl md:text-3xl font-medium text-text">Listes (patterns)</h2>
+      <p class="mt-3 text-gray-800 max-w-3xl">
+        Listes UI : d’abord le pattern réel (WebTeaserSection), puis 2 variantes pratiques pour services / specs / étapes.
+      </p>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        <!-- 1) ✅ Pattern réel : liste avec check + icône (WebTeaserSection) -->
+        <article class="rounded-2xl border border-bg-alt bg-white p-6 hover:shadow-sm transition">
+          <p class="inline-flex items-center gap-2 text-primary font-semibold">
+            <Icon name="lucide:layout-template" class="w-4 h-4" aria-hidden="true" />
+            Pattern réel : “check list”
+          </p>
+
+          <p class="mt-2 text-sm text-gray-800">
+            Utilisé dans tes cartes Web : simple, scannable, et très “ok on voit l’offre”.
+          </p>
+
+          <ul class="mt-4 text-sm text-gray-700 space-y-2">
+            <li class="flex items-start gap-2">
+              <Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" />
+              <span>SEO on-page solide</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" />
+              <span>Responsive + accessibilité</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" />
+              <span>Performance réelle</span>
+            </li>
+          </ul>
+
+          <p class="mt-4 text-xs text-gray-600">
+            classes: <code>flex items-start gap-2</code> + <code>Icon check</code> + <code>space-y-2</code>
+          </p>
+        </article>
+
+        <!-- 2) Variante : “spec list” (chips) -->
+        <article class="rounded-2xl border border-bg-alt bg-white p-6 hover:shadow-sm transition">
+          <p class="inline-flex items-center gap-2 text-primary font-semibold">
+            <Icon name="lucide:tag" class="w-4 h-4" aria-hidden="true" />
+            Variante : “spec list” (chips)
+          </p>
+
+          <p class="mt-2 text-sm text-gray-800">
+            Idéal pour packaging : formats, délais, finitions. Ça fait “fiche produit” sans faire catalogue de 200 pages.
+          </p>
+
+          <ul class="mt-4 flex flex-wrap gap-2">
+            <li class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-50 px-3 py-1 text-sm text-primary">
+              <Icon name="lucide:ruler" class="w-4 h-4" aria-hidden="true" />
+              Formats sur mesure
+            </li>
+            <li class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-50 px-3 py-1 text-sm text-primary">
+              <Icon name="lucide:sparkles" class="w-4 h-4" aria-hidden="true" />
+              Dorure / vernis
+            </li>
+            <li class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-50 px-3 py-1 text-sm text-primary">
+              <Icon name="lucide:leaf" class="w-4 h-4" aria-hidden="true" />
+              Options éco
+            </li>
+            <li class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary-50 px-3 py-1 text-sm text-primary">
+              <Icon name="lucide:truck" class="w-4 h-4" aria-hidden="true" />
+              Délais maîtrisés
+            </li>
+          </ul>
+
+          <p class="mt-4 text-xs text-gray-600">
+            Tip : super lisible en mobile, et parfait pour teaser (ça donne envie de cliquer).
+          </p>
+        </article>
+
+        <!-- 3) Variante : “status list” (avec label + état) -->
+        <article class="rounded-2xl border border-bg-alt bg-white p-6 hover:shadow-sm transition">
+          <p class="inline-flex items-center gap-2 text-primary font-semibold">
+            <Icon name="lucide:badge-check" class="w-4 h-4" aria-hidden="true" />
+            Variante : “status list” (états)
+          </p>
+
+          <p class="mt-2 text-sm text-gray-800">
+            Utile pour maintenance / suivi / promesses : tu annonces clairement ce qui est inclus (et ça évite les “ah bon ?”).
+          </p>
+
+          <ul class="mt-4 space-y-3">
+            <li class="flex items-center justify-between gap-3">
+              <span class="flex items-center gap-2 text-sm text-gray-800">
+                <Icon name="lucide:shield-check" class="w-4 h-4 text-primary" aria-hidden="true" />
+                Sécurité / mises à jour
+              </span>
+              <span class="inline-flex items-center rounded-full bg-success/15 px-2.5 py-1 text-xs text-success">
+                inclus
+              </span>
+            </li>
+
+            <li class="flex items-center justify-between gap-3">
+              <span class="flex items-center gap-2 text-sm text-gray-800">
+                <Icon name="lucide:activity" class="w-4 h-4 text-primary" aria-hidden="true" />
+                Monitoring
+              </span>
+              <span class="inline-flex items-center rounded-full bg-info/15 px-2.5 py-1 text-xs text-info">
+                option
+              </span>
+            </li>
+
+            <li class="flex items-center justify-between gap-3">
+              <span class="flex items-center gap-2 text-sm text-gray-800">
+                <Icon name="lucide:clock-3" class="w-4 h-4 text-primary" aria-hidden="true" />
+                SLA 24/7
+              </span>
+              <span class="inline-flex items-center rounded-full bg-warning/20 px-2.5 py-1 text-xs text-warning">
+                sur devis
+              </span>
+            </li>
+          </ul>
+
+          <p class="mt-4 text-xs text-gray-600">
+            Bonus : nickel dans une page “offre” (ça structure sans faire pavé).
+          </p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ✅ Note finale -->
+    <section class="mt-16 rounded-xl border border-bg-alt bg-white p-6">
+      <h2 class="text-xl font-semibold text-text">À retenir</h2>
+      <ul class="mt-3 text-sm text-gray-800 list-disc pl-5 space-y-1">
+        <li><strong>Primary</strong> = structure & confiance. <strong>Accent</strong> = punch (mais pas partout).</li>
+        <li><strong>Work Sans</strong> = UI. <strong>Noto Serif</strong> = signature/citations. <strong>Bowlby</strong> = logo & coups de théâtre.</li>
+        <li>Cards = bordure légère + hover shadow. Variantes = premium / highlight / glass selon contexte.</li>
+      </ul>
+    </section>
+  </section>
+</PageLayout>

@@ -33,19 +33,6 @@ const rendered = await Promise.all(
     ))}
   </div>
 
-  <!-- JSON-LD SEO : FAQPage -->
-  <script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": items.map(({ data }) => ({
-      "@type": "Question",
-      "name": data.question,
-      "acceptedAnswer": { "@type": "Answer", "text": data.answer }
-    }))
-  })}
-  </script>
-
   <!-- Un seul dropdown ouvert à la fois -->
   <script is:inline>
     (function () {
