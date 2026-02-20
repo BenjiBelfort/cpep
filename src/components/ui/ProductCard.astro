@@ -40,7 +40,7 @@ const badgePool: BadgeDef[] = [
 const badges = badgePool.sort((a, b) => a.prio - b.prio);
 ---
 
-<article class="group relative rounded-xl border border-bg-alt bg-white p-5 flex flex-col hover:shadow-sm transition">
+<article class="group relative rounded-xl ring-1 ring-bg-alt bg-white flex flex-col hover:shadow-sm transition">
   <!-- Badges empilés (haut-droite) -->
     {badges.length > 0 && (
     <span class="absolute -top-2 -right-2 z-10 select-none pointer-events-none" aria-hidden="true">
@@ -63,7 +63,7 @@ const badges = badgePool.sort((a, b) => a.prio - b.prio);
     )}
 
 
-  <div class="relative aspect-[4/3] rounded-lg bg-creative/30 border border-bg-alt overflow-hidden">
+  <div class="relative aspect-[4/3] bg-creative/30 overflow-hidden rounded-t-xl">
     {imageSrc ? (
       <img
         src={imageSrc}
@@ -79,7 +79,8 @@ const badges = badgePool.sort((a, b) => a.prio - b.prio);
     )}
   </div>
 
-  <h3 class="mt-4 font-semibold text-text">{title}</h3>
+  <div class="p-4">
+  <h3 class="font-semibold text-text">{title}</h3>
   <p class="mt-2 text-sm text-gray-800">{description}</p>
 
   <div class="mt-auto pt-4">
@@ -91,5 +92,6 @@ const badges = badgePool.sort((a, b) => a.prio - b.prio);
       Voir les produits
       <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
     </a>
+  </div>
   </div>
 </article>
