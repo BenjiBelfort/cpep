@@ -10,6 +10,7 @@
   --color-primary: #3C6E71;      /* Primaire : Bleu doux CPEP */
   --color-accent: #F9564F;       /* Secondaire accent : CPEP orange : #F9564F*/
   --color-bg: #F6F4F3;           /* Blanc cassé (fond principal) */
+  --color-bg-alt: #CFCAC7; 
   --color-text: #080708;         /* TEXTES Raisin Black, avant : #585858*/
   --color-bg-light: #C8D8E4;     /* Fond clair : Bleu clair */
   --color-hover: #D0BCD5;        /* Rose pâle (hover bouton) */
@@ -86,4 +87,43 @@
 /* checkbox custom cochée */
 .consent-checkbox{
   accent-color: var(--color-accent);
+}
+
+
+/* dégradés radials */
+.cpep-radial {
+  background:
+    radial-gradient(
+      80% 60% at 50% 25%,
+      rgba(255,255,255,0.65) 0%,
+      rgba(255,255,255,0.25) 35%,
+      rgba(255,255,255,0.00) 60%
+    ),
+    radial-gradient(
+      120% 90% at 50% 35%,
+      var(--color-bg) 0%,
+      var(--color-bg) 35%,
+      var(--color-bg-alt) 70%,
+      #bdb8b5 100%
+    ),
+    radial-gradient(
+      140% 120% at 50% 60%,
+      transparent 55%,
+      rgba(0,0,0,0.08) 100%
+    );
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* page 404 */
+.error-code {
+  font-size: clamp(7rem, 18vw, 12rem);
+  line-height: 0.85;
+}
+
+.error-bang {
+  font-size: clamp(9rem, 22vw, 15rem);
+  line-height: 0.85;
 }

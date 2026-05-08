@@ -1,0 +1,46 @@
+---
+// src/pages/404.astro
+
+import PageLayout from "../layouts/PageLayout.astro";
+
+const seo = {
+  title: "Page introuvable — CPEP",
+  description:
+    "Cette page n’existe pas ou a été déplacée. Retournez à l’accueil.",
+};
+---
+<PageLayout {seo}>
+  <section class="flex min-h-[85vh] items-center justify-center overflow-hidden px-4 cpep-radial">
+
+
+    <div class="mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
+        <h1
+            class="flex items-center justify-center font-display leading-none text-primary"
+            aria-label="404 !"
+            >
+            <span class="error-code">
+                404
+            </span>
+
+            <span class="error-bang inline-block text-accent rotate-4 origin-bottom-left">
+                !
+            </span>
+        </h1>
+
+      <p class="mt-6 text-3xl font-medium text-text md:text-3xl">
+        Oups, cette page est partie en prod sans BAT...
+      </p>
+
+      <p class="mx-auto mt-4 max-w-lg text-gray-800">
+        Le lien est peut-être ancien, mal saisi, ou la page a simplement changé d’adresse.
+      </p>
+
+      <a
+        href="/"
+        class="mt-8 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 font-medium text-bg transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        Retour à l’accueil
+      </a>
+    </div>
+  </section>
+</PageLayout>

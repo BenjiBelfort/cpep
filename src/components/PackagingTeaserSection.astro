@@ -7,42 +7,41 @@ import ProductCard from "../components/ui/ProductCard.astro";
  * Home = teasing.
  * On montre une petite sélection + on pousse vers la page dédiée.
  */
-const featured = [
-  {
-    title: "Sacs papier poignées plates",
-    desc: "Kraft blanc/brun, formats retail. Impression 1 à 4 couleurs + vernis.",
-    slug: "sac-papier-poignees-plates",
-    best: true, eco: true, economy: true,
-  },
-  {
-    title: "Sacs papier poignées torsadées",
-    desc: "Poignées solides, choix de formats. Encres et finitions pro.",
-    slug: "sac-papier-poignees-torsadees",
-    eco: true, best: true,
-  },
-  {
-    title: "Packaging haut de gamme",
-    desc: "Boîtes rigides, tiroir, cloche. Dorure/gaufrage, calages sur mesure.",
-    slug: "packaging-haut-de-gamme",
-    best: true,
-  },
-  {
-    title: "Gamme food",
-    desc: "Boîtes, sacs, barquettes. Contact alimentaire, anti-graisse, fermetures sûres.",
-    slug: "gamme-food",
-    economy: true,
-  },
-];
+// const featured = [
+//   {
+//     title: "Sacs papier poignées plates",
+//     desc: "Kraft blanc/brun, formats retail. Impression 1 à 4 couleurs + vernis.",
+//     slug: "sac-papier-poignees-plates",
+//     best: true, eco: true, economy: true,
+//   },
+//   {
+//     title: "Sacs papier poignées torsadées",
+//     desc: "Poignées solides, choix de formats. Encres et finitions pro.",
+//     slug: "sac-papier-poignees-torsadees",
+//     eco: true, best: true,
+//   },
+//   {
+//     title: "Packaging haut de gamme",
+//     desc: "Boîtes rigides, tiroir, cloche. Dorure/gaufrage, calages sur mesure.",
+//     slug: "packaging-haut-de-gamme",
+//     best: true,
+//   },
+//   {
+//     title: "Gamme food",
+//     desc: "Boîtes, sacs, barquettes. Contact alimentaire, anti-graisse, fermetures sûres.",
+//     slug: "gamme-food",
+//     economy: true,
+//   },
+// ];
 
 const packHref = "/emballages-personnalises"; // ✅ ta page dédiée (à créer/adapter)
 const productHref = (slug: string) => `/${slug}`; // ou `/emballages/${slug}` si tu structures comme ça
 ---
 
-<section id="print" aria-labelledby="pack-title" class="relative scroll-m-4 bg-amber-50">
-  <!-- fond / ambiance -->
-  <div class="absolute inset-0 -z-10 bg-linear-to-b from-primary/10 via-bg to-bg"></div>
+<section id="print" aria-labelledby="pack-title" class="relative scroll-m-4">
 
-  <div class="mx-auto max-w-6xl px-4 py-16">
+
+  <div class="mx-auto px-4 py-16 cpep-radial">
     <!-- Header -->
     <header class="flex flex-col items-center text-center gap-5">
       <p class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/60 px-4 py-2 text-sm text-primary backdrop-blur-md">
@@ -110,7 +109,7 @@ const productHref = (slug: string) => `/${slug}`; // ou `/emballages/${slug}` si
     </header>
 
     <!-- mini sélection -->
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {featured.map((p) => (
         <ProductCard
           title={p.title}
@@ -121,7 +120,7 @@ const productHref = (slug: string) => `/${slug}`; // ou `/emballages/${slug}` si
           economy={p.economy}
         />
       ))}
-    </div>
+    </div> -->
 
     <!-- mini note -->
     <p class="mt-6 text-center text-sm text-gray-700">

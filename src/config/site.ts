@@ -2,9 +2,9 @@ export const site = {
   name: 'CPEP',
   slogan: 'La plus juste expression de votre identité',
   url: 'https://www.cpep.fr/',
-  logo: '/favicon.png', // ou /logo.svg si tu en as un
+  logo: '/favicon.png',
   email: 'contact@cpep.fr',
-  phone: '+33XXXXXXXXX', // remplace
+  phone: '+33613991231',
   areaServed: ['FR', 'EU'],
   languages: ['fr'],
   sameAs: [
