@@ -4,16 +4,19 @@ import SEO from "../components/SEO.astro";
 import "../styles/global.css";
 import { site as SITE } from "../config/site";
 
-const { seo } = Astro.props;
+const { seo = {} } = Astro.props;
 
-// helpers
+// Helpers
 const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).toString() : p);
 
-const ORG_ID = "#org-cpep";
-const WEBSITE_ID = "#website-cpep";
+// IDs JSON-LD absolus
+const ORG_ID = `${abs("/")}${SITE.jsonLd.orgId}`;
+const WEBSITE_ID = `${abs("/")}${SITE.jsonLd.websiteId}`;
+
+// JSON-LD additionnel injecté par les pages
+const pageJsonLd = seo.jsonLd ?? [];
 
 const ORG_LD: any = {
-  "@context": "https://schema.org",
   "@type": "Organization",
   "@id": ORG_ID,
   name: SITE.name,
@@ -21,16 +24,7 @@ const ORG_LD: any = {
   logo: abs(SITE.logo),
   slogan: SITE.slogan,
   areaServed: SITE.areaServed ?? "FR",
-  knowsAbout: [
-    "Emballage personnalisé",
-    "Sacs papier personnalisés",
-    "Boîtes et étuis sur mesure",
-    "Calage, papier de soie, rubans",
-    "Étiquettes et finitions premium",
-    "Sourcing France et Europe",
-    "Sites web éco-conçus",
-    "SEO technique",
-  ],
+  knowsAbout: SITE.knowsAbout,
   ...(SITE.email ? { email: SITE.email } : {}),
   ...(SITE.phone ? { telephone: SITE.phone } : {}),
   ...((SITE.email || SITE.phone)
@@ -42,7 +36,7 @@ const ORG_LD: any = {
             ...(SITE.email ? { email: SITE.email } : {}),
             ...(SITE.phone ? { telephone: SITE.phone } : {}),
             areaServed: "FR",
-            availableLanguage: ["fr"],
+            availableLanguage: SITE.languages,
           },
         ],
       }
@@ -51,14 +45,21 @@ const ORG_LD: any = {
 };
 
 const WEBSITE_LD = {
-  "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": WEBSITE_ID,
   url: abs("/"),
   name: `${SITE.name} — Emballages personnalisés sur mesure`,
-  inLanguage: "fr-FR",
+  inLanguage: SITE.locale,
   publisher: { "@id": ORG_ID },
 };
+
+const BASE_GRAPH = [ORG_LD, WEBSITE_LD];
+
+const EXTRA_GRAPH = Array.isArray(pageJsonLd)
+  ? pageJsonLd
+  : [pageJsonLd];
+
+const JSON_LD_GRAPH = [...BASE_GRAPH, ...EXTRA_GRAPH].filter(Boolean);
 ---
 
 <!doctype html>
@@ -73,6 +74,7 @@ const WEBSITE_LD = {
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Noto+Serif:ital,wght@0,400..900;1,400..900&family=Work+Sans:wght@300..800&display=swap"
       rel="stylesheet"
@@ -84,7 +86,7 @@ const WEBSITE_LD = {
       type="application/ld+json"
       set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@graph": [ORG_LD, WEBSITE_LD],
+        "@graph": JSON_LD_GRAPH,
       })}
     />
 
@@ -92,15 +94,14 @@ const WEBSITE_LD = {
   </head>
 
   <body class="bg-bg font-sans antialiased">
-    <!-- ✅ unique skip link -->
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-3 focus:py-2 focus:rounded"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:text-text focus:shadow"
     >
       Aller au contenu
     </a>
 
-    <!-- ✅ Base ne contient PAS <main>. C’est le job d’un layout de page -->
     <slot />
+    <script src="/scripts/current-year.js" defer></script>
   </body>
 </html>

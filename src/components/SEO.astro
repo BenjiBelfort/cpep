@@ -1,86 +1,65 @@
 ---
 // src/components/SEO.astro
+import { site as SITE } from "../config/site";
+
 export interface Props {
   title?: string;
   description?: string;
   image?: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
   noindex?: boolean;
+  jsonLd?: unknown | unknown[];
 }
-
-/**
- * ✅ Positionnement SEO global
- * Ici on pousse PACKAGING / EMBALLAGE en priorité.
- * Le dev reste en bonus (mention plus légère).
- */
-const SITE_NAME = 'CPEP';
-
-// ✅ Titre par défaut orienté "emballage" (mots-clés principaux dès le début)
-const DEFAULT_TITLE =
-  'CPEP — Emballages personnalisés sur mesure (sacs, boîtes, étuis)';
-
-// ✅ Description par défaut orientée packaging (dev en fin, en option)
-const DEFAULT_DESC =
-  "Emballages personnalisés : sacs papier, boîtes, étuis, calages, étiquettes. Finitions premium, sourcing France/Europe, devis rapide. (Et si besoin : sites web éco-conçus.)";
-
-const DEFAULT_IMAGE = '/og-default.jpg';
 
 const {
   title,
   description,
-  image = DEFAULT_IMAGE,
-  type = 'website',
+  image = SITE.seo.defaultImage,
+  type = "website",
   noindex = false,
 } = (Astro.props || {}) as Props;
 
-const pathname = Astro.url?.pathname || '/';
-const isHome = pathname === '/';
+const pathname = Astro.url?.pathname || "/";
+const isHome = pathname === "/";
 
-// ✅ Canonical absolu = essentiel (évite les URLs dupliquées)
 const canonical = Astro.site ? new URL(pathname, Astro.site).toString() : undefined;
 
-// ✅ Titre de page : Home = titre pur, autres pages = "Page — Marque"
 const pageTitle = (() => {
-  if (title && title.trim()) return isHome ? title.trim() : `${title.trim()} — ${SITE_NAME}`;
-  return DEFAULT_TITLE;
+  if (title && title.trim()) {
+    return isHome ? title.trim() : `${title.trim()} — ${SITE.name}`;
+  }
+
+  return SITE.seo.defaultTitle;
 })();
 
-const pageDesc = (description && description.trim()) ? description.trim() : DEFAULT_DESC;
+const pageDesc =
+  description && description.trim()
+    ? description.trim()
+    : SITE.seo.defaultDescription;
 
-// ✅ OG image absolue si Astro.site est configuré (meilleur pour partage + crawlers)
 const ogImageAbs = Astro.site ? new URL(image, Astro.site).toString() : image;
 ---
 
-<!-- ✅ Title : fort pour SEO + SERP -->
 <title>{pageTitle}</title>
 
-<!-- ✅ Meta description : influence le CTR (clics) -->
 <meta name="description" content={pageDesc} />
 
-<!-- ✅ Robots : utile pour pages à exclure (draft, admin, etc.) -->
 {noindex && <meta name="robots" content="noindex,nofollow" />}
 
-<!-- ✅ Canonical : évite le duplicate content -->
 {canonical && <link rel="canonical" href={canonical} />}
+{canonical && <link rel="alternate" href={canonical} hreflang="fr-FR" />}
 
-<!-- ✅ Hreflang : utile même si une seule langue (propre + évolutif) -->
-{canonical && <link rel="alternate" href={canonical} hreflang="fr" />}
-
-<!-- Open Graph (Facebook, LinkedIn...) -->
 <meta property="og:type" content={type} />
-<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:site_name" content={SITE.name} />
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={pageDesc} />
 {canonical && <meta property="og:url" content={canonical} />}
 <meta property="og:image" content={ogImageAbs} />
 <meta property="og:locale" content="fr_FR" />
+<meta property="og:image:alt" content={SITE.seo.ogImageAlt} />
 
-<!-- ✅ Alt OG/Twitter image : bon pour accessibilité + qualité de preview -->
-<meta property="og:image:alt" content="CPEP — Emballages personnalisés sur mesure" />
-
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={pageDesc} />
 <meta name="twitter:image" content={ogImageAbs} />
-<meta name="twitter:image:alt" content="CPEP — Emballages personnalisés sur mesure" />
+<meta name="twitter:image:alt" content={SITE.seo.ogImageAlt} />

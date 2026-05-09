@@ -1,130 +1,96 @@
 ---
-// src/components/sections/PackagingTeaserSection.astro
+// src/components/PackagingTeaserSection.astro
 import { Icon } from "astro-icon/components";
-import ProductCard from "../components/ui/ProductCard.astro";
+import ImageCarousel from "./ui/ImageCarousel.astro";
+import QuoteButton from "./ui/QuoteButton.astro";
 
-/**
- * Home = teasing.
- * On montre une petite sélection + on pousse vers la page dédiée.
- */
-// const featured = [
-//   {
-//     title: "Sacs papier poignées plates",
-//     desc: "Kraft blanc/brun, formats retail. Impression 1 à 4 couleurs + vernis.",
-//     slug: "sac-papier-poignees-plates",
-//     best: true, eco: true, economy: true,
-//   },
-//   {
-//     title: "Sacs papier poignées torsadées",
-//     desc: "Poignées solides, choix de formats. Encres et finitions pro.",
-//     slug: "sac-papier-poignees-torsadees",
-//     eco: true, best: true,
-//   },
-//   {
-//     title: "Packaging haut de gamme",
-//     desc: "Boîtes rigides, tiroir, cloche. Dorure/gaufrage, calages sur mesure.",
-//     slug: "packaging-haut-de-gamme",
-//     best: true,
-//   },
-//   {
-//     title: "Gamme food",
-//     desc: "Boîtes, sacs, barquettes. Contact alimentaire, anti-graisse, fermetures sûres.",
-//     slug: "gamme-food",
-//     economy: true,
-//   },
-// ];
-
-const packHref = "/emballages-personnalises"; // ✅ ta page dédiée (à créer/adapter)
-const productHref = (slug: string) => `/${slug}`; // ou `/emballages/${slug}` si tu structures comme ça
+const carouselImages = [
+  {
+    src: "/photos/sacs-poignees-torsadees.webp",
+    alt: "Sacs papier poignées torsadées personnalisés",
+    caption: "Sacs papier poignées torsadées",
+  },
+  {
+    src: "/photos/sacs-pellicules-mats.webp",
+    alt: "Sacs papier pelliculés mats personnalisés",
+    caption: "Sacs pelliculés mats",
+  },
+  {
+    src: "/photos/sacs-poignees-plates.webp",
+    alt: "Sacs papier poignées plates personnalisés",
+    caption: "Sacs papier poignées plates",
+  },
+  {
+    src: "/photos/sacs-pellicules-mats.webp",
+    alt: "Sacs papier pelliculés mats personnalisés",
+    caption: "Sacs pelliculés mats",
+  },
+  {
+    src: "/photos/sacs-traiteur.webp",
+    alt: "Sacs papier format traiteur personnalisés",
+    caption: "Le sac papier à large soufflet",
+  },
+];
 ---
 
 <section id="print" aria-labelledby="pack-title" class="relative scroll-m-4">
-
-
-  <div class="mx-auto px-4 py-16 cpep-radial">
-    <!-- Header -->
-    <header class="flex flex-col items-center text-center gap-5">
-      <p class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/60 px-4 py-2 text-sm text-primary backdrop-blur-md">
-        <Icon name="lucide:package" class="w-4 h-4" aria-hidden="true" />
-        Emballages personnalisés • France & Europe • Petites & grandes séries
-      </p>
-
-      <h2 id="pack-title" class="text-5xl md:text-7xl text-text">
-        <span class="inline-flex items-center justify-center gap-3 align-middle">
-          <Icon name="lucide:handbag" class="w-8 h-8 md:w-14 md:h-14" aria-hidden="true" />
-          <span>Print</span>
+  <div class="mx-auto px-4 py-20 cpep-radial">
+    <div class="my-12 flex justify-center">
+      <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:h-auto sm:w-auto sm:bg-transparent">
+          <Icon
+            name="lucide:shopping-bag"
+            class="h-5 w-5 sm:h-4 sm:w-4"
+            aria-hidden="true"
+          />
         </span>
-      </h2>
 
-      <p class="max-w-3xl text-gray-800">
-        Des <strong>emballages sur mesure</strong> qui donnent envie d’acheter avant même d’avoir ouvert :
-        <strong> sacs papier</strong>, <strong>boîtes</strong>, <strong>étuis</strong>, <strong>coffrets</strong>,
-        <strong> calages</strong>, <strong>étiquettes</strong>, <strong>PLV</strong>.
-        Finitions premium, sourcing maîtrisé, devis rapide. (Oui, on aime les beaux trucs.)
+        <span>Sacs papier personnalisés & Print utile</span>
       </p>
+    </div>
 
-      <!-- preuves rapides -->
-      <div class="mt-2 grid w-full max-w-4xl gap-3 sm:grid-cols-3">
-        <div class="rounded-xl border border-bg-alt bg-white/70 p-4 backdrop-blur-md">
-          <p class="font-semibold text-text inline-flex items-center gap-2">
-            <Icon name="lucide:sparkles" class="w-4 h-4 text-primary" aria-hidden="true" />
-            Finitions premium
-          </p>
-          <p class="text-sm text-gray-700 mt-1">Dorure, gaufrage, vernis, papiers de création.</p>
+    <div class="mx-auto max-w-6xl">
+      <div class="grid min-w-0 items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <!-- Colonne texte -->
+        <div class="contents min-w-0 lg:block">
+          <h2
+            id="pack-title"
+            class="order-1 mt-6 min-w-0 text-left text-5xl font-bold text-text md:text-7xl lg:mt-6"
+          >
+            Des sacs papier personnalisés qui portent votre image.
+          </h2>
+
+          <div class="order-3 min-w-0 text-left lg:order-none">
+            <p class="mt-6 max-w-3xl text-text/90">
+              Depuis plus de 25 ans dans l’emballage, nous accompagnons les entreprises dans
+              le choix de leurs <strong>sacs papier personnalisés</strong> : poignées plates,
+              poignées torsadées, kraft brun, kraft blanc, formats traiteur, impression sobre
+              ou finitions premium. L’objectif : trouver le bon sac, au bon prix, avec un
+              rendu propre et un sourcing maîtrisé.
+            </p>
+
+            <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+              <QuoteButton label="Parler de mon projet sacs papier" />
+            </div>
+          </div>
         </div>
-        <div class="rounded-xl border border-bg-alt bg-white/70 p-4 backdrop-blur-md">
-          <p class="font-semibold text-text inline-flex items-center gap-2">
-            <Icon name="lucide:map-pin" class="w-4 h-4 text-primary" aria-hidden="true" />
-            Sourcing maîtrisé
-          </p>
-          <p class="text-sm text-gray-700 mt-1">France/Europe, partenaires fiables, qualité stable.</p>
-        </div>
-        <div class="rounded-xl border border-bg-alt bg-white/70 p-4 backdrop-blur-md">
-          <p class="font-semibold text-text inline-flex items-center gap-2">
-            <Icon name="lucide:clock-3" class="w-4 h-4 text-primary" aria-hidden="true" />
-            Délais clairs
-          </p>
-          <p class="text-sm text-gray-700 mt-1">On annonce, on tient. Simple, efficace.</p>
+
+        <!-- Carousel image droite -->
+        <div class="order-2 min-w-0 lg:order-none">
+          <ImageCarousel
+            images={carouselImages}
+            ariaLabel="Exemples de sacs papier personnalisés"
+            autoplayDelay={4000}
+          />
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="mt-6 flex flex-col sm:flex-row items-center gap-3">
-        <a
-          href={packHref}
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-bg font-medium hover:opacity-95 transition"
-        >
-          Explorer tous les emballages
-          <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
-        </a>
-
-        <a
-          href="/#contact"
-          class="inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 bg-white/60 px-5 py-3 text-primary font-medium hover:bg-white/80 transition backdrop-blur-md"
-        >
-          Demander un devis
-          <Icon name="lucide:mail" class="w-4 h-4" aria-hidden="true" />
-        </a>
-      </div>
-    </header>
-
-    <!-- mini sélection -->
-    <!-- <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {featured.map((p) => (
-        <ProductCard
-          title={p.title}
-          description={p.desc}
-          href={productHref(p.slug)}
-          best={p.best}
-          eco={p.eco}
-          economy={p.economy}
-        />
-      ))}
-    </div> -->
-
-    <!-- mini note -->
-    <p class="mt-6 text-center text-sm text-gray-700">
-      Astuce : si tu veux “le même rendu mais plus premium”, on te sort la combo <strong>boîte + calage + étiquette + ruban</strong>. Oui, on est comme ça.
-    </p>
+      <p class="mx-auto mt-12 max-w-3xl text-center text-sm leading-relaxed text-text/80">
+        Un sac papier personnalisé n’est pas juste un contenant : c’est un support de
+        communication qui circule avec votre marque. Nous vous aidons à choisir le format,
+        la matière, les quantités et les finitions selon votre usage réel, votre image
+        et votre budget. Pas de gadget, pas de survente : du concret.
+      </p>
+    </div>
   </div>
 </section>

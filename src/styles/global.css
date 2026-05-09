@@ -117,6 +117,46 @@
   background-position: center;
 }
 
+/* dégradé radial web — sobre, proche du cpep-radial */
+.cpep-web-radial {
+  background:
+    /* lumière douce haut */
+    radial-gradient(
+      80% 60% at 50% 25%,
+      rgba(255,255,255,0.70) 0%,
+      rgba(255,255,255,0.28) 35%,
+      rgba(255,255,255,0.00) 60%
+    ),
+
+    /* base claire avec légère fraîcheur web */
+    radial-gradient(
+      120% 90% at 50% 35%,
+      var(--color-bg) 0%,
+      var(--color-bg) 38%,
+      rgba(200,216,228,0.55) 72%,
+      #d8e3df 100%
+    ),
+
+    /* touche verte très discrète */
+    radial-gradient(
+      95% 80% at 82% 70%,
+      transparent 50%,
+      rgba(212,230,181,0.22) 78%,
+      rgba(212,230,181,0.34) 100%
+    ),
+
+    /* vignette douce teintée primary */
+    radial-gradient(
+      140% 120% at 50% 60%,
+      transparent 58%,
+      rgba(60,110,113,0.07) 100%
+    );
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* page 404 */
 .error-code {
   font-size: clamp(7rem, 18vw, 12rem);

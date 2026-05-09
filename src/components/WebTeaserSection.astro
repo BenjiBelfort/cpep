@@ -1,122 +1,138 @@
 ---
-// src/components/sections/WebTeaserSection.astro
+// src/components/WebTeaserSection.astro
 import { Icon } from "astro-icon/components";
+import ImageCarousel from "./ui/ImageCarousel.astro";
+import QuoteButton from "./ui/QuoteButton.astro";
 
-const webHref = "/sites-web"; // ✅ ta page dédiée web (à créer/adapter)
+const webCarouselImages = [
+  {
+    src: "/photos/web-site-vitrine.webp",
+    alt: "Création de site web vitrine sur mesure",
+    caption: "Sites vitrines rapides, sobres et bien structurés",
+  },
+  {
+    src: "/photos/web-responsive.webp",
+    alt: "Site web responsive adapté mobile tablette et desktop",
+    caption: "Design responsive pensé pour tous les écrans",
+  },
+  {
+    src: "/photos/web-seo.webp",
+    alt: "Optimisation SEO technique pour site web",
+    caption: "SEO technique, structure propre et performances",
+  },
+  {
+    src: "/photos/web-dev-specifique.webp",
+    alt: "Développement web spécifique et intégrations API",
+    caption: "Développement spécifique, automatisations et intégrations",
+  },
+];
 ---
 
-<section id="web" aria-labelledby="web-title" class="relative scroll-m-4 bg-teal-100">
-  <div class="absolute inset-0 -z-10 bg-linear-to-b from-creative/10 via-bg to-bg"></div>
-
-  <div class="mx-auto max-w-6xl px-4 py-16">
-    <header class="flex flex-col items-center text-center gap-5">
-      <p class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/60 px-4 py-2 text-sm text-primary backdrop-blur-md">
-        <Icon name="lucide:gauge" class="w-4 h-4" aria-hidden="true" />
-        Sites rapides • SEO technique • Accessibilité
-      </p>
-
-      <h2 id="web-title" class="text-5xl md:text-7xl text-text">
-        <span class="inline-flex items-center justify-center gap-3 align-middle">
-          <Icon name="lucide:code-2" class="w-8 h-8 md:w-14 md:h-14" aria-hidden="true" />
-          <span>Web</span>
+<section id="web" aria-labelledby="web-title" class="relative scroll-m-4">
+  <div class="mx-auto px-4 py-20 cpep-web-radial">
+    <div class="my-12 flex justify-center">
+      <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:h-auto sm:w-auto sm:bg-transparent">
+          <Icon name="lucide:code-2" class="h-5 w-5 sm:h-4 sm:w-4" aria-hidden="true" />
         </span>
-      </h2>
 
-      <p class="max-w-3xl text-gray-800">
-        Des <strong>sites web sur mesure</strong> qui chargent vite (et qui rankent). Structure sémantique propre,
-        <strong> SEO technique</strong>, <strong>Core Web Vitals</strong>, sécurité et maintenance.
-        Astro + Tailwind quand ça s’y prête, et zéro blabla quand ça ne s’y prête pas.
+        <span>Sites web sur mesure & développement utile</span>
+      </p>
+    </div>
+
+    <div class="mx-auto max-w-6xl">
+      <div class="grid min-w-0 items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <!-- Carousel image gauche -->
+        <div class="order-2 min-w-0 lg:order-1">
+          <ImageCarousel
+            images={webCarouselImages}
+            ariaLabel="Exemples de services web CPEP"
+            autoplayDelay={4000}
+          />
+        </div>
+
+        <!-- Colonne texte droite -->
+        <div class="contents min-w-0 lg:order-2 lg:block">
+          <h2
+            id="web-title"
+            class="order-1 mt-6 text-left text-5xl font-bold text-text md:text-7xl lg:mt-6"
+          >
+            Des sites web sobres, rapides et faits pour durer.
+          </h2>
+
+          <div class="order-3 text-left lg:order-none">
+            <p class="mt-6 max-w-3xl text-text/90">
+              Nous créons des <strong>sites web sur mesure</strong> pensés pour être clairs,
+              rapides, bien référencés et faciles à faire évoluer. Site vitrine, refonte,
+              landing page, intégration, automatisation ou développement spécifique :
+              l’objectif est simple, construire un outil utile, performant et aligné avec
+              votre communication globale.
+            </p>
+
+            <p class="mt-4 max-w-2xl text-sm text-text/80">
+              Ici, pas de site usine à gaz avec quinze animations qui font chauffer le grille-pain.
+              Nous privilégions une structure propre, un contenu lisible, un bon socle SEO,
+              des performances solides et une expérience fluide sur mobile comme sur desktop.
+            </p>
+
+            <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+              <QuoteButton label="Parler de mon projet web" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mx-auto mt-12 max-w-3xl text-center text-sm leading-relaxed text-text/80">
+        Un bon site web n’est pas seulement une vitrine : c’est un support de confiance,
+        un point d’entrée commercial et un outil qui doit rester simple à maintenir.
+        Nous travaillons le design, le SEO technique, l’accessibilité, la performance et
+        la structure pour que le site serve vraiment votre activité.
       </p>
 
-      <div class="mt-2 grid w-full max-w-4xl gap-3 sm:grid-cols-3">
-        <div class="rounded-xl border border-bg-alt bg-white/70 p-4 backdrop-blur-md">
-          <p class="font-semibold text-text inline-flex items-center gap-2">
-            <Icon name="lucide:zap" class="w-4 h-4 text-primary" aria-hidden="true" />
-            Perf au vert
+      <!-- Services rapides -->
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <article class="rounded-2xl border border-bg-alt bg-white/80 p-5 shadow-sm transition hover:shadow-md">
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Icon name="lucide:monitor-smartphone" class="h-5 w-5" aria-hidden="true" />
+          </div>
+
+          <h3 class="mt-4 font-semibold text-text">
+            Création de sites web
+          </h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-text/80">
+            Sites vitrines rapides, responsive, bien structurés et optimisés pour le SEO on-page.
           </p>
-          <p class="text-sm text-gray-700 mt-1">LCP/CLS/INP optimisés, UX fluide.</p>
-        </div>
-        <div class="rounded-xl border border-bg-alt bg-white/70 p-4 backdrop-blur-md">
-          <p class="font-semibold text-text inline-flex items-center gap-2">
-            <Icon name="lucide:search" class="w-4 h-4 text-primary" aria-hidden="true" />
-            SEO technique
+        </article>
+
+        <article class="rounded-2xl border border-bg-alt bg-white/80 p-5 shadow-sm transition hover:shadow-md">
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Icon name="lucide:gauge" class="h-5 w-5" aria-hidden="true" />
+          </div>
+
+          <h3 class="mt-4 font-semibold text-text">
+            Performance & SEO technique
+          </h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-text/80">
+            Balises, structure, maillage, données structurées, accessibilité et Core Web Vitals.
           </p>
-          <p class="text-sm text-gray-700 mt-1">Balises, maillage interne, données structurées.</p>
-        </div>
-        <div class="rounded-xl border border-bg-alt bg-white/70 p-4 backdrop-blur-md">
-          <p class="font-semibold text-text inline-flex items-center gap-2">
-            <Icon name="lucide:shield-check" class="w-4 h-4 text-primary" aria-hidden="true" />
-            Stable & sécurisé
+        </article>
+
+        <article class="rounded-2xl border border-bg-alt bg-white/80 p-5 shadow-sm transition hover:shadow-md">
+          <div class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Icon name="lucide:workflow" class="h-5 w-5" aria-hidden="true" />
+          </div>
+
+          <h3 class="mt-4 font-semibold text-text">
+            Développement spécifique
+          </h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-text/80">
+            Intégrations API, formulaires avancés, back-offices, automatisations et outils métier.
           </p>
-          <p class="text-sm text-gray-700 mt-1">MAJ, backups, monitoring, correctifs.</p>
-        </div>
+        </article>
       </div>
-
-      <div class="mt-6 flex flex-col sm:flex-row items-center gap-3">
-        <a
-          href={webHref}
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-bg font-medium hover:opacity-95 transition"
-        >
-          Voir l’offre web
-          <Icon name="lucide:arrow-right" class="w-4 h-4" aria-hidden="true" />
-        </a>
-
-        <a
-          href="/#contact"
-          class="inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 bg-white/60 px-5 py-3 text-primary font-medium hover:bg-white/80 transition backdrop-blur-md"
-        >
-          Demander un devis
-          <Icon name="lucide:mail" class="w-4 h-4" aria-hidden="true" />
-        </a>
-      </div>
-    </header>
-
-    <!-- 3 cartes "teaser" -->
-    <div class="mt-12 grid gap-6 md:grid-cols-3">
-      <article class="rounded-2xl border border-bg-alt bg-white p-6 hover:shadow-sm transition">
-        <p class="inline-flex items-center gap-2 text-primary font-semibold">
-          <Icon name="lucide:layout-template" class="w-4 h-4" aria-hidden="true" />
-          Site vitrine / landing
-        </p>
-        <p class="mt-2 text-sm text-gray-800">
-          Structure sémantique propre, pages rapides, conversion, tracking RGPD-friendly.
-        </p>
-        <ul class="mt-4 text-sm text-gray-700 space-y-2">
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> SEO on-page solide</li>
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> Responsive + accessibilité</li>
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> Performance réelle</li>
-        </ul>
-      </article>
-
-      <article class="rounded-2xl border border-bg-alt bg-white p-6 hover:shadow-sm transition">
-        <p class="inline-flex items-center gap-2 text-primary font-semibold">
-          <Icon name="lucide:wrench" class="w-4 h-4" aria-hidden="true" />
-          Maintenance
-        </p>
-        <p class="mt-2 text-sm text-gray-800">
-          Un site qui tourne sans drama : mises à jour, sauvegardes, supervision, petites évolutions.
-        </p>
-        <ul class="mt-4 text-sm text-gray-700 space-y-2">
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> Backups + monitoring</li>
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> Correctifs & sécurité</li>
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> SLA selon besoin</li>
-        </ul>
-      </article>
-
-      <article class="rounded-2xl border border-bg-alt bg-white p-6 hover:shadow-sm transition">
-        <p class="inline-flex items-center gap-2 text-primary font-semibold">
-          <Icon name="lucide:plug-zap" class="w-4 h-4" aria-hidden="true" />
-          Spécifique / API
-        </p>
-        <p class="mt-2 text-sm text-gray-800">
-          Intégrations, automatisations, espaces clients, back-office : du sur-mesure utile.
-        </p>
-        <ul class="mt-4 text-sm text-gray-700 space-y-2">
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> Intégrations tierces</li>
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> Perf & scalabilité</li>
-          <li class="flex items-start gap-2"><Icon name="lucide:check" class="w-4 h-4 mt-0.5 text-primary" aria-hidden="true" /> Sécurité by design</li>
-        </ul>
-      </article>
     </div>
   </div>
 </section>

@@ -1,0 +1,535 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const seo = {
+  title: "Conditions Générales de Vente — CPEP",
+  description:
+    "Conditions Générales de Vente de CPEP pour les prestations de supports de communication, packaging, print, objets personnalisés, développement web et maintenance.",
+};
+
+const toc = [
+  {
+    href: "#objet",
+    label: "Objet et champ d’application",
+  },
+  {
+    href: "#commandes",
+    label: "Commandes et acceptation",
+  },
+  {
+    href: "#facturation",
+    label: "Facturation & modalités de règlement",
+  },
+  {
+    href: "#obligations-client",
+    label: "Obligations du Client",
+  },
+  {
+    href: "#pi",
+    label: "Propriété intellectuelle & droits d’utilisation",
+  },
+  {
+    href: "#prestataires",
+    label: "Prestataires tiers",
+  },
+  {
+    href: "#supports-physiques",
+    label: "Supports de communication physiques",
+  },
+  {
+    href: "#web-maintenance",
+    label: "Développement web & maintenance",
+  },
+  {
+    href: "#seo",
+    label: "Référencement & SEO",
+  },
+  {
+    href: "#rgpd",
+    label: "Données personnelles & RGPD",
+  },
+  {
+    href: "#portfolio",
+    label: "Droit de référence & portfolio",
+  },
+  {
+    href: "#litiges",
+    label: "Réclamations & litiges",
+  },
+  {
+    href: "#limitation",
+    label: "Limitation de responsabilité",
+  },
+  {
+    href: "#reserve",
+    label: "Réserve de propriété",
+  },
+  {
+    href: "#fm",
+    label: "Force majeure",
+  },
+];
+---
+
+<PageLayout {seo}>
+  <section class="bg-bg px-4 py-10 md:py-16">
+    <div class="mx-auto max-w-4xl">
+      <a
+        href="/"
+        class="inline-flex items-center text-sm font-semibold text-primary transition hover:text-accent"
+        aria-label="Retour à l’accueil"
+      >
+        ← Retour à l’accueil
+      </a>
+
+      <article class="mt-6 overflow-hidden rounded-3xl bg-white shadow-xl shadow-primary/10 ring-1 ring-border">
+        <header class="border-b border-border bg-bg/40 px-6 py-8 md:px-10 md:py-10">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+            Document contractuel
+          </p>
+
+          <h1 class="mt-3 font-serif text-3xl font-bold leading-tight text-primary md:text-5xl">
+            Conditions Générales de Vente — CPEP
+          </h1>
+
+          <p class="mt-4 text-sm text-muted">
+            Dernière mise à jour : septembre 2025
+          </p>
+        </header>
+
+        <div class="px-6 py-8 md:px-10 md:py-10">
+          <nav
+            class="rounded-2xl border border-border bg-bg/60 p-5"
+            aria-label="Sommaire"
+          >
+            <strong class="text-sm font-bold text-text">
+              Sommaire
+            </strong>
+
+            <ol class="mt-4 grid gap-x-8 gap-y-2 pl-5 text-sm text-primary md:grid-cols-2">
+              {
+                toc.map((item) => (
+                  <li class="list-decimal pl-1">
+                    <a
+                      href={item.href}
+                      class="transition hover:text-accent"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ol>
+          </nav>
+
+          <div
+            class="mt-10 space-y-10
+              [&_section]:scroll-mt-28
+              [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-primary
+              [&_h3]:mt-6 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-bold [&_h3]:leading-tight [&_h3]:text-text
+              [&_h4]:mt-5 [&_h4]:text-base [&_h4]:font-bold [&_h4]:text-text
+              [&_p]:mt-4 [&_p]:leading-relaxed [&_p]:text-gray-700
+              [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-gray-700
+              [&_li]:leading-relaxed
+              [&_strong]:font-bold [&_strong]:text-text
+              [&_em]:italic
+              [&_a]:text-primary [&_a]:underline-offset-4 [&_a]:transition
+              hover:[&_a]:text-accent hover:[&_a]:underline"
+          >
+            <section id="objet">
+              <h2>1. Objet et champ d’application</h2>
+
+              <p>
+                Les présentes Conditions Générales de Vente, ci-après « CGV »,
+                régissent l’ensemble des relations contractuelles entre
+                <strong> CPEP </strong>
+                et tout client professionnel ou particulier, ci-après « le Client »,
+                pour la fourniture de prestations de :
+              </p>
+
+              <ul>
+                <li>
+                  <strong>Supports de communication physiques :</strong>
+                  conception, fabrication, personnalisation et commercialisation
+                  d’objets publicitaires, signalétiques, supports imprimés ou
+                  digitaux, packaging, goodies et tout article promotionnel.
+                </li>
+                <li>
+                  <strong>Développement web et solutions digitales :</strong>
+                  conception, création, développement, hébergement, maintenance,
+                  référencement et gestion de sites internet, applications web
+                  et solutions numériques ; prestations de communication visuelle,
+                  graphique, digitale et conseil.
+                </li>
+              </ul>
+
+              <p>
+                Toute commande implique l’acceptation sans réserve des présentes
+                CGV, qui prévalent sur tout autre document du Client, sauf accord
+                écrit et signé par CPEP.
+              </p>
+            </section>
+
+            <section id="commandes">
+              <h2>2. Commandes et acceptation</h2>
+
+              <p>
+                Les commandes, adressées directement à CPEP ou transmises par un
+                représentant, ne sont fermes qu’après confirmation écrite de CPEP
+                précisant les conditions applicables.
+              </p>
+            </section>
+
+            <section id="facturation">
+              <h2>3. Facturation – Modalités de règlement – Pénalités</h2>
+
+              <ul>
+                <li>
+                  Sauf indication contraire, les prix communiqués s’entendent
+                  <strong> hors taxes (HT)</strong>. La TVA et toutes autres taxes
+                  applicables sont facturées en sus, au taux en vigueur au jour de
+                  la facturation.
+                </li>
+                <li>
+                  <strong>Supports physiques :</strong> sauf stipulation contraire
+                  au devis, acompte de <strong>30&nbsp;%</strong> à la commande,
+                  solde payable à <strong>30 jours date de facture</strong>.
+                </li>
+                <li>
+                  <strong>Développement web :</strong> sauf accord contraire écrit,
+                  <strong> 30&nbsp;%</strong> à la commande,
+                  <strong> 30&nbsp;%</strong> à la validation des maquettes,
+                  <strong> 40&nbsp;%</strong> à la livraison ou à la mise en ligne.
+                </li>
+                <li>
+                  Prestations ponctuelles hors forfait facturées au
+                  <strong> taux horaire de 75&nbsp;€ HT</strong> ou sur devis
+                  complémentaire.
+                </li>
+                <li>
+                  Tout retard entraîne : exigibilité immédiate de toutes les sommes
+                  dues, pénalités de retard calculées sur la base de
+                  <strong> 20 fois le taux d’intérêt légal en vigueur</strong>,
+                  et versement de l’<strong>indemnité forfaitaire de recouvrement
+                  de 40&nbsp;€</strong>, conformément aux articles L441-10 et D441-5
+                  du Code de commerce.
+                </li>
+              </ul>
+            </section>
+
+            <section id="obligations-client">
+              <h2>4. Obligations du Client</h2>
+
+              <p>
+                Le Client s’engage à fournir tous les éléments nécessaires :
+                textes, images, contenus, accès techniques, fichiers graphiques,
+                informations légales ou tout autre élément utile à la bonne
+                réalisation de la prestation.
+              </p>
+
+              <p>
+                Il garantit disposer des droits nécessaires sur les éléments
+                fournis, respecte les délais de validation — BAT, maquettes,
+                livrables — et assume la responsabilité en cas d’utilisation
+                d’éléments sans autorisation.
+              </p>
+            </section>
+
+            <section id="pi">
+              <h2>5. Propriété intellectuelle et droits d’utilisation</h2>
+
+              <p>
+                Toutes les créations réalisées par CPEP — maquettes, graphismes,
+                illustrations, photographies, vidéos, modèles, codes sources,
+                développements informatiques, etc. — demeurent la propriété
+                exclusive de CPEP jusqu’au <strong>paiement intégral</strong> des
+                sommes dues.
+              </p>
+
+              <p>
+                Après règlement complet, les droits d’utilisation sont transférés
+                au Client pour l’usage prévu au devis. Toute réutilisation,
+                adaptation ou diffusion au-delà de cet usage nécessite un accord
+                écrit de CPEP.
+              </p>
+
+              <p>
+                Le Client garantit disposer de tous les droits sur les éléments
+                fournis. CPEP se réserve le droit de refuser tout élément
+                manifestement illicite : logos officiels de l’État, symboles
+                publics, visuels notoirement protégés, etc.
+              </p>
+
+              <h3>Spécificité Web</h3>
+
+              <ul>
+                <li>
+                  Code source livré conforme aux spécifications validées.
+                </li>
+                <li>
+                  Aucune garantie d’adaptabilité future liée aux évolutions
+                  techniques, navigateurs ou hébergeurs.
+                </li>
+                <li>
+                  En cas de transfert à un tiers, ses interventions se font sous
+                  sa seule responsabilité.
+                </li>
+                <li>
+                  Les bibliothèques et frameworks <strong>open source</strong>
+                  restent soumis à leurs licences respectives.
+                </li>
+              </ul>
+            </section>
+
+            <section id="prestataires">
+              <h2>6. Prestataires tiers</h2>
+
+              <p>
+                CPEP peut recourir à des prestataires tiers : freelances,
+                photographes, designers, développeurs, imprimeurs ou tout autre
+                partenaire proposé par CPEP ou choisi par le Client.
+              </p>
+
+              <ul>
+                <li>
+                  CPEP n’est pas responsable des retards, inexécutions ou fautes
+                  de ces tiers.
+                </li>
+                <li>
+                  Les créations de tiers sont soumises à leurs propres conditions
+                  de cession de droits.
+                </li>
+                <li>
+                  Si le Client mandate directement un tiers, il en assume seul la
+                  relation contractuelle et financière.
+                </li>
+                <li>
+                  Le Client garantit que tout contenu fourni par un tiers est libre
+                  de droits ou correctement autorisé.
+                </li>
+              </ul>
+            </section>
+
+            <section id="supports-physiques">
+              <h2>7. Supports de communication physiques</h2>
+
+              <h3>Bon à Tirer — BAT</h3>
+
+              <p>
+                Un BAT papier ou électronique est soumis au Client. Sa validation
+                engage la responsabilité du Client et dégage celle de CPEP dès lors
+                que la production est conforme au BAT validé.
+              </p>
+
+              <h3>Fichiers clients</h3>
+
+              <p>
+                Le Client est responsable des fichiers fournis : contenu, qualité,
+                conformité technique et droits d’utilisation. CPEP décline toute
+                responsabilité en cas d’erreurs ou de contenus non autorisés.
+              </p>
+
+              <h3>Tolérances de fabrication</h3>
+
+              <ul>
+                <li>
+                  Quantités : ± 30&nbsp;% jusqu’à 10&nbsp;000 unités ;
+                  ± 20&nbsp;% de 11&nbsp;000 à 25&nbsp;000 unités ;
+                  ± 15&nbsp;% au-delà de 25&nbsp;000 unités.
+                </li>
+                <li>
+                  Qualité : variations d’épaisseur, de poids ou de teinte tolérées
+                  dans la limite de ± 10&nbsp;%.
+                </li>
+              </ul>
+
+              <h3>Délais, transport & stockage</h3>
+
+              <p>
+                Les délais sont indicatifs. Les retards imputables au Client
+                allongent les délais de production. Les marchandises voyagent aux
+                risques du Client. Toute réserve liée au transport doit être
+                confirmée sous 48&nbsp;h. Aucun stockage n’est assuré sans accord
+                écrit spécifique.
+              </p>
+            </section>
+
+            <section id="web-maintenance">
+              <h2>8. Développement web & maintenance</h2>
+
+              <h3>Maintenance Web</h3>
+
+              <p>
+                Contrat optionnel :
+                <strong>360&nbsp;€ TTC / an</strong>, incluant nom de domaine,
+                hébergement et <strong>6&nbsp;h</strong> de maintenance : bugs,
+                mises à jour et petits ajouts.
+              </p>
+
+              <h3>Durée et renouvellement</h3>
+
+              <ul>
+                <li>
+                  Durée : 1 an à compter de la mise en ligne.
+                </li>
+                <li>
+                  Renouvellement : tacite reconduction annuelle, sauf résiliation
+                  écrite du Client <strong>au moins 15 jours avant</strong> la date
+                  de renouvellement.
+                </li>
+                <li>
+                  Notifications : emails envoyés <strong>1 mois</strong> puis
+                  <strong> 1 semaine</strong> avant renouvellement.
+                </li>
+              </ul>
+
+              <h3>Consommation des heures</h3>
+
+              <ul>
+                <li>
+                  Heures valables 1 an, non reportées ni remboursées.
+                </li>
+                <li>
+                  Décompte par tranches de 15 minutes. Toute tâche commencée est
+                  arrondie au quart d’heure supérieur.
+                </li>
+              </ul>
+
+              <h3>Au-delà du forfait</h3>
+
+              <p>
+                Les interventions sont facturées au
+                <strong>taux horaire en vigueur, soit 75&nbsp;€ HT</strong>, ou sur
+                devis complémentaire.
+              </p>
+
+              <h3>Évolution tarifaire</h3>
+
+              <p>
+                Le tarif de maintenance et le taux horaire peuvent être révisés
+                d’une année sur l’autre, notamment en fonction des coûts
+                d’hébergement, d’énergie, de prestations techniques ou de coûts
+                salariaux. Toute hausse est communiquée lors des notifications de
+                renouvellement et s’applique aux nouveaux contrats et aux
+                renouvellements postérieurs à la date d’effet communiquée.
+              </p>
+
+              <h3>Absence de contrat</h3>
+
+              <p>
+                Sans contrat de maintenance, aucune garantie de correction, mise à
+                jour ou assistance n’est fournie après la livraison.
+              </p>
+            </section>
+
+            <section id="seo">
+              <h2>9. Référencement & SEO</h2>
+
+              <p>
+                CPEP applique les bonnes pratiques SEO dans le cadre d’une
+                obligation de moyens. Aucun positionnement, classement ou volume de
+                trafic n’est garanti.
+              </p>
+            </section>
+
+            <section id="rgpd">
+              <h2>10. Données personnelles & RGPD</h2>
+
+              <p>
+                Dans le cadre des prestations web, CPEP agit comme
+                <strong> sous-traitant</strong>. Le Client, en tant que
+                <strong> responsable de traitement</strong>, doit assurer la
+                conformité de son site ou service : mentions légales, politique de
+                confidentialité, politique de cookies, consentement et toute autre
+                obligation applicable.
+              </p>
+
+              <p>
+                CPEP ne peut être tenue responsable d’un manquement du Client à ses
+                obligations légales ou réglementaires.
+              </p>
+            </section>
+
+            <section id="portfolio">
+              <h2>11. Droit de référence & portfolio</h2>
+
+              <p>
+                Sauf opposition expresse écrite du Client avant le démarrage du
+                projet, CPEP peut utiliser les réalisations physiques et digitales
+                dans son portfolio, ses supports de communication et citer le
+                Client comme référence.
+              </p>
+            </section>
+
+            <section id="litiges">
+              <h2>12. Réclamations & litiges</h2>
+
+              <p>
+                Toute réclamation doit être adressée à CPEP sous 10 jours ouvrés à
+                compter de la livraison ou de la mise en ligne. Les parties
+                privilégient une tentative de résolution amiable.
+              </p>
+
+              <p>
+                À défaut d’accord amiable, compétence exclusive est attribuée au
+                <strong> Tribunal de Commerce du siège social de CPEP</strong>.
+              </p>
+            </section>
+
+            <section id="limitation">
+              <h2>13. Limitation de responsabilité</h2>
+
+              <p>
+                La responsabilité de CPEP est limitée au montant facturé de la
+                prestation concernée. CPEP n’est pas responsable des dommages
+                indirects tels que perte de données, perte d’image, perte de
+                chiffre d’affaires ou perte d’exploitation.
+              </p>
+            </section>
+
+            <section id="reserve">
+              <h2>14. Réserve de propriété</h2>
+
+              <p>
+                CPEP conserve la propriété des biens et prestations jusqu’au
+                <strong> paiement intégral</strong>. Les risques sont transférés au
+                Client dès livraison ou mise à disposition.
+              </p>
+            </section>
+
+            <section id="fm">
+              <h2>15. Force majeure</h2>
+
+              <p>
+                La responsabilité de CPEP ne saurait être engagée en cas de retard,
+                d’inexécution ou d’interruption résultant d’un cas de force
+                majeure : catastrophes naturelles, grèves, pannes réseaux,
+                pandémies, guerres ou tout événement extérieur, imprévisible et
+                irrésistible. Les obligations sont suspendues pendant la durée de
+                l’événement.
+              </p>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <address class="mx-auto mt-10 max-w-xl text-center text-sm not-italic leading-relaxed text-muted">
+        <strong class="text-text">CPEP SARL</strong><br />
+        Communication Pour des Entreprises Pérennes<br />
+        2 rue de la République<br />
+        90000 BELFORT<br />
+        Immatriculation au RCS, numéro 520&nbsp;977&nbsp;703 R.C.S. Belfort
+      </address>
+
+        <p class="mt-6 text-center text-sm text-muted">
+        © <span data-current-year>2026</span> CPEP — Tous droits réservés ·
+        <a
+            href="/"
+            class="font-semibold text-primary transition hover:text-accent"
+        >
+            Retour à l’accueil
+        </a>
+        </p>
+    </div>
+  </section>
+</PageLayout>

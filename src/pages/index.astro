@@ -10,11 +10,96 @@ import About from "../components/About.astro";
 import FaqSection from "../components/FaqSection.astro";
 import ContactCPEP from "../components/ContactCPEP.astro";
 
+const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).toString() : p);
+
+const ORG_ID = `${abs("/")}#org-cpep`;
+const WEBSITE_ID = `${abs("/")}#website-cpep`;
+const WEBPAGE_ID = `${abs("/")}#homepage-cpep`;
+
 const seo = {
-  title: "CPEP — Emballages personnalisés sur mesure",
+  title: "CPEP — Sacs papier personnalisés, emballages et sites web sur mesure",
   description:
-    "Conception et fabrication d’emballages personnalisés sur mesure : boîtes, sacs, étiquettes et plus. Devis rapide. Basé en France.",
+    "CPEP accompagne les entreprises dans leurs sacs papier personnalisés, emballages sur mesure, supports print et sites web sobres, rapides et bien structurés.",
   image: "/og-default.jpg",
+  jsonLd: [
+    {
+      "@type": "WebPage",
+      "@id": WEBPAGE_ID,
+      url: abs("/"),
+      name: "CPEP — Sacs papier personnalisés, emballages et sites web sur mesure",
+      description:
+        "Sacs papier personnalisés, emballages sur mesure, supports print et création de sites web sobres, rapides et optimisés.",
+      inLanguage: "fr-FR",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": ORG_ID },
+      mainEntity: [
+        { "@id": `${abs("/")}#service-sacs-papier-personnalises` },
+        { "@id": `${abs("/")}#service-emballages-personnalises` },
+        { "@id": `${abs("/")}#service-creation-sites-web` },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${abs("/")}#service-sacs-papier-personnalises`,
+      name: "Sacs papier personnalisés",
+      serviceType: "Sacs papier personnalisés",
+      description:
+        "Accompagnement dans le choix et la production de sacs papier personnalisés : poignées plates, poignées torsadées, kraft brun, kraft blanc, sacs pelliculés mats et formats traiteur.",
+      provider: { "@id": ORG_ID },
+      areaServed: "FR",
+      audience: {
+        "@type": "Audience",
+        audienceType: "Entreprises, commerces, associations et collectivités",
+      },
+      category: [
+        "Sacs papier personnalisés",
+        "Emballage personnalisé",
+        "Packaging",
+        "Print",
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${abs("/")}#service-emballages-personnalises`,
+      name: "Emballages personnalisés sur mesure",
+      serviceType: "Packaging et emballages personnalisés",
+      description:
+        "Conception et sourcing d’emballages personnalisés : boîtes, étuis, sacs, étiquettes, calages, papiers de soie, rubans et finitions premium.",
+      provider: { "@id": ORG_ID },
+      areaServed: "FR",
+      audience: {
+        "@type": "Audience",
+        audienceType: "Entreprises, marques, commerces, associations et collectivités",
+      },
+      category: [
+        "Emballages personnalisés",
+        "Boîtes sur mesure",
+        "Étuis personnalisés",
+        "Étiquettes",
+        "Packaging premium",
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${abs("/")}#service-creation-sites-web`,
+      name: "Création de sites web sur mesure",
+      serviceType: "Création de sites web, SEO technique et développement spécifique",
+      description:
+        "Création de sites web sur mesure, sites vitrines, optimisation SEO technique, performance web, accessibilité, maintenance et développement spécifique.",
+      provider: { "@id": ORG_ID },
+      areaServed: "FR",
+      audience: {
+        "@type": "Audience",
+        audienceType: "Entreprises, indépendants, associations et collectivités",
+      },
+      category: [
+        "Création de site web",
+        "SEO technique",
+        "Développement web",
+        "Maintenance web",
+      ],
+    },
+  ],
 };
 ---
 
@@ -22,8 +107,8 @@ const seo = {
   <Hero />
   <PackagingTeaserSection />
   <WebTeaserSection />
-  <ProductSection />
-  <WebServicesSection />
+  <!-- <ProductSection />
+  <WebServicesSection /> -->
   <HowItWorks />
   <About />
   <FaqSection />

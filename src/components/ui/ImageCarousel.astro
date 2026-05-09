@@ -1,0 +1,250 @@
+---
+import { Icon } from "astro-icon/components";
+
+type CarouselImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
+type Props = {
+  images: CarouselImage[];
+  ariaLabel?: string;
+  autoplayDelay?: number;
+};
+
+const {
+  images,
+  ariaLabel = "Carousel d’images",
+  autoplayDelay = 4000,
+} = Astro.props;
+
+const carouselImages =
+  images.length > 1 ? [...images, images[0]] : images;
+---
+
+<figure
+  class="relative w-full min-w-0 max-w-full overflow-hidden"
+  data-image-carousel
+  data-autoplay-delay={autoplayDelay}
+  data-real-slide-count={images.length}
+  aria-label={ariaLabel}
+>
+  <!-- Image -->
+  <div class="relative w-full min-w-0 overflow-hidden">
+    <div
+        class="flex w-full min-w-0 transition-transform duration-500 ease-out"
+        data-image-carousel-track
+    >
+      {carouselImages.map((image, index) => {
+        const isClone = images.length > 1 && index === carouselImages.length - 1;
+
+        return (
+            <div class="w-full flex-none">
+            <img
+                src={image.src}
+                alt={isClone ? "" : image.alt}
+                data-caption={image.caption || ""}
+                width="720"
+                height="540"
+                loading="lazy"
+                decoding="async"
+                aria-hidden={isClone ? "true" : "false"}
+                class="aspect-[4/3] w-full max-w-full object-cover"
+            />
+            </div>
+        );
+        })}
+    </div>
+  </div>
+
+  <!-- Texte sous image -->
+  {images[0]?.caption && (
+    <figcaption
+      class="mt-4 text-center text-sm leading-relaxed text-primary"
+      data-image-carousel-caption
+    >
+      {images[0].caption}
+    </figcaption>
+  )}
+
+
+    <!-- Navigation sous texte -->
+    {images.length > 1 && (
+    <div
+        class="mt-4 flex items-center justify-center gap-3"
+        aria-label="Navigation du carousel"
+    >
+        <button
+        type="button"
+        class="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-primary/70 transition hover:scale-105 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        data-image-carousel-prev
+        aria-label="Image précédente"
+        >
+        <Icon name="lucide:circle-chevron-left" class="h-6 w-6" aria-hidden="true" />
+        </button>
+
+        <div
+        class="flex items-center justify-center gap-2"
+        data-image-carousel-dots
+        >
+        {images.map((_, index) => (
+            <button
+            type="button"
+            class="h-2.5 w-2.5 cursor-pointer rounded-full bg-primary/30 transition hover:bg-primary/60 data-[active=true]:w-7 data-[active=true]:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            data-image-carousel-dot
+            data-index={index}
+            aria-label={`Afficher l’image ${index + 1}`}
+            />
+        ))}
+        </div>
+
+        <button
+        type="button"
+        class="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-primary/70 transition hover:scale-105 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        data-image-carousel-next
+        aria-label="Image suivante"
+        >
+        <Icon name="lucide:circle-chevron-right" class="h-6 w-6" aria-hidden="true" />
+        </button>
+    </div>
+    )}
+</figure>
+
+<script>
+  const carousels = document.querySelectorAll<HTMLElement>("[data-image-carousel]");
+
+  carousels.forEach((carousel) => {
+    if (carousel.dataset.initialized === "true") return;
+    carousel.dataset.initialized = "true";
+
+    const track = carousel.querySelector<HTMLElement>("[data-image-carousel-track]");
+    const dots = carousel.querySelectorAll<HTMLButtonElement>("[data-image-carousel-dot]");
+    const caption = carousel.querySelector<HTMLElement>("[data-image-carousel-caption]");
+    const slides = carousel.querySelectorAll<HTMLElement>("[data-image-carousel-track] > div");
+    const prevButton = carousel.querySelector<HTMLButtonElement>("[data-image-carousel-prev]");
+    const nextButton = carousel.querySelector<HTMLButtonElement>("[data-image-carousel-next]");
+
+    const realSlideCount = Number(carousel.dataset.realSlideCount) || slides.length;
+
+    let currentIndex = 0;
+    let intervalId: number | undefined;
+
+    function setCaption(index: number) {
+      if (!caption || realSlideCount === 0) return;
+
+      const realIndex = index % realSlideCount;
+      const activeSlide = slides[realIndex];
+      const activeImage = activeSlide?.querySelector<HTMLImageElement>("img");
+
+      caption.textContent = activeImage?.dataset.caption || "";
+    }
+
+    function updateDots(index: number) {
+      if (realSlideCount === 0) return;
+
+      const realIndex = index % realSlideCount;
+
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === realIndex;
+
+        dot.setAttribute("data-active", String(isActive));
+        dot.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+    }
+
+    function moveTo(index: number, withTransition = true) {
+      if (!track || slides.length === 0) return;
+
+      track.style.transition = withTransition
+        ? "transform 500ms ease-out"
+        : "none";
+
+      track.style.transform = `translateX(-${index * 100}%)`;
+
+      updateDots(index);
+      setCaption(index);
+    }
+
+    function goToNext() {
+      if (realSlideCount <= 1) return;
+
+      currentIndex += 1;
+      moveTo(currentIndex, true);
+
+      // Quand on arrive sur le clone de la première slide,
+      // on revient instantanément sur la vraie première slide.
+      if (currentIndex === realSlideCount) {
+        window.setTimeout(() => {
+          currentIndex = 0;
+          moveTo(currentIndex, false);
+        }, 500);
+      }
+    }
+
+    function goToPrev() {
+      if (realSlideCount <= 1) return;
+
+      // Si on est sur la première slide, on saute sans transition
+      // sur le clone de fin, puis on recule vers la dernière vraie slide.
+      if (currentIndex === 0) {
+        currentIndex = realSlideCount;
+        moveTo(currentIndex, false);
+
+        window.requestAnimationFrame(() => {
+          currentIndex -= 1;
+          moveTo(currentIndex, true);
+        });
+
+        return;
+      }
+
+      currentIndex -= 1;
+      moveTo(currentIndex, true);
+    }
+
+    function startAutoplay() {
+      if (realSlideCount <= 1) return;
+
+      stopAutoplay();
+
+      const delay = Number(carousel.dataset.autoplayDelay) || 4000;
+      intervalId = window.setInterval(goToNext, delay);
+    }
+
+    function stopAutoplay() {
+      if (intervalId !== undefined) {
+        window.clearInterval(intervalId);
+        intervalId = undefined;
+      }
+    }
+
+    nextButton?.addEventListener("click", () => {
+      goToNext();
+      startAutoplay();
+    });
+
+    prevButton?.addEventListener("click", () => {
+      goToPrev();
+      startAutoplay();
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const index = Number(dot.dataset.index);
+
+        if (!Number.isNaN(index)) {
+          currentIndex = index;
+          moveTo(currentIndex, true);
+          startAutoplay();
+        }
+      });
+    });
+
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+
+    moveTo(currentIndex, false);
+    startAutoplay();
+  });
+</script>
