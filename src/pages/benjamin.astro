@@ -1,0 +1,143 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const contact = {
+  name: "Benjamin TISSERAND",
+  tagline: "💡 Développeur d’idées simples.",
+  phone: "06 13 99 12 31",
+  email: "benjamin@cpep.fr",
+  photo: "/photos/benjamin.webp",
+  logo: "/logo/cpep.svg",
+  vcard: "/benjamin.vcf",
+};
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/in/benjamin-tisserand-dev/",
+    label: "Voir le profil LinkedIn de Benjamin Tisserand",
+    icon: "/logo/linkedIn-icon.svg",
+    name: "LinkedIn",
+  },
+  {
+    href: "https://www.instagram.com/benjamin_tisserand/",
+    label: "Voir le profil Instagram de Benjamin Tisserand",
+    icon: "/logo/Instagram-logo.svg",
+    name: "Instagram",
+  },
+      {
+    href: "https://github.com/BenjiBelfort",
+    label: "Voir le profil GitHub de Benjamin Tisserand",
+    icon: "/logo/GitHub-logo.svg",
+    name: "GitHub",
+  },
+];
+---
+
+<PageLayout
+  title={`${contact.name} — Contact`}
+  description="Carte de visite numérique de Benjamin Tisserand — CPEP."
+>
+  <section
+    class="cpep-contact-blueprint relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden px-4 py-24"
+    aria-labelledby="contact-card-title"
+  >
+    <!-- halos décoratifs -->
+    <div
+      class="pointer-events-none absolute left-1/2 top-16 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-white/15 blur-3xl"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="relative w-full max-w-sm rounded-[1.7rem] bg-white p-6 pt-16 text-center shadow-[0_24px_80px_rgba(8,7,8,0.22)] ring-1 ring-white/60"
+    >
+
+      <!-- Photo -->
+      <img
+        src={contact.photo}
+        alt={`Photo de ${contact.name}`}
+        width="280"
+        height="280"
+        loading="eager"
+        decoding="async"
+        class="mx-auto -mt-28 h-32 w-32 rounded-full border-[6px] border-white bg-white object-cover shadow-[0_16px_36px_rgba(8,7,8,0.18)]"
+      />
+
+      <div class="mt-5">
+
+        <h1
+          id="contact-card-title"
+          class="mt-2 text-2xl font-bold leading-tight text-text"
+        >
+          {contact.name}
+        </h1>
+
+        <p class="mt-2 text-base text-gray-800">
+          {contact.tagline}
+        </p>
+      </div>
+
+      <div class="mt-6 grid gap-2 text-base text-primary">
+        <a
+          href={`tel:${contact.phone.replaceAll(" ", "")}`}
+          class="transition hover:text-accent"
+        >
+          {contact.phone}
+        </a>
+
+        <a
+          href={`mailto:${contact.email}`}
+          class="transition hover:text-accent"
+        >
+          {contact.email}
+        </a>
+      </div>
+
+      <!-- Réseaux -->
+      <div class="mt-6 flex justify-center gap-3">
+        {socialLinks.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            title={social.name}
+            class="grid h-12 w-12 place-items-center rounded-full bg-white transition hover:shadow-md"
+          >
+            <img
+              src={social.icon}
+              alt=""
+              width="24"
+              height="24"
+              loading="lazy"
+              decoding="async"
+              class="h-6 w-6"
+            />
+          </a>
+        ))}
+      </div>
+
+      <!-- Bouton vCard -->
+      <a
+        href={contact.vcard}
+        download="Benjamin-Tisserand.vcf"
+        class="group relative mt-8 inline-flex w-full items-center justify-center overflow-hidden rounded-full bg-primary px-6 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(60,110,113,0.28)] transition hover:bg-primary-700"
+      >
+        <span
+          class="pointer-events-none absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 opacity-0 transition group-hover:opacity-100"
+          aria-hidden="true"
+        ></span>
+
+        <span class="relative">
+          Ajouter le contact
+        </span>
+      </a>
+
+      <a
+        href="/#qui-sommes-nous"
+        class="mt-5 inline-flex text-sm font-semibold text-primary/75 transition hover:text-accent"
+      >
+        ← Retour au site CPEP!
+      </a>
+    </div>
+  </section>
+</PageLayout>

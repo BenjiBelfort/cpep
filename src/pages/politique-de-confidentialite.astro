@@ -1,0 +1,383 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = 'Politique de confidentialité';
+const pageDescription =
+  'Politique de confidentialité du site CPEP : données collectées, finalités, durée de conservation, cookies et droits des utilisateurs.';
+
+const sources = [
+  {
+    label: 'CNIL — Durées de conservation des données',
+    href: 'https://www.cnil.fr/fr/passer-laction/les-durees-de-conservation-des-donnees',
+  },
+  {
+    label: 'CNIL — Cookies et autres traceurs',
+    href: 'https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies',
+  },
+  {
+    label: 'CNIL — Cookies : solutions pour les outils de mesure d’audience',
+    href: 'https://www.cnil.fr/fr/cookies-solutions-pour-les-outils-de-mesure-daudience',
+  },
+  {
+    label: 'OVHcloud — Mentions légales',
+    href: 'https://www.ovhcloud.com/fr/terms-and-conditions/',
+  },
+];
+
+const seo = {
+  title: pageTitle,
+  description: pageDescription,
+  jsonLd: {
+    '@type': 'WebPage',
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: 'fr-FR',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'CPEP',
+    },
+  },
+};
+---
+
+<PageLayout {seo}>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+      Données personnelles
+    </p>
+
+    <h1 class="mt-2 text-3xl font-bold text-text md:text-5xl">
+      Politique de confidentialité
+    </h1>
+
+    <p class="mt-6 leading-relaxed text-gray-800">
+      Cette politique explique quelles données peuvent être collectées via le site CPEP,
+      pourquoi elles sont utilisées, combien de temps elles sont conservées et quels sont
+      vos droits. Oui, c’est la page sérieuse. Mais on va rester lisible.
+    </p>
+
+    <div class="mt-8 space-y-8 text-gray-800">
+      <section>
+        <h2 class="text-xl font-semibold text-text">Responsable du traitement</h2>
+
+        <div class="mt-3 space-y-2 leading-relaxed">
+          <p>
+            Le responsable du traitement des données est <strong>Communication Pour des Entreprises Pérennes</strong>,
+            exerçant sous le nom commercial <strong>CPEP</strong>.
+          </p>
+
+          <p>
+            Forme juridique : <strong>SARL</strong>
+          </p>
+
+          <p>
+            SIREN : <strong>520 977 703</strong>
+          </p>
+
+          <p>
+            Siège social : <strong>2 rue de la République, 90000 Belfort, France</strong>
+          </p>
+
+          <p>
+            Contact :
+            {' '}
+            <a href="mailto:contact@cpep.fr" class="text-primary transition hover:text-accent">
+              contact@cpep.fr
+            </a>
+          </p>
+
+          <p>
+            Téléphone :
+            {' '}
+            <a href="tel:+33613991231" class="text-primary transition hover:text-accent">
+              +33 6 13 99 12 31
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Données collectées</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Les données susceptibles d’être collectées sont celles transmises volontairement
+          via le site, par email, par téléphone ou lors d’un échange avec CPEP.
+        </p>
+
+        <ul class="mt-3 list-disc space-y-2 pl-5 leading-relaxed">
+          <li>nom et prénom ;</li>
+          <li>adresse email ;</li>
+          <li>numéro de téléphone ;</li>
+          <li>nom de l’entreprise, de l’association ou de la structure concernée ;</li>
+          <li>adresse de facturation ou de livraison, si nécessaire au projet ;</li>
+          <li>informations liées à une demande de devis ou à un projet ;</li>
+          <li>contenus et fichiers transmis volontairement dans le cadre d’un projet.</li>
+        </ul>
+
+        <p class="mt-3 leading-relaxed">
+          Le site ne propose pas actuellement d’inscription à une newsletter.
+          Aucune donnée n’est donc collectée à cette fin.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Personnes concernées</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Les traitements peuvent concerner des clients particuliers, des prospects,
+          des clients professionnels, des représentants d’entreprises, d’associations
+          ou de collectivités, ainsi que toute personne contactant CPEP dans le cadre
+          d’une demande d’information ou de projet.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Finalités du traitement</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Les données sont utilisées uniquement pour :
+        </p>
+
+        <ul class="mt-3 list-disc space-y-2 pl-5 leading-relaxed">
+          <li>répondre aux demandes envoyées via le site, par email ou par téléphone ;</li>
+          <li>analyser un besoin et préparer un devis ou une proposition commerciale ;</li>
+          <li>assurer le suivi d’un projet web, print, packaging ou communication ;</li>
+          <li>gérer la relation client avant, pendant et après une prestation ;</li>
+          <li>réaliser les opérations administratives, comptables et de facturation ;</li>
+          <li>répondre aux obligations légales, fiscales ou réglementaires.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Base légale</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Selon les situations, les traitements reposent sur :
+        </p>
+
+        <ul class="mt-3 list-disc space-y-2 pl-5 leading-relaxed">
+          <li>l’exécution de mesures précontractuelles, notamment pour répondre à une demande de devis ;</li>
+          <li>l’exécution d’un contrat, lorsqu’une prestation est commandée ;</li>
+          <li>l’intérêt légitime de CPEP à répondre aux demandes reçues et assurer le suivi de ses échanges ;</li>
+          <li>le respect d’une obligation légale, notamment comptable, fiscale ou administrative ;</li>
+          <li>le consentement, uniquement lorsque celui-ci est spécifiquement requis.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Durée de conservation</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Les données sont conservées pendant la durée nécessaire aux finalités pour lesquelles
+          elles ont été collectées, puis archivées lorsque cela est nécessaire pour respecter
+          une obligation légale ou défendre les droits de CPEP.
+        </p>
+
+        <ul class="mt-3 list-disc space-y-2 pl-5 leading-relaxed">
+          <li>
+            demandes de contact ou de devis sans suite :
+            <strong> jusqu’à 3 ans à compter du dernier échange</strong> ;
+          </li>
+          <li>
+            données liées à un client ou à une prestation :
+            <strong> pendant la durée de la relation commerciale</strong>, puis archivage légal si nécessaire ;
+          </li>
+          <li>
+            documents comptables et pièces justificatives :
+            <strong> selon les durées légales applicables</strong> ;
+          </li>
+          <li>
+            cookies et traceurs :
+            <strong> selon leur finalité et la réglementation applicable</strong>.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Destinataires des données</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Les données sont destinées à CPEP. Elles ne sont pas vendues à des tiers.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Elles peuvent être transmises uniquement lorsque cela est nécessaire à la réalisation
+          d’un projet ou au fonctionnement du service, notamment à des prestataires techniques,
+          hébergeurs, fournisseurs, imprimeurs, transporteurs, partenaires de production,
+          outils de gestion ou conseils administratifs et comptables.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Chaque transmission est limitée aux informations strictement nécessaires.
+          Pas de distribution gratuite de données comme des flyers en sortie de métro.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Hébergement du site</h2>
+
+        <div class="mt-3 space-y-2 leading-relaxed">
+          <p>
+            Le site est hébergé par <strong>OVH SAS</strong>.
+          </p>
+
+          <p>
+            Siège social : <strong>2 rue Kellermann, 59100 Roubaix, France</strong>
+          </p>
+
+          <p>
+            SIRET : <strong>424 761 419 00045</strong>
+          </p>
+
+          <p>
+            Site web :
+            {' '}
+            <a
+              href="https://www.ovhcloud.com/fr/"
+              target="_blank"
+              rel="noreferrer"
+              class="text-primary transition hover:text-accent"
+            >
+              ovhcloud.com
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Transfert hors Union européenne</h2>
+
+        <p class="mt-3 leading-relaxed">
+          CPEP privilégie des prestataires situés dans l’Union européenne ou offrant
+          des garanties conformes à la réglementation applicable.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Si un transfert de données hors Union européenne devait être nécessaire,
+          CPEP veillerait à ce qu’il soit encadré par des garanties appropriées,
+          conformément au RGPD.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Cookies et mesure d’audience</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Le site peut utiliser des cookies ou traceurs nécessaires à son bon fonctionnement,
+          par exemple pour assurer la sécurité, mémoriser un choix ou permettre l’affichage
+          correct des pages.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Le site peut également utiliser un outil de mesure d’audience afin de comprendre
+          l’utilisation du site et d’améliorer ses contenus. Lorsque l’outil respecte les
+          conditions d’exemption prévues par la CNIL, il peut être utilisé sans consentement
+          préalable. Dans les autres cas, un consentement sera demandé avant tout dépôt
+          de traceur non essentiel.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          À ce jour, le site n’utilise pas de cookies publicitaires, de suivi publicitaire
+          ou de reciblage marketing.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Sécurité des données</h2>
+
+        <p class="mt-3 leading-relaxed">
+          CPEP met en œuvre des mesures raisonnables pour protéger les données personnelles
+          contre la perte, l’accès non autorisé, la modification ou la divulgation.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Ces mesures peuvent inclure la sécurisation des accès, l’utilisation de mots de passe,
+          la limitation des accès aux seules personnes concernées et le recours à des prestataires
+          techniques reconnus.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Vos droits</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Conformément à la réglementation applicable, vous disposez d’un droit d’accès,
+          de rectification, d’effacement, de limitation, d’opposition et, lorsque cela s’applique,
+          d’un droit à la portabilité de vos données.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Vous pouvez également retirer votre consentement à tout moment pour les traitements
+          qui reposent sur cette base légale.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Pour exercer vos droits, vous pouvez écrire à :
+          {' '}
+          <a href="mailto:contact@cpep.fr" class="text-primary transition hover:text-accent">
+            contact@cpep.fr
+          </a>.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Une preuve d’identité pourra être demandée si nécessaire afin de vérifier l’auteur
+          de la demande.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Réclamation</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire
+          une réclamation auprès de la CNIL.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Site de la CNIL :
+          {' '}
+          <a
+            href="https://www.cnil.fr/"
+            target="_blank"
+            rel="noreferrer"
+            class="text-primary transition hover:text-accent"
+          >
+            cnil.fr
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Mise à jour</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Cette politique peut être mise à jour pour tenir compte des évolutions du site,
+          des services proposés, des outils utilisés ou de la réglementation.
+        </p>
+
+        <p class="mt-3 text-sm text-gray-600">
+          Dernière mise à jour : mai 2026.
+        </p>
+      </section>
+
+      <section class="rounded-2xl bg-bg-alt/60 p-5 text-sm">
+        <h2 class="font-semibold text-text">Sources utiles</h2>
+
+        <ul class="mt-3 space-y-2">
+          {sources.map((source) => (
+            <li>
+              <a
+                href={source.href}
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary transition hover:text-accent"
+              >
+                {source.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </section>
+</PageLayout>

@@ -1,10 +1,14 @@
 # build output
 dist/
+
 # generated types
 .astro/
 
 # dependencies
 node_modules/
+
+# PHP dependencies
+public/api/vendor/
 
 # logs
 npm-debug.log*
@@ -12,10 +16,14 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
+.env.local
+.env.*.local
+
+# PHPMailer / API contact — secrets SMTP
+public/api/config.php
 
 # macOS-specific files
 .DS_Store

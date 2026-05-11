@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import FaqItem from './ui/FaqItem.astro';
+import { Icon } from 'astro-icon/components';
 
 // 1) On récupère et trie
 const entries = await getCollection('faq');
@@ -17,22 +18,50 @@ const rendered = await Promise.all(
   })
 );
 ---
+<section
+  id="faq"
+  aria-labelledby="faq-title"
+  class="relative scroll-m-4"
+  data-faq-root
+>
+  <div class="mx-auto px-4 py-20">
+    <div class="mx-auto max-w-3xl">
+      <div class="my-12 flex justify-center">
+        <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:h-auto sm:w-auto sm:bg-transparent">
+            <Icon
+              name="lucide:circle-help"
+              class="h-5 w-5 sm:h-4 sm:w-4"
+              aria-hidden="true"
+            />
+          </span>
 
-<section id="faq" aria-labelledby="faq-title" class="mx-auto max-w-3xl px-4 py-16 scroll-m-4" data-faq-root>
-  <h2 id="faq-title" class="text-center text-2xl md:text-3xl font-medium text-text">FAQ</h2>
+          <span>Questions fréquentes</span>
+        </p>
+      </div>
 
-  <p class="text-center mt-4 md:mx-12 text-gray-800">
-    Les réponses aux questions que l’on nous pose le plus souvent — emballages personnalisés & web.
-  </p>
+      <h2
+        id="faq-title"
+        class="text-center text-2xl font-medium text-text md:text-3xl"
+      >
+        FAQ
+      </h2>
 
-  <div id="faq-list" class="mt-8 grid gap-4">
-    {rendered.map(({ entry, Content }) => (
-      <FaqItem question={entry.data.question} icon="lucide:chevron-left">
-        <Fragment slot="answer">
-          <Content />
-        </Fragment>
-      </FaqItem>
-    ))}
+      <p class="mt-4 text-center text-gray-800 md:mx-12">
+        Les réponses aux questions que l’on nous pose le plus souvent —
+        emballages personnalisés, print, supports de communication et web.
+      </p>
+
+      <div id="faq-list" class="mt-8 grid gap-4">
+        {rendered.map(({ entry, Content }) => (
+          <FaqItem question={entry.data.question} icon="lucide:chevron-left">
+            <Fragment slot="answer">
+              <Content />
+            </Fragment>
+          </FaqItem>
+        ))}
+      </div>
+    </div>
   </div>
 
   <!-- Un seul dropdown ouvert à la fois -->

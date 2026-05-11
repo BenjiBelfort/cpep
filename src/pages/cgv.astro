@@ -2,7 +2,7 @@
 import PageLayout from "../layouts/PageLayout.astro";
 
 const seo = {
-  title: "Conditions Générales de Vente — CPEP",
+  title: "Conditions Générales de Vente",
   description:
     "Conditions Générales de Vente de CPEP pour les prestations de supports de communication, packaging, print, objets personnalisés, développement web et maintenance.",
 };
@@ -72,34 +72,35 @@ const toc = [
 ---
 
 <PageLayout {seo}>
-  <section class="bg-bg px-4 py-10 md:py-16">
+  <section class="bg-bg py-10 md:py-16">
     <div class="mx-auto max-w-4xl">
       <a
         href="/"
-        class="inline-flex items-center text-sm font-semibold text-primary transition hover:text-accent"
+        class="ml-4 inline-flex items-center text-sm font-semibold text-primary transition hover:text-accent"
         aria-label="Retour à l’accueil"
       >
         ← Retour à l’accueil
       </a>
 
-      <article class="mt-6 overflow-hidden rounded-3xl bg-white shadow-xl shadow-primary/10 ring-1 ring-border">
+      <article class="mt-6 rounded-none md:rounded-3xl bg-white shadow-xl shadow-primary/10 ring-1 ring-border">
         <header class="border-b border-border bg-bg/40 px-6 py-8 md:px-10 md:py-10">
-          <p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+          <!-- <p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">
             Document contractuel
-          </p>
+          </p> -->
 
           <h1 class="mt-3 font-serif text-3xl font-bold leading-tight text-primary md:text-5xl">
-            Conditions Générales de Vente — CPEP
+            Conditions Générales de Vente
           </h1>
 
           <p class="mt-4 text-sm text-muted">
-            Dernière mise à jour : septembre 2025
+            Dernière mise à jour : septembre 2025
           </p>
         </header>
 
         <div class="px-6 py-8 md:px-10 md:py-10">
           <nav
-            class="rounded-2xl border border-border bg-bg/60 p-5"
+            id="sommaire"
+            class="scroll-mt-28 rounded-2xl border border-border bg-bg/60 p-5"
             aria-label="Sommaire"
           >
             <strong class="text-sm font-bold text-text">
@@ -122,8 +123,19 @@ const toc = [
             </ol>
           </nav>
 
+            <div class="sticky top-22 md:top-20 z-30 mt-4 flex justify-end">
+                <a
+                    href="#sommaire"
+                    class="inline-flex items-center gap-1 rounded-full bg-primary px-4 py-2 text-sm font-bold text-bg shadow-lg shadow-primary/10 transition hover:border-accent/30 hover:text-white hover:shadow-xl uppercase"
+                    aria-label="Retour au sommaire"
+                >
+                    Sommaire
+                    <span aria-hidden="true">↑</span>
+                </a>
+            </div>
+
           <div
-            class="mt-10 space-y-10
+            class="mt-6 space-y-10
               [&_section]:scroll-mt-28
               [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-primary
               [&_h3]:mt-6 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-bold [&_h3]:leading-tight [&_h3]:text-text
@@ -144,21 +156,21 @@ const toc = [
                 régissent l’ensemble des relations contractuelles entre
                 <strong> CPEP </strong>
                 et tout client professionnel ou particulier, ci-après « le Client »,
-                pour la fourniture de prestations de :
+                pour la fourniture de prestations de :
               </p>
 
               <ul>
                 <li>
-                  <strong>Supports de communication physiques :</strong>
+                  <strong>Supports de communication physiques :</strong>
                   conception, fabrication, personnalisation et commercialisation
                   d’objets publicitaires, signalétiques, supports imprimés ou
                   digitaux, packaging, goodies et tout article promotionnel.
                 </li>
                 <li>
-                  <strong>Développement web et solutions digitales :</strong>
+                  <strong>Développement web et solutions digitales :</strong>
                   conception, création, développement, hébergement, maintenance,
                   référencement et gestion de sites internet, applications web
-                  et solutions numériques ; prestations de communication visuelle,
+                  et solutions numériques ; prestations de communication visuelle,
                   graphique, digitale et conseil.
                 </li>
               </ul>
@@ -191,12 +203,12 @@ const toc = [
                   la facturation.
                 </li>
                 <li>
-                  <strong>Supports physiques :</strong> sauf stipulation contraire
+                  <strong>Supports physiques :</strong> sauf stipulation contraire
                   au devis, acompte de <strong>30&nbsp;%</strong> à la commande,
                   solde payable à <strong>30 jours date de facture</strong>.
                 </li>
                 <li>
-                  <strong>Développement web :</strong> sauf accord contraire écrit,
+                  <strong>Développement web :</strong> sauf accord contraire écrit,
                   <strong> 30&nbsp;%</strong> à la commande,
                   <strong> 30&nbsp;%</strong> à la validation des maquettes,
                   <strong> 40&nbsp;%</strong> à la livraison ou à la mise en ligne.
@@ -207,7 +219,7 @@ const toc = [
                   complémentaire.
                 </li>
                 <li>
-                  Tout retard entraîne : exigibilité immédiate de toutes les sommes
+                  Tout retard entraîne : exigibilité immédiate de toutes les sommes
                   dues, pénalités de retard calculées sur la base de
                   <strong> 20 fois le taux d’intérêt légal en vigueur</strong>,
                   et versement de l’<strong>indemnité forfaitaire de recouvrement
@@ -221,7 +233,7 @@ const toc = [
               <h2>4. Obligations du Client</h2>
 
               <p>
-                Le Client s’engage à fournir tous les éléments nécessaires :
+                Le Client s’engage à fournir tous les éléments nécessaires :
                 textes, images, contenus, accès techniques, fichiers graphiques,
                 informations légales ou tout autre élément utile à la bonne
                 réalisation de la prestation.
@@ -256,7 +268,7 @@ const toc = [
               <p>
                 Le Client garantit disposer de tous les droits sur les éléments
                 fournis. CPEP se réserve le droit de refuser tout élément
-                manifestement illicite : logos officiels de l’État, symboles
+                manifestement illicite : logos officiels de l’État, symboles
                 publics, visuels notoirement protégés, etc.
               </p>
 
@@ -285,7 +297,7 @@ const toc = [
               <h2>6. Prestataires tiers</h2>
 
               <p>
-                CPEP peut recourir à des prestataires tiers : freelances,
+                CPEP peut recourir à des prestataires tiers : freelances,
                 photographes, designers, développeurs, imprimeurs ou tout autre
                 partenaire proposé par CPEP ou choisi par le Client.
               </p>
@@ -324,7 +336,7 @@ const toc = [
               <h3>Fichiers clients</h3>
 
               <p>
-                Le Client est responsable des fichiers fournis : contenu, qualité,
+                Le Client est responsable des fichiers fournis : contenu, qualité,
                 conformité technique et droits d’utilisation. CPEP décline toute
                 responsabilité en cas d’erreurs ou de contenus non autorisés.
               </p>
@@ -333,12 +345,12 @@ const toc = [
 
               <ul>
                 <li>
-                  Quantités : ± 30&nbsp;% jusqu’à 10&nbsp;000 unités ;
+                  Quantités : ± 30&nbsp;% jusqu’à 10&nbsp;000 unités ;
                   ± 20&nbsp;% de 11&nbsp;000 à 25&nbsp;000 unités ;
                   ± 15&nbsp;% au-delà de 25&nbsp;000 unités.
                 </li>
                 <li>
-                  Qualité : variations d’épaisseur, de poids ou de teinte tolérées
+                  Qualité : variations d’épaisseur, de poids ou de teinte tolérées
                   dans la limite de ± 10&nbsp;%.
                 </li>
               </ul>
@@ -360,9 +372,9 @@ const toc = [
               <h3>Maintenance Web</h3>
 
               <p>
-                Contrat optionnel :
+                Contrat optionnel :
                 <strong>360&nbsp;€ TTC / an</strong>, incluant nom de domaine,
-                hébergement et <strong>6&nbsp;h</strong> de maintenance : bugs,
+                hébergement et <strong>6&nbsp;h</strong> de maintenance : bugs,
                 mises à jour et petits ajouts.
               </p>
 
@@ -370,15 +382,15 @@ const toc = [
 
               <ul>
                 <li>
-                  Durée : 1 an à compter de la mise en ligne.
+                  Durée : 1 an à compter de la mise en ligne.
                 </li>
                 <li>
-                  Renouvellement : tacite reconduction annuelle, sauf résiliation
+                  Renouvellement : tacite reconduction annuelle, sauf résiliation
                   écrite du Client <strong>au moins 15 jours avant</strong> la date
                   de renouvellement.
                 </li>
                 <li>
-                  Notifications : emails envoyés <strong>1 mois</strong> puis
+                  Notifications : emails envoyés <strong>1 mois</strong> puis
                   <strong> 1 semaine</strong> avant renouvellement.
                 </li>
               </ul>
@@ -439,7 +451,7 @@ const toc = [
                 Dans le cadre des prestations web, CPEP agit comme
                 <strong> sous-traitant</strong>. Le Client, en tant que
                 <strong> responsable de traitement</strong>, doit assurer la
-                conformité de son site ou service : mentions légales, politique de
+                conformité de son site ou service : mentions légales, politique de
                 confidentialité, politique de cookies, consentement et toute autre
                 obligation applicable.
               </p>
@@ -503,7 +515,7 @@ const toc = [
               <p>
                 La responsabilité de CPEP ne saurait être engagée en cas de retard,
                 d’inexécution ou d’interruption résultant d’un cas de force
-                majeure : catastrophes naturelles, grèves, pannes réseaux,
+                majeure : catastrophes naturelles, grèves, pannes réseaux,
                 pandémies, guerres ou tout événement extérieur, imprévisible et
                 irrésistible. Les obligations sont suspendues pendant la durée de
                 l’événement.
@@ -522,7 +534,7 @@ const toc = [
       </address>
 
         <p class="mt-6 text-center text-sm text-muted">
-        © <span data-current-year>2026</span> CPEP — Tous droits réservés ·
+        
         <a
             href="/"
             class="font-semibold text-primary transition hover:text-accent"

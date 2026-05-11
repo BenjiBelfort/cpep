@@ -32,85 +32,115 @@ const timelines: Record<Variant, Step[]> = {
 
 const defaultVariant: Variant = 'Base';
 ---
-
-
 <section
   id="methode"
   data-howitworks
   aria-labelledby="titre-methode"
-  class="mx-auto max-w-3xl px-4 py-16 scroll-m-4 min-h-[60svh]"
+  class="relative scroll-m-4"
 >
-  <h2 id="titre-methode" class="text-center text-2xl md:text-3xl font-medium text-text">Comment ça marche ?</h2>
-  <p class="text-center mt-4 md:mx-12 text-gray-800">
-    La méthode CPEP! simple et efficace pour vos projets <strong>print</strong> & <strong>web</strong> :
-    <strong>expression des besoins</strong>, <strong>étude prix & design</strong>,
-    <strong>plan d’action</strong>, puis <strong>mise en production</strong>.
-  </p>
+  <div class="mx-auto px-4 py-20">
+    <div class="mx-auto max-w-3xl min-h-[60svh]">
+      <div class="my-12 flex justify-center">
+        <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:h-auto sm:w-auto sm:bg-transparent">
+            <Icon
+              name="lucide:route"
+              class="h-5 w-5 sm:h-4 sm:w-4"
+              aria-hidden="true"
+            />
+          </span>
 
-  <!-- Boutons -->
-    <div class="mt-6 flex justify-center gap-2" role="tablist" aria-label="Choisir la méthode">
-    {variants.map((key) => (
-        <button
-        id={`tab-${key}`}
-        type="button"
-        data-variant-btn={key}
-        role="tab"
-        aria-selected={key === defaultVariant ? 'true' : 'false'}
-        class="inline-flex items-center gap-2 rounded-full border border-bg-alt px-3 py-1 text-sm
-                hover:border-accent transition
-                aria-selected:bg-accent aria-selected:text-white"
-        >
-        <Icon
-            name={key === 'Print' ? 'lucide:handbag' : key === 'Web' ? 'lucide:code-2' : 'lucide:star'}
-            class="w-4 h-4"
-            aria-hidden="true"
-        />
-        <span>{key}</span>
-        </button>
-    ))}
-    </div>
+          <span>La méthode CPEP!</span>
+        </p>
+      </div>
 
-    <!-- Panels (sans animation, sans absolute) -->
-  <div data-panels class="py-6">
-    {variants.map((key) => (
-      <ol
-        id={`panel-${key}`}
-        data-panel={key}
-        role="tabpanel"
-        aria-labelledby={`tab-${key}`}
-        class={`space-y-6 ${key === defaultVariant ? '' : 'hidden'}`}
+      <h2
+        id="titre-methode"
+        class="text-center text-2xl font-medium text-text md:text-3xl"
       >
-        {timelines[key].map(({ step, title, icon, description, highlight }) => (
-          <ProcessCard
-            step={step}
-            title={title}
-            icon={icon}
-            description={description}
-            variant={highlight ? 'highlight' : 'default'}
-          />
+        Comment ça marche ?
+      </h2>
+
+      <p class="mt-4 text-center text-text/90 md:mx-12">
+        La méthode CPEP! simple et efficace pour vos projets
+        <strong>print</strong> & <strong>web</strong> :
+        <strong>expression des besoins</strong>,
+        <strong>étude prix & design</strong>,
+        <strong>plan d’action</strong>, puis
+        <strong>mise en production</strong>.
+      </p>
+
+        <!-- Boutons -->
+      <div
+        class="mt-6 flex justify-center gap-2"
+        role="tablist"
+        aria-label="Choisir la méthode"
+      >
+        {variants.map((key) => (
+          <button
+            id={`tab-${key}`}
+            type="button"
+            data-variant-btn={key}
+            role="tab"
+            aria-selected={key === defaultVariant ? 'true' : 'false'}
+            class="inline-flex cursor-pointer items-center gap-2 rounded-full border border-bg-alt px-3 py-1 text-sm transition hover:border-accent aria-selected:bg-accent aria-selected:text-white"
+          >
+            <Icon
+              name={key === 'Print' ? 'lucide:handbag' : key === 'Web' ? 'lucide:code-2' : 'lucide:star'}
+              class="h-4 w-4"
+              aria-hidden="true"
+            />
+            <span>{key}</span>
+          </button>
         ))}
-      </ol>
-    ))}
+      </div>
+
+      <!-- Panels -->
+      <div data-panels class="py-6">
+        {variants.map((key) => (
+          <ol
+            id={`panel-${key}`}
+            data-panel={key}
+            role="tabpanel"
+            aria-labelledby={`tab-${key}`}
+            class={`space-y-6 ${key === defaultVariant ? '' : 'hidden'}`}
+          >
+            {timelines[key].map(({ step, title, icon, description, highlight }) => (
+              <ProcessCard
+                step={step}
+                title={title}
+                icon={icon}
+                description={description}
+                variant={highlight ? 'highlight' : 'default'}
+              />
+            ))}
+          </ol>
+        ))}
+      </div>
+    </div>
   </div>
 
   <script is:inline>
     (function () {
       const root = document.currentScript.closest('[data-howitworks]');
       if (!root) return;
+
       const panels = Array.from(root.querySelectorAll('[data-panel]'));
       const btns = Array.from(root.querySelectorAll('[data-variant-btn]'));
 
       function show(key) {
-        panels.forEach(p => {
+        panels.forEach((p) => {
           const on = p.getAttribute('data-panel') === key;
           p.classList.toggle('hidden', !on);
         });
       }
 
-      btns.forEach(btn => {
+      btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           const key = btn.getAttribute('data-variant-btn');
-          btns.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+          btns.forEach((b) =>
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false')
+          );
           show(key || 'Base');
         });
       });

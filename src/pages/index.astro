@@ -9,6 +9,7 @@ import HowItWorks from "../components/HowItWorks.astro";
 import About from "../components/About.astro";
 import FaqSection from "../components/FaqSection.astro";
 import ContactCPEP from "../components/ContactCPEP.astro";
+import AboutSignature from "../components/AboutSignature.astro";
 
 const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).toString() : p);
 
@@ -111,6 +112,8 @@ const seo = {
   <WebServicesSection /> -->
   <HowItWorks />
   <About />
-  <FaqSection />
+  <AboutSignature />
+
   <ContactCPEP />
+  <!-- <FaqSection /> -->
 </PageLayout>

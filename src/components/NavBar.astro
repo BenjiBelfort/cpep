@@ -1,50 +1,90 @@
 ---
 // src/components/NavBar.astro
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
+
+const navLinks = [
+  { href: "/#print", label: "Print" },
+  { href: "/#web", label: "Web" },
+  { href: "/#methode", label: "Méthode CPEP!" },
+  { href: "/#about", label: "À propos" },
+  // { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
+];
 ---
 
-<header id="site-header" class="sticky top-0 z-50 bg-bg border-b border-b-primary text-primary">
-  <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between" aria-label="Navigation principale">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 border-b border-b-primary bg-bg text-primary"
+>
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3"
+    aria-label="Navigation principale"
+  >
     <!-- Logo -->
-    <a href="/" class="flex items-center" aria-label="CPEP — La plus juste expression de votre identité (Accueil)">
+    <a
+      href="/"
+      class="flex items-center"
+      aria-label="CPEP — La plus juste expression de votre identité (Accueil)"
+    >
       <div class="flex items-center">
-        <span class="font-display text-4xl mr-0.5">CPEP</span>
-        <span class="font-display text-accent text-5xl rotate-4">!</span>
+        <span class="mr-0.5 font-display text-4xl">CPEP</span>
+        <span class="rotate-4 font-display text-5xl text-accent">!</span>
       </div>
-      <p class="font-serif text-sm leading-4 hidden md:block ml-3">
+
+      <p class="ml-3 hidden font-serif text-sm leading-4 md:block">
         La plus juste expression <br /> de votre identité
       </p>
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden md:flex items-center gap-6">
-      <li><a href="/#print" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Print</a></li>
-      <li><a href="/#web" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Web</a></li>
-      <li><a href="/#methode" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Méthode CPEP!</a></li>
-      <li><a href="/#about" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">À propos</a></li>
-      <li><a href="/#faq" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">FAQ</a></li>
-      <li><a href="/#contact" class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent">Contact</a></li>
+    <ul class="hidden items-center gap-6 md:flex">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="hover:underline hover:decoration-accent hover:underline-offset-5 focus-visible:underline focus-visible:decoration-accent"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <!-- Actions -->
     <div class="flex items-center gap-3">
-      <a href="/connexion" class="hidden md:inline-flex items-center gap-2 rounded-full border px-3 py-1 hover:border-accent">
-        <Icon name="lucide:circle-user" class="w-4 h-4" />Connexion
+      <a
+        href="/connexion"
+        class="hidden items-center gap-2 rounded-full border px-3 py-1 hover:border-accent md:inline-flex"
+      >
+        <Icon name="lucide:circle-user" class="h-4 w-4" />
+        Connexion
       </a>
 
       <!-- Bouton menu mobile -->
       <button
         id="mobile-toggle"
-        class="md:hidden inline-flex items-center justify-center rounded-xl p-3"
-        aria-expanded="false" data-open="false" aria-controls="mobile-panel" aria-label="Ouvrir le menu"
-        >
-        <span class="relative w-8 h-8">
-            <Icon name="lucide:align-right" class="icon-open absolute inset-0 w-full h-full" aria-hidden="true" />
-            <Icon name="lucide:x" class="icon-close absolute inset-0 w-full h-full opacity-0 scale-90" aria-hidden="true" />
+        class="inline-flex items-center justify-center rounded-xl p-3 md:hidden"
+        aria-expanded="false"
+        data-open="false"
+        aria-controls="mobile-panel"
+        aria-label="Ouvrir le menu"
+      >
+        <span class="relative h-8 w-8">
+          <Icon
+            name="lucide:align-right"
+            class="icon-open absolute inset-0 h-full w-full transition duration-300"
+            aria-hidden="true"
+          />
+
+          <Icon
+            name="lucide:x"
+            class="icon-close absolute inset-0 h-full w-full scale-90 opacity-0 transition duration-300"
+            aria-hidden="true"
+          />
         </span>
-        </button>
-
-
+      </button>
     </div>
   </nav>
 </header>
@@ -52,26 +92,38 @@ import { Icon } from 'astro-icon/components';
 <!-- PANNEAU MOBILE : glisse depuis sous la navbar -->
 <div
   id="mobile-panel"
-  class="fixed inset-x-0 bottom-0 md:hidden bg-bg z-40 -translate-y-full transition-transform duration-300 ease-out border-b border-bg-alt"
+  class="fixed inset-x-0 bottom-0 z-40 -translate-y-full border-b border-bg-alt bg-bg transition-transform duration-300 ease-out md:hidden"
   hidden
   role="dialog"
   aria-modal="true"
   aria-labelledby="mobile-menu-title"
 >
   <!-- Liens centrés -->
-  <div class="min-h-[60svh] flex items-center justify-center px-4 py-12">
+  <div class="flex min-h-[60svh] items-center justify-center px-4 py-12">
     <nav aria-label="Menu mobile">
       <h2 id="mobile-menu-title" class="sr-only">Menu mobile</h2>
+
       <ul class="flex flex-col items-center gap-6 text-xl">
-        <li><a href="/#print" class="hover:underline hover:decoration-accent hover:underline-offset-6">Print</a></li>
-        <li><a href="/#web" class="hover:underline hover:decoration-accent hover:underline-offset-6">Web</a></li>
-        <li><a href="/#methode" class="hover:underline hover:decoration-accent hover:underline-offset-6">Méthode CPEP!</a></li>
-        <li><a href="/#about" class="hover:underline hover:decoration-accent hover:underline-offset-6">À propos</a></li>
-        <li><a href="/#faq" class="hover:underline hover:decoration-accent hover:underline-offset-6">FAQ</a></li>
-        <li><a href="/#contact" class="hover:underline hover:decoration-accent hover:underline-offset-6">Contact</a></li>
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="hover:underline hover:decoration-accent hover:underline-offset-6"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+
         <li class="pt-2">
-          <a href="/connexion" class="inline-flex items-center gap-2 rounded-full border px-3 py-1 hover:border-accent">
-            <Icon name="lucide:circle-user" class="w-4 h-4" />Connexion
+          <a
+            href="/connexion"
+            class="inline-flex items-center gap-2 rounded-full border px-3 py-1 hover:border-accent"
+          >
+            <Icon name="lucide:circle-user" class="h-4 w-4" />
+            Connexion
           </a>
         </li>
       </ul>
@@ -79,71 +131,102 @@ import { Icon } from 'astro-icon/components';
   </div>
 </div>
 
-<!-- Morph/rotation du bouton -->
 <style is:global>
   /* rotation du bouton quand ouvert */
-  button[data-open="true"] { transform: rotate(180deg); }
+  #mobile-toggle[data-open="true"] {
+    transform: rotate(180deg);
+  }
+
   /* morph icons */
-  button[data-open="true"] .icon-open { opacity: 0; transform: scale(0.75) rotate(90deg); }
-  button[data-open="true"] .icon-close { opacity: 1; transform: scale(1) rotate(0deg); }
+  #mobile-toggle[data-open="true"] .icon-open {
+    opacity: 0;
+    transform: scale(0.75) rotate(90deg);
+  }
+
+  #mobile-toggle[data-open="true"] .icon-close {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
 </style>
 
-<!-- Script minimal -->
 <script is:inline>
-  (function () {
-    const header = document.getElementById('site-header');
-    const panel = document.getElementById('mobile-panel');
-    const toggle = document.getElementById('mobile-toggle');
+  (() => {
+    const header = document.getElementById("site-header");
+    const panel = document.getElementById("mobile-panel");
+    const toggle = document.getElementById("mobile-toggle");
+
     if (!header || !panel || !toggle) return;
 
+    const mdQuery = window.matchMedia("(min-width: 768px)");
+
     function placePanel() {
-      // le panneau commence sous la navbar
-      panel.style.top = header.offsetHeight + 'px';
+      panel.style.top = `${header.offsetHeight}px`;
     }
 
     function openMenu() {
       placePanel();
       panel.hidden = false;
+
       requestAnimationFrame(() => {
-        panel.classList.remove('-translate-y-full');
-        toggle.setAttribute('aria-expanded', 'true');
-        toggle.setAttribute('data-open', 'true');
-        document.body.style.overflow = 'hidden';
+        panel.classList.remove("-translate-y-full");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("data-open", "true");
+        document.body.style.overflow = "hidden";
       });
     }
 
-    function closeMenu() {
-      panel.classList.add('-translate-y-full');
-      panel.addEventListener('transitionend', () => {
-        panel.hidden = true;
-        document.body.style.overflow = '';
-      }, { once: true });
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('data-open', 'false');
-      toggle.focus();
+    function closeMenu({ restoreFocus = true } = {}) {
+      if (panel.hidden) return;
+
+      panel.classList.add("-translate-y-full");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("data-open", "false");
+
+      panel.addEventListener(
+        "transitionend",
+        () => {
+          panel.hidden = true;
+          document.body.style.overflow = "";
+        },
+        { once: true },
+      );
+
+      if (restoreFocus) {
+        toggle.focus();
+      }
     }
 
-    toggle.addEventListener('click', () => {
-      const isOpen = toggle.getAttribute('data-open') === 'true';
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("data-open") === "true";
       isOpen ? closeMenu() : openMenu();
     });
 
-    // Fermer au clic sur un lien
-    panel.addEventListener('click', (e) => {
-      const a = e.target.closest('a');
-      if (a) closeMenu();
+    panel.addEventListener("click", (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) return;
+
+      const link = target.closest("a");
+
+      if (link) {
+        closeMenu({ restoreFocus: false });
+      }
     });
 
-    // ESC pour fermer
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
     });
 
-    // Recalcule la position si resize (ou si la navbar change de hauteur)
-    window.addEventListener('resize', () => {
-      if (!panel.hidden) placePanel();
-      // auto-ferme si on passe en md+
-      if (window.matchMedia('(min-width: 768px)').matches) closeMenu();
+    window.addEventListener("resize", () => {
+      if (!panel.hidden) {
+        placePanel();
+      }
+
+      if (mdQuery.matches) {
+        closeMenu({ restoreFocus: false });
+      }
     });
   })();
 </script>

@@ -31,9 +31,28 @@ const carouselImages = [
     caption: "Le sac papier à large soufflet",
   },
 ];
+
+const packagingCards = [
+  {
+    icon: "lucide:shopping-bag",
+    title: "Choisir le bon sac",
+    desc: "Poignées plates, torsadées, kraft brun, kraft blanc, format traiteur ou finition premium : nous vous aidons à choisir le support adapté à votre usage réel.",
+  },
+  {
+    icon: "lucide:factory",
+    title: "Fournisseurs proches & fiables",
+    desc: "Nous privilégions des partenaires connus, principalement en France et en Europe, pour proposer des produits fiables, cohérents et bien sourcés.",
+  },
+  {
+    icon: "lucide:clipboard-check",
+    title: "Devis clair & suivi propre",
+    desc: "Brief, formats, quantités, BAT, commande fournisseur et livraison : chaque étape est cadrée pour éviter les mauvaises surprises. Le fun, oui. Le flou, non.",
+  },
+];
+
 ---
 
-<section id="print" aria-labelledby="pack-title" class="relative scroll-m-4">
+<section id="print" aria-labelledby="pack-title" class="relative scroll-m-4 overflow-x-clip">
   <div class="mx-auto px-4 py-20 cpep-radial">
     <div class="my-12 flex justify-center">
       <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
@@ -70,7 +89,9 @@ const carouselImages = [
             </p>
 
             <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row">
-              <QuoteButton label="Parler de mon projet sacs papier" />
+
+              <QuoteButton label="Votre projet sacs papier" />
+              <!-- <QuoteButton label="Parler de mon projet sacs papier" href="/devis-packaging" /> -->
             </div>
           </div>
         </div>
@@ -85,12 +106,58 @@ const carouselImages = [
         </div>
       </div>
 
-      <p class="mx-auto mt-12 max-w-3xl text-center text-sm leading-relaxed text-text/80">
+      <p class="font-serif mx-auto mt-12 max-w-3xl text-center leading-relaxed text-text/80">
         Un sac papier personnalisé n’est pas juste un contenant : c’est un support de
         communication qui circule avec votre marque. Nous vous aidons à choisir le format,
         la matière, les quantités et les finitions selon votre usage réel, votre image
         et votre budget. Pas de gadget, pas de survente : du concret.
       </p>
+
+      <!-- Services rapides -->
+      <div class="relative mt-12">
+        <!-- Bloc couleur décoratif arrière-plan -->
+      <div
+        class="pointer-events-none absolute -left-8 -bottom-6 z-0 h-[40%] w-full rounded-full bg-linear-to-b from-transparent to-white/50 blur-4xl opacity-50 shadow-sm"
+        aria-hidden="true"
+      ></div>
+
+        <!-- Cards -->
+        <div class="relative z-10 grid gap-6 md:grid-cols-3">
+          {packagingCards.map((card) => (
+            <article
+              class="group relative overflow-hidden rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_18px_45px_rgba(8,7,8,0.08)] backdrop-blur-xl transition duration-300 hover:bg-white/55 hover:border-accent/50 hover:shadow-[0_24px_60px_rgba(8,7,8,0.12)]"
+            >
+              <!-- Reflet liquid glass -->
+              <div
+                class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/80 via-white/20 to-primary/10 opacity-70"
+                aria-hidden="true"
+              ></div>
+
+              <!-- Ligne brillante -->
+              <div
+                class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
+                aria-hidden="true"
+              ></div>
+
+              <div class="relative z-10">
+                <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/45 text-primary shadow-sm backdrop-blur-md">
+                  <Icon name={card.icon} class="h-5 w-5" aria-hidden="true" />
+                </div>
+
+                <h3 class="mt-4 font-semibold text-text">
+                  {card.title}
+                </h3>
+
+                <p class="mt-2 text-sm leading-relaxed text-text/80">
+                  {card.desc}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+
     </div>
   </div>
 </section>

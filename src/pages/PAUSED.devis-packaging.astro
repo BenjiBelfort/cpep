@@ -1,0 +1,414 @@
+---
+import QuoteFlowLayout from "../layouts/QuoteFlowLayout.astro";
+
+const steps = [
+  {
+    eyebrow: "Étape 1",
+    title: "Quel type de support cherchez-vous ?",
+    description: "On commence simple : le support principal du projet.",
+  },
+  {
+    eyebrow: "Étape 2",
+    title: "Quelle quantité envisagez-vous ?",
+    description: "Même une estimation suffit. On affinera ensuite.",
+  },
+  {
+    eyebrow: "Étape 3",
+    title: "Où en êtes-vous dans votre projet ?",
+    description: "Idée floue, projet urgent ou brief déjà prêt : tout est accepté.",
+  },
+  {
+    eyebrow: "Étape 4",
+    title: "Vos coordonnées",
+    description: "Pour pouvoir vous répondre avec quelque chose de vraiment utile.",
+  },
+];
+---
+
+<QuoteFlowLayout
+  title="Demande de devis packaging — CPEP"
+  description="Un parcours simple pour préciser votre besoin en sacs, packaging, print ou objets personnalisés."
+  closeHref="/#print"
+>
+
+    <!-- Barre de progression collée sous la nav -->
+    <div
+        class="fixed inset-x-0 top-14 z-40 bg-white/45 backdrop-blur-xl"
+        data-quote-flow-progress>
+        <div class="h-1.5 w-full bg-primary/30">
+            <div
+            class="h-full w-1/4 bg-primary transition-all duration-500 ease-out"
+            data-progress-bar
+            ></div>
+        </div>
+    </div>
+
+  <section class="grid min-h-screen place-items-center px-4 py-20 bg-bg-alt">
+    <div class="w-full max-w-3xl">
+      <!-- Header -->
+      <div class="mb-6 text-center">
+
+        <p class="mx-auto max-w-xl text-base leading-relaxed text-muted md:text-lg">
+          Question 1 - c'est quoi votre boutique ?
+        </p>
+      </div>
+
+      <!-- Questions -->
+        <div
+        class="mx-auto w-full max-w-2xl"
+        data-quote-flow
+        >
+        <form class="grid gap-8" data-form>
+            <!-- Step 1 -->
+            <section class="grid gap-6" data-step="0">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[0].eyebrow}
+                </p>
+                <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[0].title}
+                </h2>
+                <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[0].description}
+                </p>
+            </div>
+
+            <div class="grid gap-3 md:grid-cols-2">
+                {
+                [
+                    "Sacs papier personnalisés",
+                    "Packaging produit",
+                    "Goodies / objets utiles",
+                    "Print : flyer, carte, affiche…",
+                ].map((label) => (
+                    <label class="group cursor-pointer rounded-2xl bg-white/70 p-4 ring-1 ring-black/5 transition hover:bg-white has-[:checked]:bg-primary has-[:checked]:text-white">
+                    <input
+                        class="sr-only"
+                        type="radio"
+                        name="support"
+                        value={label}
+                    />
+                    <span class="block font-bold">{label}</span>
+                    <span class="mt-1 block text-sm opacity-75">
+                        Sélectionner ce support
+                    </span>
+                    </label>
+                ))
+                }
+            </div>
+            </section>
+
+            <!-- Step 2 -->
+            <section class="hidden gap-6" data-step="1">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[1].eyebrow}
+                </p>
+                <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[1].title}
+                </h2>
+                <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[1].description}
+                </p>
+            </div>
+
+            <div class="grid gap-3 md:grid-cols-2">
+                {
+                [
+                    "Moins de 250",
+                    "250 à 500",
+                    "500 à 1 000",
+                    "Plus de 1 000",
+                ].map((label) => (
+                    <label class="group cursor-pointer rounded-2xl bg-white/70 p-4 ring-1 ring-black/5 transition hover:bg-white has-[:checked]:bg-primary has-[:checked]:text-white">
+                    <input
+                        class="sr-only"
+                        type="radio"
+                        name="quantity"
+                        value={label}
+                    />
+                    <span class="block font-bold">{label}</span>
+                    <span class="mt-1 block text-sm opacity-75">
+                        Quantité estimée
+                    </span>
+                    </label>
+                ))
+                }
+            </div>
+            </section>
+
+            <!-- Step 3 -->
+            <section class="hidden gap-6" data-step="2">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[2].eyebrow}
+                </p>
+                <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[2].title}
+                </h2>
+                <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[2].description}
+                </p>
+            </div>
+
+            <div class="grid gap-3">
+                {
+                [
+                    "J’ai une idée, mais pas encore de brief précis",
+                    "J’ai déjà un brief ou des exemples",
+                    "J’ai besoin d’être conseillé sur le bon support",
+                    "C’est assez urgent, il faut cadrer vite",
+                ].map((label) => (
+                    <label class="group cursor-pointer rounded-2xl bg-white/70 p-4 ring-1 ring-black/5 transition hover:bg-white has-[:checked]:bg-primary has-[:checked]:text-white">
+                    <input
+                        class="sr-only"
+                        type="radio"
+                        name="status"
+                        value={label}
+                    />
+                    <span class="block font-bold">{label}</span>
+                    </label>
+                ))
+                }
+            </div>
+
+            <label class="grid gap-2">
+                <span class="font-bold text-text">
+                Une précision utile ?
+                </span>
+                <textarea
+                name="message"
+                rows="4"
+                placeholder="Ex : sac kraft blanc, impression 1 couleur, boutique alimentaire, délai idéal avant fin juin…"
+                class="resize-none rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                ></textarea>
+            </label>
+            </section>
+
+            <!-- Step 4 -->
+            <section class="hidden gap-6" data-step="3">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[3].eyebrow}
+                </p>
+                <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[3].title}
+                </h2>
+                <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[3].description}
+                </p>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <label class="grid gap-2">
+                <span class="font-bold text-text">Nom</span>
+                <input
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    required
+                    class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                    placeholder="Votre nom"
+                />
+                </label>
+
+                <label class="grid gap-2">
+                <span class="font-bold text-text">Entreprise</span>
+                <input
+                    name="company"
+                    type="text"
+                    autocomplete="organization"
+                    class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                    placeholder="Nom de l’entreprise"
+                />
+                </label>
+
+                <label class="grid gap-2 md:col-span-2">
+                <span class="font-bold text-text">Email</span>
+                <input
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                    placeholder="vous@entreprise.fr"
+                />
+                </label>
+            </div>
+            </section>
+
+            <!-- Actions -->
+            <div class="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+            <button
+                type="button"
+                class="rounded-full px-5 py-3 text-sm font-bold text-muted transition hover:bg-white/60 hover:text-text disabled:pointer-events-none disabled:opacity-35"
+                data-prev
+                disabled
+            >
+                Retour
+            </button>
+
+            <button
+                type="button"
+                class="rounded-full bg-text px-6 py-3 text-sm font-bold text-white shadow-[0_14px_35px_rgba(8,7,8,0.14)] transition hover:-translate-y-0.5 hover:bg-primary"
+                data-next
+            >
+                Continuer
+            </button>
+
+            <button
+                type="submit"
+                class="hidden rounded-full bg-accent px-6 py-3 text-sm font-bold text-white shadow-[0_14px_35px_rgba(249,86,79,0.22)] transition hover:-translate-y-0.5 hover:bg-accent-600"
+                data-submit
+            >
+                Envoyer la demande
+            </button>
+            </div>
+
+            <p
+            class="hidden rounded-2xl bg-white/70 p-4 text-sm font-semibold text-primary"
+            data-success
+            >
+            Demande prête à partir. Pour l’instant, rien n’est branché côté envoi :
+            on vient juste de poser le tunnel. Ça part bientôt en prod.
+            </p>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  const root = document.querySelector<HTMLElement>("[data-quote-flow]");
+
+  if (root) {
+    const steps = Array.from(root.querySelectorAll<HTMLElement>("[data-step]"));
+
+
+    const progressBarQuery = document.querySelector<HTMLElement>("[data-progress-bar]");
+    const prevButtonQuery = root.querySelector<HTMLButtonElement>("[data-prev]");
+    const nextButtonQuery = root.querySelector<HTMLButtonElement>("[data-next]");
+    const submitButtonQuery = root.querySelector<HTMLButtonElement>("[data-submit]");
+    const formQuery = root.querySelector<HTMLFormElement>("[data-form]");
+    const successQuery = root.querySelector<HTMLElement>("[data-success]");
+
+    if (
+      steps.length > 0 &&
+      progressBarQuery &&
+      prevButtonQuery &&
+      nextButtonQuery &&
+      submitButtonQuery &&
+      formQuery &&
+      successQuery
+    ) {
+      const progressBar = progressBarQuery;
+      const prevButton = prevButtonQuery;
+      const nextButton = nextButtonQuery;
+      const submitButton = submitButtonQuery;
+      const form = formQuery;
+      const success = successQuery;
+
+      let currentStep = 0;
+
+      function updateStep() {
+        steps.forEach((step, index) => {
+          const isActive = index === currentStep;
+
+          step.classList.toggle("hidden", !isActive);
+          step.classList.toggle("grid", isActive);
+        });
+
+        const progress = Math.round(((currentStep + 1) / steps.length) * 100);
+
+        progressBar.style.width = `${progress}%`;
+
+        prevButton.disabled = currentStep === 0;
+
+        const isLastStep = currentStep === steps.length - 1;
+
+        nextButton.classList.toggle("hidden", isLastStep);
+        submitButton.classList.toggle("hidden", !isLastStep);
+      }
+
+      function getCurrentStepRequiredFields() {
+        return Array.from(
+          steps[currentStep].querySelectorAll<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >("input[required], textarea[required], select[required]")
+        );
+      }
+
+      function isCurrentStepValid() {
+        const currentRadios = Array.from(
+          steps[currentStep].querySelectorAll<HTMLInputElement>(
+            'input[type="radio"]'
+          )
+        );
+
+        const radioNames = [
+          ...new Set(currentRadios.map((radio) => radio.name)),
+        ];
+
+        const radiosAreValid = radioNames.every((name) => {
+          return Boolean(
+            steps[currentStep].querySelector<HTMLInputElement>(
+              `input[name="${name}"]:checked`
+            )
+          );
+        });
+
+        const requiredFieldsAreValid = getCurrentStepRequiredFields().every(
+          (field) => field.checkValidity()
+        );
+
+        return radiosAreValid && requiredFieldsAreValid;
+      }
+
+      function showCurrentStepErrors() {
+        const firstRequiredField = getCurrentStepRequiredFields().find(
+          (field) => !field.checkValidity()
+        );
+
+        if (firstRequiredField) {
+          firstRequiredField.reportValidity();
+        }
+      }
+
+      nextButton.addEventListener("click", () => {
+        if (!isCurrentStepValid()) {
+          showCurrentStepErrors();
+          return;
+        }
+
+        currentStep = Math.min(currentStep + 1, steps.length - 1);
+        updateStep();
+      });
+
+      prevButton.addEventListener("click", () => {
+        currentStep = Math.max(currentStep - 1, 0);
+        updateStep();
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+
+        console.log("Demande packaging :", payload);
+
+        success.classList.remove("hidden");
+        submitButton.disabled = true;
+        submitButton.textContent = "Demande préparée";
+      });
+
+      updateStep();
+    }
+  }
+</script>
+</QuoteFlowLayout>

@@ -1,128 +1,266 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+const contactItems = [
+  {
+    icon: 'lucide:mail',
+    title: 'Email',
+    content: 'contact@cpep.fr',
+    href: 'mailto:contact@cpep.fr',
+  },
+  {
+    icon: 'lucide:phone',
+    title: 'Téléphone',
+    content: '+33 6 13 99 12 31',
+    href: 'tel:+33613991231',
+  },
+  {
+    icon: 'lucide:map-pin',
+    title: 'Zone',
+    content: 'France & Europe',
+    description: 'Partenaires proches, délais et qualité maîtrisés.',
+  },
+];
+
+const projectTypes = [
+  'Packaging & sacs personnalisés',
+  'Print & supports imprimés',
+  'Objets publicitaires & goodies',
+  'Site web vitrine',
+  'SEO, performance & maintenance',
+  'Développement spécifique',
+  'Autre demande',
+];
 ---
 
-<section id="contact" aria-labelledby="contact-title" class="mx-auto max-w-6xl px-4 py-16 scroll-m-4">
-  <header class="text-center max-w-2xl mx-auto">
-    <h2 id="contact-title" class="text-2xl md:text-3xl font-bold text-gray-900">Contact</h2>
-    <p class="mt-3 text-text">
-      Dites-nous quel est votre projet<br />
-      Réponse sous <strong>24–48 h</strong>
-    </p>
-  </header>
+<section
+  id="contact"
+  aria-labelledby="contact-title"
+  class="relative scroll-m-4 cpep-contact-blueprint"
+>
 
-  <div class="mt-8 grid gap-8 md:grid-cols-2 items-start">
-    <!-- Infos -->
-    <aside class="rounded-xl border border-bg-alt bg-white p-5">
-      <ul class="space-y-4">
-        <li class="flex items-start gap-3">
-          <Icon name="lucide:mail" class="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />
-          <div>
-            <p class="font-semibold text-text">Email</p>
-            <a href="mailto:contact@cpep.fr" class="underline decoration-accent underline-offset-4">contact@cpep.fr</a>
-          </div>
-        </li>
-        <li class="flex items-start gap-3">
-          <Icon name="lucide:phone" class="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />
-          <div>
-            <p class="font-semibold text-text">Téléphone</p>
-            <a href="tel:+33613991231" class="underline decoration-accent underline-offset-4">+33 6 13 99 12 31</a>
-          </div>
-        </li>
-        <li class="flex items-start gap-3">
-          <Icon name="lucide:map-pin" class="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />
-          <div>
-            <p class="font-semibold text-text">Zone</p>
-            <p class="text-gray-800">France & Europe <br>
-              partenaires proches, délais et qualité maîtrisés</p>
-          </div>
-        </li>
-      </ul>
+  <!-- Image décorative blueprint gauche -->
+  <div
+    class="pointer-events-none absolute left-[-18rem] top-[40%] -z-10 hidden aspect-square w-[clamp(34rem,52vw,58rem)] -translate-y-1/2 -rotate-6 opacity-20 mix-blend-screen lg:block"
+    aria-hidden="true"
+  >
+    <img
+      src="/photos/fonds/computer-blue-print.webp"
+      alt=""
+      loading="lazy"
+      class="h-full w-full object-contain"
+    />
+  </div>
 
-      <div class="mt-6 rounded-lg bg-primary/5 p-4 text-sm text-text">
-        <p class="font-medium">Astuce</p>
-        <p class="mt-1">
-          Pour un <strong>devis précis</strong>, indiquez les <em>quantités</em>, <em>formats</em>, <em>matières/finitions</em> (print) ou les <em>fonctionnalités</em> (web).
-        </p>
-        <p class="mt-2">
-          Plus vous nous donnerez de détails, plus notre proposition sera précise et correspondante à vos besoins.
-        </p>
-      </div>
+  <!-- Image décorative blueprint droite -->
+  <div
+    class="pointer-events-none absolute right-[-14rem] top-[8%] -z-10 aspect-square w-[clamp(26rem,88vw,58rem)] rotate-6 opacity-16 mix-blend-screen lg:right-[-18rem] lg:top-1/2 lg:w-[clamp(34rem,52vw,58rem)] lg:-translate-y-1/2 lg:opacity-20"
+    aria-hidden="true"
+  >
+    <img
+      src="/photos/fonds/sac-blue-print-r.webp"
+      alt=""
+      loading="lazy"
+      class="h-full w-full object-contain"
+    />
+  </div>
 
-    </aside>
+  <div class=" mx-auto max-w-6xl px-4 py-20">
+    <div class="my-12 flex justify-center">
+      <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-white/85 sm:flex-row sm:text-left">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 sm:h-auto sm:w-auto sm:bg-transparent">
+          <Icon name="lucide:message-circle" class="h-5 w-5 sm:h-4 sm:w-4" aria-hidden="true" />
+        </span>
 
-    <!-- Form Netlify -->
-    <form
-      name="contact-cpep"
-      method="POST"
-      action="/merci"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      class="rounded-xl border border-bg-alt bg-white p-5"
-    >
-      <!-- Netlify needs this -->
-      <input type="hidden" name="form-name" value="contact-cpep" />
-      <!-- Honeypot -->
-      <p class="hidden">
-        <label>Ne pas remplir : <input name="bot-field" /></label>
+        <span>Discutons de votre projet</span>
       </p>
+    </div>
 
-      <div class="grid gap-4 md:grid-cols-2">
-        <label class="block">
-          <span class="text-sm font-medium text-text">
-            Votre nom <span class="text-accent">*</span>
-          </span>
+    <header class="mx-auto max-w-3xl text-center">
+      <h2
+        id="contact-title"
+        class="text-4xl font-bold text-white md:text-6xl"
+      >
+        Un besoin, une idée, un projet ?
+      </h2>
 
-          <input name="name" required autocomplete="name" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" />
-        </label>
+      <p class="mx-auto mt-5 max-w-2xl text-white/80">
+        Parlez-nous de votre projet web, print, packaging ou objet personnalisé.
+        Nous revenons vers vous avec une réponse claire, généralement sous
+        <strong>24 à 48 h</strong>.
+      </p>
+    </header>
 
-        <label class="block">
-          <span class="text-sm font-medium text-text">
-            Email <span class="text-accent">*</span>
-          </span>
-          <input type="email" name="email" required autocomplete="email" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" />
-        </label>
+    <div class="mt-12 grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <!-- Infos -->
+      <aside class="rounded-2xl border border-white/35 bg-white/92 p-6 shadow-xl shadow-primary-900/20 backdrop-blur-sm">
+        <h3 class="text-xl font-semibold text-text">
+          Coordonnées
+        </h3>
 
-        <label class="block">
-          <span class="text-sm font-medium text-text">Téléphone</span>
-          <input type="tel" name="phone" autocomplete="tel" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" />
-        </label>
+        <p class="mt-3 text-sm leading-relaxed text-text/75">
+          Pour un premier échange, une demande de prix ou un projet encore un peu flou :
+          envoyez les infos que vous avez. On rangera les câbles ensemble.
+        </p>
 
-        <label class="block">
-          <span class="text-sm font-medium text-text">Société</span>
-          <input name="company" autocomplete="organization" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent" />
-        </label>
+        <ul class="mt-6 space-y-4">
+          {contactItems.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />
+              </span>
 
-        <label class="block md:col-span-2">
-          <span class="text-sm font-medium text-text">Type de projet</span>
-          <select name="project_type" class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent">
-            <option>Print (sacs, boîtes, étiquettes…)</option>
-            <option>Web (site vitrine, SEO, maintenance)</option>
-            <option>Autre</option>
-          </select>
-        </label>
+              <div>
+                <p class="font-semibold text-text">{item.title}</p>
 
-        <label class="block md:col-span-2">
-          <span class="text-sm font-medium text-text">
-            Votre message <span class="text-accent">*</span>
-          </span>
-          <textarea name="message" required rows={6} class="mt-1 w-full rounded-lg border border-bg-alt bg-bg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
-        </label>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    class="text-sm text-text underline decoration-accent underline-offset-4 transition hover:text-accent"
+                  >
+                    {item.content}
+                  </a>
+                ) : (
+                  <p class="text-sm text-text">{item.content}</p>
+                )}
 
-        <label class="md:col-span-2 flex items-start gap-2">
-          <input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-bg-alt consent-checkbox" />
+                {item.description && (
+                  <p class="mt-1 text-sm leading-relaxed text-text/70">
+                    {item.description}
+                  </p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
 
-          <span class="text-sm text-gray-800">
-            J’accepte que mes données soient utilisées pour répondre à ma demande. (Pas de spam, jamais.)
-          </span>
-        </label>
+        <div class="mt-7 rounded-2xl bg-primary/5 p-5 text-sm text-text">
+          <div class="flex items-center gap-2 font-semibold">
+            <Icon name="lucide:lightbulb" class="h-4 w-4 text-primary" aria-hidden="true" />
+            <p>Pour un devis plus précis</p>
+          </div>
 
-        <div class="md:col-span-2">
-          <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-            <Icon name="lucide:send" class="h-4 w-4" aria-hidden="true" /> Envoyer
-          </button>
+          <p class="mt-3 leading-relaxed text-text/80">
+            Indiquez les <strong>quantités</strong>, <strong>formats</strong>,
+            <strong> matières</strong>, <strong>finitions</strong> ou les
+            <strong> fonctionnalités web</strong> souhaitées.
+          </p>
+
+          <p class="mt-2 leading-relaxed text-text/80">
+            Plus le brief est clair, plus la réponse est juste. C’est mathématique,
+            mais sans tableau Excel triste.
+          </p>
         </div>
-      </div>
-    </form>
+      </aside>
+
+      <!-- Formulaire -->
+      <form class="rounded-2xl border border-white/35 bg-white/95 p-6 shadow-xl shadow-primary-900/20 backdrop-blur-sm">
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-medium text-text">
+              Votre nom <span class="text-accent">*</span>
+            </span>
+
+            <input
+              name="name"
+              required
+              autocomplete="name"
+              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+            />
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-medium text-text">
+              Email <span class="text-accent">*</span>
+            </span>
+
+            <input
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+            />
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-medium text-text">Téléphone</span>
+
+            <input
+              type="tel"
+              name="phone"
+              autocomplete="tel"
+              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+            />
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-medium text-text">Société / structure</span>
+
+            <input
+              name="company"
+              autocomplete="organization"
+              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+            />
+          </label>
+
+          <label class="block md:col-span-2">
+            <span class="text-sm font-medium text-text">Type de projet</span>
+
+            <select
+              name="project_type"
+              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+            >
+              {projectTypes.map((type) => (
+                <option value={type}>{type}</option>
+              ))}
+            </select>
+          </label>
+
+          <label class="block md:col-span-2">
+            <span class="text-sm font-medium text-text">
+              Votre message <span class="text-accent">*</span>
+            </span>
+
+            <textarea
+              name="message"
+              required
+              rows={6}
+              placeholder="Expliquez votre besoin, vos quantités, vos délais, vos contraintes ou votre idée encore en chantier..."
+              class="mt-1 w-full resize-y rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition placeholder:text-text/40 focus:border-accent focus:ring-2 focus:ring-accent/30"
+            ></textarea>
+          </label>
+
+          <label class="flex items-start gap-3 rounded-xl bg-bg/70 p-4 md:col-span-2">
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              class="consent-checkbox mt-1 h-4 w-4 rounded border-bg-alt"
+            />
+
+            <span class="text-sm leading-relaxed text-text/80">
+              J’accepte que mes données soient utilisées pour répondre à ma demande.
+              Pas de newsletter cachée, pas de spam, pas de pigeon voyageur douteux.
+            </span>
+          </label>
+
+          <div class="md:col-span-2">
+            <button
+              type="submit"
+              class="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
+              <Icon name="lucide:send" class="h-4 w-4" aria-hidden="true" />
+              Envoyer ma demande
+            </button>
+
+            <p class="mt-3 text-xs leading-relaxed text-text/60">
+              Les informations transmises servent uniquement à traiter votre demande.
+              Elles ne sont pas revendues à des tiers.
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </section>

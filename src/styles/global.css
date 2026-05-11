@@ -157,6 +157,143 @@
   background-position: center;
 }
 
+/* Contact — blueprint technique */
+.cpep-contact-blueprint {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background:
+    /* glow central pour éclairer la zone texte */
+    radial-gradient(
+      70% 55% at 50% 18%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.055) 38%,
+      rgba(255, 255, 255, 0) 72%
+    ),
+
+    /* halo accent discret */
+    radial-gradient(
+      44rem 34rem at 92% 84%,
+      rgba(249, 86, 79, 0.18) 0%,
+      rgba(249, 86, 79, 0.075) 42%,
+      rgba(249, 86, 79, 0) 74%
+    ),
+
+    /* halo clair gauche */
+    radial-gradient(
+      38rem 28rem at 8% 20%,
+      rgba(200, 216, 228, 0.16) 0%,
+      rgba(200, 216, 228, 0.07) 44%,
+      rgba(200, 216, 228, 0) 75%
+    ),
+
+    /* base blueprint */
+    linear-gradient(
+      135deg,
+      #173638 0%,
+      #264648 42%,
+      #1d3536 100%
+    );
+}
+
+.cpep-contact-blueprint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background-image:
+    /* grille fine */
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+
+    /* grille large */
+    linear-gradient(rgba(255, 255, 255, 0.095) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.095) 1px, transparent 1px);
+
+  background-size:
+    18px 18px,
+    18px 18px,
+    90px 90px,
+    90px 90px;
+
+  background-position:
+    center,
+    center,
+    center,
+    center;
+
+  opacity: 1;
+}
+
+.cpep-contact-blueprint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    /* voile subtil pour fondre le quadrillage */
+    radial-gradient(
+      80% 60% at 50% 50%,
+      rgba(255, 255, 255, 0.045) 0%,
+      rgba(255, 255, 255, 0.018) 42%,
+      rgba(255, 255, 255, 0) 76%
+    ),
+
+    /* vignette douce */
+    radial-gradient(
+      120% 100% at 50% 50%,
+      transparent 48%,
+      rgba(8, 7, 8, 0.16) 100%
+    );
+
+  opacity: 0.9;
+}
+
+/* Petits repères “plan technique” */
+.cpep-contact-blueprint .blueprint-mark {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cpep-contact-blueprint .blueprint-mark::before,
+.cpep-contact-blueprint .blueprint-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.65;
+}
+
+.cpep-contact-blueprint .blueprint-mark::before {
+  right: calc(100% + 0.75rem);
+}
+
+.cpep-contact-blueprint .blueprint-mark::after {
+  left: calc(100% + 0.75rem);
+}
+
+@media (max-width: 640px) {
+  .cpep-contact-blueprint::after {
+    opacity: 0.65;
+  }
+
+  .cpep-contact-blueprint .blueprint-mark {
+    display: none;
+  }
+}
+
 /* page 404 */
 .error-code {
   font-size: clamp(7rem, 18vw, 12rem);

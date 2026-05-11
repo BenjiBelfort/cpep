@@ -1,0 +1,290 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = 'Mentions légales';
+const pageDescription =
+  'Mentions légales du site CPEP : éditeur, hébergeur, propriété intellectuelle, médiation de la consommation et contact.';
+
+const sources = [
+  {
+    label: 'Annuaire des Entreprises — CPEP',
+    href: 'https://annuaire-entreprises.data.gouv.fr/entreprise/communication-pour-des-entreprises-perennes-cpep-520977703',
+  },
+  {
+    label: 'Service Public — Mentions obligatoires sur un site professionnel',
+    href: 'https://entreprendre.service-public.fr/vosdroits/F37351',
+  },
+  {
+    label: 'OVHcloud — Mentions légales',
+    href: 'https://www.ovhcloud.com/fr/terms-and-conditions/',
+  },
+  {
+    label: 'Annuaire des Entreprises — OVH',
+    href: 'https://annuaire-entreprises.data.gouv.fr/entreprise/ovh-ovhcloud-424761419',
+  },
+  {
+    label: 'DGCCRF — Obligations liées à la médiation de la consommation',
+    href: 'https://www.economie.gouv.fr/mediation-conso/vous-etes-un-professionnel/vos-principales-obligations-0',
+  },
+  {
+    label: 'CECMC — Liste des médiateurs référencés',
+    href: 'https://www.economie.gouv.fr/mediation-conso/vous-etes-un-professionnel/choisir-un-mediateur-de-la-consommation/mediateurs-references',
+  },
+];
+
+const seo = {
+  title: pageTitle,
+  description: pageDescription,
+  jsonLd: {
+    '@type': 'WebPage',
+    name: pageTitle,
+    description: pageDescription,
+    inLanguage: 'fr-FR',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'CPEP',
+    },
+  },
+};
+---
+
+<PageLayout {seo}>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+      Légal
+    </p>
+
+    <h1 class="mt-2 text-3xl font-bold text-text md:text-5xl">
+      Mentions légales
+    </h1>
+
+    <div class="mt-8 space-y-8 text-gray-800">
+      <section>
+        <h2 class="text-xl font-semibold text-text">Éditeur du site</h2>
+
+        <div class="mt-3 space-y-2 leading-relaxed">
+          <p>
+            Le présent site est édité par <strong>Communication Pour des Entreprises Pérennes</strong>.
+          </p>
+
+          <p>
+            Nom commercial / sigle : <strong>CPEP</strong>
+          </p>
+
+          <p>
+            Forme juridique : <strong>SARL</strong>
+          </p>
+
+          <p>
+            Capital social : <strong>1 000 €</strong>
+          </p>
+
+          <p>
+            SIREN : <strong>520 977 703</strong>
+          </p>
+
+          <p>
+            SIRET du siège : <strong>520 977 703 00021</strong>
+          </p>
+
+          <p>
+            Code APE / NAF : <strong>62.01Z — Programmation informatique</strong>
+          </p>
+
+          <p>
+            RCS : <strong>Belfort</strong>
+          </p>
+
+          <p>
+            Numéro de TVA intracommunautaire : <strong>FR57 520 977 703</strong>
+          </p>
+
+          <p>
+            Siège social : <strong>2 rue de la République, 90000 Belfort, France</strong>
+          </p>
+
+          <p>
+            Responsable de la publication : <strong>Benjamin Tisserand</strong>
+          </p>
+
+          <p>
+            Email :
+            {' '}
+            <a href="mailto:contact@cpep.fr" class="text-primary transition hover:text-accent">
+              contact@cpep.fr
+            </a>
+          </p>
+
+          <p>
+            Téléphone :
+            {' '}
+            <a href="tel:+33613991231" class="text-primary transition hover:text-accent">
+              +33 6 13 99 12 31
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Hébergement</h2>
+
+        <div class="mt-3 space-y-2 leading-relaxed">
+          <p>
+            Le site est hébergé par : <strong>OVH SAS</strong>
+          </p>
+
+          <p>
+            Siège social : <strong>2 rue Kellermann, 59100 Roubaix, France</strong>
+          </p>
+
+          <p>
+            SIRET : <strong>424 761 419 00045</strong>
+          </p>
+
+          <p>
+            RCS : <strong>Lille Métropole</strong>
+          </p>
+
+          <p>
+            Site web :
+            {' '}
+            <a
+              href="https://www.ovhcloud.com/fr/"
+              target="_blank"
+              rel="noreferrer"
+              class="text-primary transition hover:text-accent"
+            >
+              ovhcloud.com
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Activité</h2>
+
+        <p class="mt-3 leading-relaxed">
+          CPEP accompagne les entreprises, associations, collectivités et particuliers
+          dans leurs projets de communication digitale et physique.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          L’activité comprend notamment la création, le développement, l’hébergement,
+          la maintenance et le référencement de sites internet, applications web et
+          solutions numériques.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          CPEP propose également des prestations de communication visuelle, graphique,
+          digitale et événementielle, ainsi que la conception, la personnalisation et
+          la commercialisation de supports de communication, objets publicitaires,
+          signalétiques, goodies, articles promotionnels, supports imprimés ou digitaux.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Propriété intellectuelle</h2>
+
+        <p class="mt-3 leading-relaxed">
+          L’ensemble des contenus présents sur ce site — textes, images, graphismes,
+          logo, illustrations, structure et code — est protégé par le droit de la propriété
+          intellectuelle. Toute reproduction, représentation, modification ou diffusion,
+          totale ou partielle, sans autorisation préalable, est interdite.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Responsabilité</h2>
+
+        <p class="mt-3 leading-relaxed">
+          CPEP s’efforce de fournir des informations fiables et à jour. Toutefois, des erreurs
+          ou omissions peuvent survenir. L’utilisateur est invité à vérifier toute information
+          importante directement auprès de CPEP.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          CPEP ne saurait être tenue responsable de l’utilisation faite des informations
+          présentes sur le site, ni des dommages directs ou indirects pouvant en résulter.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Médiation de la consommation</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Cette section concerne uniquement les clients consommateurs, c’est-à-dire les
+          particuliers agissant à des fins qui n’entrent pas dans le cadre de leur activité
+          commerciale, industrielle, artisanale, libérale ou agricole.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Conformément aux articles L.612-1 et suivants du Code de la consommation,
+          tout consommateur a le droit de recourir gratuitement à un médiateur de la
+          consommation en vue de la résolution amiable d’un litige l’opposant à un professionnel.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Avant toute saisine du médiateur, le consommateur doit avoir tenté de résoudre
+          son litige directement auprès de CPEP par une réclamation écrite.
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Médiateur compétent : <strong>[à compléter après choix d’un médiateur référencé CECMC]</strong>
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Adresse du médiateur : <strong>[à compléter]</strong>
+        </p>
+
+        <p class="mt-3 leading-relaxed">
+          Site du médiateur : <strong>[à compléter]</strong>
+        </p>
+
+        <p class="mt-3 text-sm leading-relaxed text-gray-600">
+          Les litiges entre professionnels ne relèvent pas de la médiation de la consommation.
+          Pour les clients professionnels, les modalités de règlement des litiges sont précisées
+          dans les conditions générales applicables.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Absence de newsletter</h2>
+
+        <p class="mt-3 leading-relaxed">
+          À ce jour, le site ne propose pas d’inscription à une newsletter.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-text">Contact</h2>
+
+        <p class="mt-3 leading-relaxed">
+          Pour toute question concernant le site ou son contenu, vous pouvez écrire à :
+          {' '}
+          <a href="mailto:contact@cpep.fr" class="text-primary transition hover:text-accent">
+            contact@cpep.fr
+          </a>.
+        </p>
+      </section>
+
+      <section class="rounded-2xl bg-bg-alt/60 p-5 text-sm">
+        <h2 class="font-semibold text-text">Sources utiles</h2>
+
+        <ul class="mt-3 space-y-2">
+          {sources.map((source) => (
+            <li>
+              <a
+                href={source.href}
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary transition hover:text-accent"
+              >
+                {source.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </section>
+</PageLayout>

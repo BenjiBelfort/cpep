@@ -1,0 +1,78 @@
+---
+// src/layouts/QuoteFlowLayout.astro
+import Base from "./Base.astro";
+
+type Props = {
+  title?: string;
+  description?: string;
+  closeHref?: string;
+  flowTitle?: string;
+};
+
+const {
+  title = "Demande de devis — CPEP",
+  description = "Un mini parcours guidé pour préciser votre besoin.",
+  closeHref = "/",
+  flowTitle = "Projet",
+} = Astro.props;
+
+const seo = {
+  title,
+  description,
+};
+---
+
+<Base seo={seo}>
+  <main
+    id="main"
+    class="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.8),transparent_34%),radial-gradient(circle_at_90%_85%,rgba(249,86,79,0.16),transparent_34%),radial-gradient(circle_at_12%_80%,rgba(60,110,113,0.18),transparent_36%),linear-gradient(135deg,var(--color-bg),var(--color-bg-alt))]"
+  >
+    <header class="fixed inset-x-0 top-0 z-50">
+        <div
+            class="relative grid h-14 w-full grid-cols-[auto_1fr_auto] items-center bg-white/65 px-4 shadow-[0_18px_45px_rgba(8,7,8,0.10)] ring-1 ring-white/70 backdrop-blur-xl md:px-5"
+        >
+            <!-- Logo gauche -->
+            <a
+            href="/"
+            aria-label="Retour à l’accueil CPEP"
+            class="relative z-10 col-start-1 inline-flex items-center justify-self-start"
+            >
+            <img
+                src="/logo/logo-bis-CPEP.svg"
+                alt="CPEP"
+                class="h-8 w-auto"
+            />
+            </a>
+
+            <!-- Texte vraiment centré dans la page -->
+            <p
+            class="pointer-events-none absolute left-1/2 max-w-[calc(100%-9rem)] -translate-x-1/2 truncate text-center text-sm font-bold text-text md:text-base"
+            >
+            Quelques questions pour cadrer votre projet
+            </p>
+
+            <!-- Croix droite -->
+            <a
+            href={closeHref}
+            aria-label="Fermer le parcours de devis"
+            class="group relative z-10 col-start-3 inline-flex size-10 shrink-0 items-center justify-center justify-self-end text-text transition-colors duration-200 hover:text-accent"
+            >
+            <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                class="size-6 transition-transform duration-200 group-hover:rotate-90"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+            >
+                <path d="M6 6l12 12"></path>
+                <path d="M18 6L6 18"></path>
+            </svg>
+            </a>
+        </div>
+        </header>
+
+    <slot />
+  </main>
+</Base>
