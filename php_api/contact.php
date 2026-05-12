@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$config = require __DIR__ . '/config.php';
+$config = require __DIR__ . '/config.local.php';
 require __DIR__ . '/mailer.php';
 
 function cleanInput(string $value): string

@@ -8,7 +8,7 @@ dist/
 node_modules/
 
 # PHP dependencies
-public/api/vendor/
+php_api/vendor/
 
 # logs
 npm-debug.log*
@@ -22,8 +22,12 @@ pnpm-debug.log*
 .env.local
 .env.*.local
 
-# PHPMailer / API contact — secrets SMTP
-public/api/config.php
+# PHP API - secrets
+php_api/config.local.php
+
+# PHP API - runtime files
+php_api/var/ratelimit/*
+!php_api/var/ratelimit/.gitkeep
 
 # macOS-specific files
 .DS_Store

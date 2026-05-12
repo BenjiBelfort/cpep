@@ -46,3 +46,9 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 Pour l'architecture du projet :
 tree -a -L 5 -I "node_modules|.git|dist|.vercel|.astro|.vscode|.DS_Store"
 dans le terminal (régler L3 L4 L5 pour la profondeur)
+
+pour le contenu de dist :
+tree -a dist
+
+avec le poids des fichiers :
+tree -a -h -L 5 -I ".DS_Store" dist

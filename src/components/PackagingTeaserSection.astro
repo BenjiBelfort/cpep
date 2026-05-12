@@ -1,36 +1,7 @@
 ---
 // src/components/PackagingTeaserSection.astro
 import { Icon } from "astro-icon/components";
-import ImageCarousel from "./ui/ImageCarousel.astro";
 import QuoteButton from "./ui/QuoteButton.astro";
-
-const carouselImages = [
-  {
-    src: "/photos/sacs-poignees-torsadees.webp",
-    alt: "Sacs papier poignées torsadées personnalisés",
-    caption: "Sacs papier poignées torsadées",
-  },
-  {
-    src: "/photos/sacs-pellicules-mats.webp",
-    alt: "Sacs papier pelliculés mats personnalisés",
-    caption: "Sacs pelliculés mats",
-  },
-  {
-    src: "/photos/sacs-poignees-plates.webp",
-    alt: "Sacs papier poignées plates personnalisés",
-    caption: "Sacs papier poignées plates",
-  },
-  {
-    src: "/photos/sacs-pellicules-mats.webp",
-    alt: "Sacs papier pelliculés mats personnalisés",
-    caption: "Sacs pelliculés mats",
-  },
-  {
-    src: "/photos/sacs-traiteur.webp",
-    alt: "Sacs papier format traiteur personnalisés",
-    caption: "Le sac papier à large soufflet",
-  },
-];
 
 const packagingCards = [
   {
@@ -52,9 +23,9 @@ const packagingCards = [
 
 ---
 
-<section id="print" aria-labelledby="pack-title" class="relative scroll-m-4 overflow-x-clip">
+<section id="print" aria-labelledby="pack-title" class="relative isolate scroll-m-4 overflow-x-clip">
   <div class="mx-auto px-4 py-20 cpep-radial">
-    <div class="my-12 flex justify-center">
+    <div class="relative z-20 my-12 flex justify-center">
       <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
         <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:h-auto sm:w-auto sm:bg-transparent">
           <Icon
@@ -74,9 +45,9 @@ const packagingCards = [
         <div class="contents min-w-0 lg:block">
           <h2
             id="pack-title"
-            class="order-1 mt-6 min-w-0 text-left text-5xl font-bold text-text md:text-7xl lg:mt-6"
+            class="order-1 mt-6 min-w-0 text-left text-4xl font-bold text-text md:text-5xl lg:text-7xl lg:mt-6"
           >
-            Des sacs papier personnalisés qui portent votre image.
+            Des sacs personnalisés qui portent votre image.
           </h2>
 
           <div class="order-3 min-w-0 text-left lg:order-none">
@@ -85,7 +56,7 @@ const packagingCards = [
               le choix de leurs <strong>sacs papier personnalisés</strong> : poignées plates,
               poignées torsadées, kraft brun, kraft blanc, formats traiteur, impression sobre
               ou finitions premium. L’objectif : trouver le bon sac, au bon prix, avec un
-              rendu propre et un sourcing maîtrisé.
+              rendu de qualité et un sourcing maîtrisé.
             </p>
 
             <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row">
@@ -96,14 +67,34 @@ const packagingCards = [
           </div>
         </div>
 
-        <!-- Carousel image droite -->
+        <!-- Image produit droite -->
         <div class="order-2 min-w-0 lg:order-none">
-          <ImageCarousel
-            images={carouselImages}
-            ariaLabel="Exemples de sacs papier personnalisés"
-            autoplayDelay={4000}
-          />
+          <div class="relative mx-auto flex max-w-xl items-center justify-center lg:mx-0 lg:max-w-none lg:justify-end">
+            <!-- Halo de mise en valeur -->
+            <div
+              class="pointer-events-none absolute -right-20 -top-10 h-72 w-72 rounded-full bg-primary/20 blur-3xl lg:-right-40 lg:-top-24 lg:h-96 lg:w-96"
+              aria-hidden="true"
+            ></div>
+
+            <!-- Ombre posée -->
+            <div
+              class="pointer-events-none absolute bottom-2 left-1/2 h-10 w-[78%] -translate-x-1/2 rounded-full bg-black/15 blur-2xl lg:-right-20 lg:left-auto lg:w-[90%] lg:translate-x-0"
+              aria-hidden="true"
+            ></div>
+
+            <!-- Image sans cadre, volontairement débordante -->
+            <img
+              src="/photos/sacs-ensemble.webp"
+              alt="Ensemble de sacs papier personnalisés CPEP"
+              width="900"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              class="relative z-0 w-[115%] max-w-none -translate-y-6 translate-x-6 object-contain opacity-90 drop-shadow-2xl sm:w-[105%] lg:w-[135%] lg:-translate-y-20 lg:translate-x-32 xl:w-[150%] xl:-translate-y-28 xl:translate-x-44"
+            />
+          </div>
         </div>
+
       </div>
 
       <p class="font-serif mx-auto mt-12 max-w-3xl text-center leading-relaxed text-text/80">
@@ -114,47 +105,39 @@ const packagingCards = [
       </p>
 
       <!-- Services rapides -->
-      <div class="relative mt-12">
-        <!-- Bloc couleur décoratif arrière-plan -->
-      <div
-        class="pointer-events-none absolute -left-8 -bottom-6 z-0 h-[40%] w-full rounded-full bg-linear-to-b from-transparent to-white/50 blur-4xl opacity-50 shadow-sm"
-        aria-hidden="true"
-      ></div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {packagingCards.map((card) => (
+          <article
+            class="group relative overflow-hidden rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_18px_45px_rgba(8,7,8,0.08)] backdrop-blur-xl transition duration-300 hover:border-accent/50 hover:bg-white/55 hover:shadow-[0_24px_60px_rgba(8,7,8,0.12)]"
+          >
+            <!-- Reflet liquid glass -->
+            <div
+              class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/80 via-white/20 to-primary/10 opacity-70"
+              aria-hidden="true"
+            ></div>
 
-        <!-- Cards -->
-        <div class="relative z-10 grid gap-6 md:grid-cols-3">
-          {packagingCards.map((card) => (
-            <article
-              class="group relative overflow-hidden rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_18px_45px_rgba(8,7,8,0.08)] backdrop-blur-xl transition duration-300 hover:bg-white/55 hover:border-accent/50 hover:shadow-[0_24px_60px_rgba(8,7,8,0.12)]"
-            >
-              <!-- Reflet liquid glass -->
-              <div
-                class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/80 via-white/20 to-primary/10 opacity-70"
-                aria-hidden="true"
-              ></div>
+            <!-- Ligne brillante -->
+            <div
+              class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
+              aria-hidden="true"
+            ></div>
 
-              <!-- Ligne brillante -->
-              <div
-                class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
-                aria-hidden="true"
-              ></div>
-
-              <div class="relative z-10">
-                <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/45 text-primary shadow-sm backdrop-blur-md">
-                  <Icon name={card.icon} class="h-5 w-5" aria-hidden="true" />
-                </div>
-
-                <h3 class="mt-4 font-semibold text-text">
-                  {card.title}
-                </h3>
-
-                <p class="mt-2 text-sm leading-relaxed text-text/80">
-                  {card.desc}
-                </p>
+            <div class="relative z-10">
+              <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/45 text-primary shadow-sm backdrop-blur-md">
+                <Icon name={card.icon} class="h-5 w-5" aria-hidden="true" />
               </div>
-            </article>
-          ))}
-        </div>
+
+              <h3 class="mt-4 font-semibold text-text">
+                {card.title}
+              </h3>
+
+              <p class="mt-2 text-sm leading-relaxed text-text/80">
+                {card.desc}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
       </div>
 
 
