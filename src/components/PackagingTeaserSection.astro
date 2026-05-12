@@ -45,7 +45,7 @@ const packagingCards = [
         <div class="contents min-w-0 lg:block">
           <h2
             id="pack-title"
-            class="order-1 mt-6 min-w-0 text-left text-4xl font-bold text-text md:text-5xl lg:text-7xl lg:mt-6"
+            class="order-1 mt-6 min-w-0 text-left text-5xl font-bold text-text md:text-6xl lg:text-7xl lg:mt-6"
           >
             Des sacs personnalisés qui portent votre image.
           </h2>
@@ -53,15 +53,15 @@ const packagingCards = [
           <div class="order-3 min-w-0 text-left lg:order-none">
             <p class="mt-6 max-w-3xl text-text/90">
               Depuis plus de 25 ans dans l’emballage, nous accompagnons les entreprises dans
-              le choix de leurs <strong>sacs papier personnalisés</strong> : poignées plates,
+              le choix de leurs <strong>sacs papier personnalisés</strong>&nbsp;: poignées plates,
               poignées torsadées, kraft brun, kraft blanc, formats traiteur, impression sobre
-              ou finitions premium. L’objectif : trouver le bon sac, au bon prix, avec un
+              ou finitions premium. L’objectif&nbsp;: trouver le bon sac, au bon prix, avec un
               rendu de qualité et un sourcing maîtrisé.
             </p>
 
             <div class="mt-8 flex flex-col items-start gap-3 sm:flex-row">
 
-              <QuoteButton label="Votre projet sacs papier" />
+              <QuoteButton label="Parler de mon projet print" />
               <!-- <QuoteButton label="Parler de mon projet sacs papier" href="/devis-packaging" /> -->
             </div>
           </div>
@@ -97,12 +97,45 @@ const packagingCards = [
 
       </div>
 
-      <p class="font-serif mx-auto mt-12 max-w-3xl text-center leading-relaxed text-text/80">
-        Un sac papier personnalisé n’est pas juste un contenant : c’est un support de
-        communication qui circule avec votre marque. Nous vous aidons à choisir le format,
-        la matière, les quantités et les finitions selon votre usage réel, votre image
-        et votre budget. Pas de gadget, pas de survente : du concret.
-      </p>
+      <!-- manifest -->
+      <div class="mx-auto my-24 max-w-3xl text-center">
+        <span
+          class="mx-auto block h-px w-24 bg-linear-to-r from-transparent via-primary/45 to-transparent"
+          aria-hidden="true"
+        ></span>
+
+        <p class="relative my-6 px-8 font-serif text-lg leading-relaxed text-text/80 md:px-12 md:text-xl">
+          <span
+            class="pointer-events-none absolute -left-1 -top-3 font-serif text-5xl leading-none text-accent/60 md:-left-2 md:-top-4 md:text-6xl"
+            aria-hidden="true"
+          >
+            “
+          </span>
+
+          Un sac personnalisé n’est pas seulement un contenant&nbsp;:
+          <span class="text-primary">
+            c’est un support utile et durable qui fait voyager votre identité et transporte votre savoir-faire.
+          </span>
+          Bien conçu, il accompagne vos clients, se réutilise plusieurs fois et fait rayonner votre image au-delà de votre point de vente.
+          <span class="font-semibold text-text">
+            Un bon support, une belle impression, et ça part en prod&nbsp;!
+          </span>
+
+          <span
+            class="pointer-events-none absolute -right-1 -bottom-6 font-serif text-5xl leading-none text-accent/60 md:-right-2 md:-bottom-7 md:text-6xl"
+            aria-hidden="true"
+          >
+            ”
+          </span>
+        </p>
+
+        <span
+          class="mx-auto block h-px w-24 bg-linear-to-r from-transparent via-primary/45 to-transparent"
+          aria-hidden="true"
+        ></span>
+      </div>
+
+      
 
       <!-- Services rapides -->
       <div class="mt-12 grid gap-6 md:grid-cols-3">
@@ -138,6 +171,25 @@ const packagingCards = [
           </article>
         ))}
       </div>
+
+      <!-- Séparateur fin de section -->
+      <div class="mx-auto mt-20 max-w-2xl" aria-hidden="true">
+        <div class="flex items-center justify-center gap-4">
+          <span class="h-px flex-1 bg-linear-to-r from-transparent via-primary/30 to-primary/10"></span>
+
+          <div class="flex items-center gap-2 rounded-full border border-white/70 bg-white/45 px-4 py-2 text-primary shadow-sm backdrop-blur-xl">
+            <Icon name="lucide:file-check-2" class="h-4 w-4" />
+            <span class="h-1 w-1 rounded-full bg-accent/70"></span>
+            <Icon name="lucide:shopping-bag" class="h-4 w-4" />
+            <span class="h-1 w-1 rounded-full bg-accent/70"></span>
+            <Icon name="lucide:truck" class="h-4 w-4" />
+          </div>
+
+          <span class="h-px flex-1 bg-linear-to-l from-transparent via-primary/30 to-primary/10"></span>
+        </div>
+      </div>
+
+      
       </div>
 
 

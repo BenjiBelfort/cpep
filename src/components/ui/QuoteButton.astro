@@ -2,33 +2,58 @@
 // src/components/ui/QuoteButton.astro
 import { Icon } from "astro-icon/components";
 
+type Variant = "default" | "primary";
+
 type Props = {
   href?: string;
   label?: string;
   class?: string;
+  variant?: Variant;
+  icon?: string | false;
 };
 
 const {
   href = "/#contact",
   label = "Demander un devis",
   class: className = "",
+  variant = "default",
+  icon = "lucide:mail",
 } = Astro.props;
+
+const baseClasses =
+  "group inline-flex min-h-10 items-center justify-center gap-2 rounded-full border px-4 py-2 font-medium backdrop-blur-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:min-h-12 sm:px-6 sm:py-3";
+
+const variantClasses: Record<Variant, string> = {
+  default:
+    "border-primary/30 bg-white/70 text-primary hover:border-accent hover:bg-white",
+  primary:
+    "border-primary/30 bg-primary text-bg hover:bg-primary/90",
+};
 ---
 
 <a
   href={href}
   class:list={[
-    "group inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 bg-white/70 px-6 py-3 font-medium text-primary backdrop-blur-md transition hover:border-accent hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+    baseClasses,
+    variantClasses[variant],
     className,
   ]}
 >
-  <Icon name="lucide:mail" class="h-4 w-4" aria-hidden="true" />
+  {icon && (
+    <Icon
+      name={icon}
+      class="h-4 w-4 shrink-0"
+      aria-hidden="true"
+    />
+  )}
 
-  <span class="text-sm md:text-base">{label}</span>
+  <span class="text-sm md:text-base">
+    {label}
+  </span>
 
   <Icon
     name="lucide:arrow-right"
-    class="h-4 w-4 opacity-0 transition duration-200 group-hover:translate-x-1 group-hover:opacity-100"
+    class="h-4 w-4 shrink-0 opacity-100 transition duration-300 sm:opacity-0 sm:group-hover:translate-x-1 sm:group-hover:opacity-100"
     aria-hidden="true"
   />
 </a>

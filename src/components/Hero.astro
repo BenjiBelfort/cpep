@@ -1,6 +1,6 @@
 ---
 // src/components/Hero.astro
-import { Icon } from 'astro-icon/components';
+import QuoteButton from "./ui/QuoteButton.astro";
 ---
 
 <section
@@ -8,42 +8,54 @@ import { Icon } from 'astro-icon/components';
   class="relative isolate min-h-[100svh]"
   aria-labelledby="hero-title"
 >
-    <picture>
-    <source srcset="/photos/hero-bag-mobile.webp"  media="(max-width: 767px)" />
+  <picture>
+    <source srcset="/photos/hero-bag-mobile.webp" media="(max-width: 767px)" />
     <source srcset="/photos/hero-bag.webp" media="(min-width: 768px)" />
     <img
-        src="/photos/hero-bag.webp"
-        alt="" aria-hidden="true"
-        class="absolute inset-0 -z-10 h-full w-full object-cover"
-        loading="eager" decoding="async" fetchpriority="high"
+      src="/photos/hero-bag.webp"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
     />
-    </picture>
+  </picture>
 
-  <div class="mx-auto max-w-6xl px-4 py-16 md:py-24 min-h-[100svh] grid items-center md:grid-cols-[1.1fr,1fr] gap-8">
-    <!-- Colonne gauche : texte -->
-    <div class="max-w-[56ch] md:max-w-[52ch] justify-self-start">
-      <h1 id="hero-title" class="text-left font-sans font-medium text-4xl md:text-5xl text-text">
+  <div class="mx-auto grid min-h-[100svh] max-w-6xl items-center gap-8 px-4 py-16 md:grid-cols-[1.1fr,1fr] md:py-24">
+    <div class="max-w-[56ch] justify-self-start md:max-w-[52ch]">
+      <h1 id="hero-title" class="text-left font-sans text-4xl font-medium text-text md:text-6xl">
         Sacs papier <strong>personnalisés</strong>, <strong>print</strong> et
         <strong>sites web</strong> sur mesure !
       </h1>
-      <h2 class="font-serif mt-4 pr-8 md:pr-0 text-lg text-text text-left">
+
+      <h2 class="mt-4 pr-8 text-left font-serif text-lg text-text md:pr-0">
         Vos outils de <strong>communication</strong> visuelle pour la mise en valeur de votre <strong>identité</strong>
       </h2>
 
+      <div
+        class="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:gap-4"
+        role="group"
+        aria-label="Accès rapide"
+      >
+        <QuoteButton
+          variant="primary"
+          label="Print"
+          icon="lucide:shopping-bag"
+          href="#print"
+        />
 
-      <div class="mt-6 flex flex-row flex-wrap gap-4 justify-start" role="group" aria-label="Accès rapide">
-        <a href="#print" class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-          <Icon name="lucide:shopping-bag" class="w-4 h-4" aria-hidden="true" /> Print
-        </a>
-        <a href="#web" class="inline-flex items-center gap-2 rounded-full bg-primary text-bg px-4 py-2 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-          <Icon name="lucide:code-2" class="w-4 h-4" aria-hidden="true" /> Web
-        </a>
+        <QuoteButton
+          variant="primary"
+          label="Web"
+          icon="lucide:code-2"
+          href="#web"
+        />
       </div>
     </div>
 
-    <div class="absolute md:hidden inset-0 -z-10 bg-gradient-to-r from-bg/100 via-bg/30 to-transparent"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-bg/100 via-bg/30 to-transparent md:hidden"></div>
 
     <div class="hidden md:block"></div>
   </div>
-
 </section>
