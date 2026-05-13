@@ -481,17 +481,23 @@ const cardClasses =
 
         const rawResponse = await response.text();
 
-let result;
+        let result;
 
-try {
-  result = JSON.parse(rawResponse);
-} catch {
-  console.error("Réponse serveur non JSON :", rawResponse);
-  showFeedback("error");
-  return;
-}
+        try {
+          result = JSON.parse(rawResponse);
+        } catch {
+          console.error("Réponse serveur non JSON :", rawResponse);
+          showFeedback("error");
+          return;
+        }
 
         if (!response.ok || !result.success) {
+          console.error("Erreur serveur formulaire :", {
+            status: response.status,
+            result,
+            rawResponse,
+          });
+
           showFeedback("error");
           return;
         }
@@ -504,8 +510,8 @@ try {
 
         showFeedback("ok");
       } catch (error) {
-          console.error("Erreur formulaire contact :", error);
-          showFeedback("error");
+        console.error("Erreur formulaire contact :", error);
+        showFeedback("error");
       } finally {
         if (submitButton) {
           submitButton.disabled = false;

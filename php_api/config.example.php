@@ -21,6 +21,8 @@ return [
     'rate_limit_window' => 3600,
     'rate_limit_max' => 5,
 
+    'ratelimit_dir' => __DIR__ . '/ratelimit',
+
     // Validation
     'max_name_length' => 120,
     'max_email_length' => 180,
