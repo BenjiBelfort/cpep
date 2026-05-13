@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Forcer HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirection non-www vers www
+RewriteCond %{HTTP_HOST} ^cpep\.fr$ [NC]
+RewriteRule ^ https://www.cpep.fr%{REQUEST_URI} [L,R=301]
