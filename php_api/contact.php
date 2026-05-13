@@ -284,7 +284,7 @@ try {
     );
 
     if (!$adminSent) {
-        throw new RuntimeException('Échec de l’envoi admin.');
+        throw new RuntimeException('Échec de l’envoi admin. Vérifier les logs PHPMailer.');
     }
 
     // 2. Confirmation client
