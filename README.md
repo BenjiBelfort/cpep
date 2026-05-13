@@ -52,3 +52,6 @@ tree -a dist
 
 avec le poids des fichiers :
 tree -a -h -L 5 -I ".DS_Store" dist
+
+Espace insécable
+&nbsp;
