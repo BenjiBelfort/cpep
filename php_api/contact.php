@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -11,12 +13,35 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$config = require __DIR__ . '/config.local.php';
+$configPaths = [
+    __DIR__ . '/../../private/config.local.php', // prod OVH
+    __DIR__ . '/config.local.php',               // local
+];
+
+$config = null;
+
+foreach ($configPaths as $path) {
+    if (file_exists($path)) {
+        $config = require $path;
+        break;
+    }
+}
+
+if (!$config) {
+    error_log('Config contact introuvable.');
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Configuration serveur manquante.'
+    ]);
+    exit;
+}
+
 require __DIR__ . '/mailer.php';
 
-function cleanInput(string $value): string
+function cleanInput(?string $value): string
 {
-    return trim(strip_tags($value));
+    return trim(strip_tags((string) $value));
 }
 
 function isValidEmail(string $email): bool
@@ -24,15 +49,77 @@ function isValidEmail(string $email): bool
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }
 
+function tooLong(string $value, int $max): bool
+{
+    return mb_strlen($value, 'UTF-8') > $max;
+}
+
+function countLinks(string $text): int
+{
+    preg_match_all('/https?:\/\/|www\.|[a-z0-9-]+\.[a-z]{2,}/i', $text, $matches);
+    return count($matches[0]);
+}
+
+function getClientIp(): string
+{
+    return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+}
+
+function checkRateLimit(array $config): bool
+{
+    $dir = $config['ratelimit_dir'] ?? (__DIR__ . '/var/ratelimit');
+
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+
+    $ip = getClientIp();
+    $hash = hash('sha256', $ip);
+    $file = $dir . '/' . $hash . '.json';
+
+    $now = time();
+    $window = (int) ($config['rate_limit_window'] ?? 3600);
+    $max = (int) ($config['rate_limit_max'] ?? 5);
+
+    $attempts = [];
+
+    if (file_exists($file)) {
+        $content = file_get_contents($file);
+        $decoded = json_decode($content ?: '[]', true);
+
+        if (is_array($decoded)) {
+            $attempts = $decoded;
+        }
+    }
+
+    $attempts = array_values(array_filter(
+        $attempts,
+        fn ($timestamp) => is_int($timestamp) && $timestamp > ($now - $window)
+    ));
+
+    if (count($attempts) >= $max) {
+        return false;
+    }
+
+    $attempts[] = $now;
+
+    file_put_contents($file, json_encode($attempts), LOCK_EX);
+
+    return true;
+}
+
 $name = cleanInput($_POST['name'] ?? '');
 $email = cleanInput($_POST['email'] ?? '');
 $phone = cleanInput($_POST['phone'] ?? '');
-$projectType = cleanInput($_POST['projectType'] ?? '');
+$company = cleanInput($_POST['company'] ?? '');
 $message = cleanInput($_POST['message'] ?? '');
 $website = cleanInput($_POST['website'] ?? '');
-$startedAt = (int) ($_POST['startedAt'] ?? 0);
+$consent = isset($_POST['consent']);
 
-// Honeypot : si rempli, robot probable
+$startedAt = isset($_POST['started_at']) ? (int) $_POST['started_at'] : 0;
+
+// Honeypot : si rempli, robot probable.
+// On répond success pour ne pas aider le robot à comprendre.
 if ($website !== '') {
     echo json_encode([
         'success' => true,
@@ -41,13 +128,38 @@ if ($website !== '') {
     exit;
 }
 
-// Anti-spam temps minimum
-$now = time();
-if ($startedAt > 0 && ($now - $startedAt) < $config['min_submit_time']) {
+// Anti-spam temps minimum / maximum.
+// Le front envoie Date.now(), donc en millisecondes.
+$nowMs = (int) round(microtime(true) * 1000);
+$elapsedSeconds = $startedAt > 0 ? ($nowMs - $startedAt) / 1000 : 0;
+
+$minSubmitTime = (int) ($config['min_submit_time'] ?? 3);
+$maxSubmitTime = (int) ($config['max_submit_time'] ?? 3600);
+
+if ($elapsedSeconds > 0 && $elapsedSeconds < $minSubmitTime) {
     http_response_code(400);
     echo json_encode([
         'success' => false,
         'message' => 'Le formulaire a été envoyé trop rapidement.'
+    ]);
+    exit;
+}
+
+if ($elapsedSeconds > $maxSubmitTime) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Le formulaire a expiré.'
+    ]);
+    exit;
+}
+
+// Rate limit IP
+if (!checkRateLimit($config)) {
+    http_response_code(429);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Trop de tentatives. Merci de réessayer plus tard.'
     ]);
     exit;
 }
@@ -67,8 +179,22 @@ if ($message === '') {
     $errors[] = 'Le message est obligatoire.';
 }
 
-if (strlen($message) > 5000) {
-    $errors[] = 'Le message est trop long.';
+if (!$consent) {
+    $errors[] = 'Le consentement est obligatoire.';
+}
+
+if (
+    tooLong($name, (int) ($config['max_name_length'] ?? 120)) ||
+    tooLong($email, (int) ($config['max_email_length'] ?? 180)) ||
+    tooLong($phone, (int) ($config['max_phone_length'] ?? 40)) ||
+    tooLong($company, (int) ($config['max_company_length'] ?? 160)) ||
+    tooLong($message, (int) ($config['max_message_length'] ?? 4000))
+) {
+    $errors[] = 'Certains champs sont trop longs.';
+}
+
+if (countLinks($message) > (int) ($config['max_links_in_message'] ?? 2)) {
+    $errors[] = 'Le message contient trop de liens.';
 }
 
 if (!empty($errors)) {
@@ -83,8 +209,8 @@ if (!empty($errors)) {
 // Sécurisation affichage HTML
 $safeName = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
 $safeEmail = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
-$safePhone = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
-$safeProjectType = htmlspecialchars($projectType, ENT_QUOTES, 'UTF-8');
+$safePhone = htmlspecialchars($phone ?: 'Non renseigné', ENT_QUOTES, 'UTF-8');
+$safeCompany = htmlspecialchars($company ?: 'Non renseignée', ENT_QUOTES, 'UTF-8');
 $safeMessage = nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8'));
 
 $adminSubject = 'Nouveau message depuis le site CPEP';
@@ -95,7 +221,7 @@ $adminHtml = "
     <p><strong>Nom :</strong> {$safeName}</p>
     <p><strong>Email :</strong> {$safeEmail}</p>
     <p><strong>Téléphone :</strong> {$safePhone}</p>
-    <p><strong>Type de projet :</strong> {$safeProjectType}</p>
+    <p><strong>Société / structure :</strong> {$safeCompany}</p>
 
     <hr>
 
@@ -108,8 +234,8 @@ Nouveau message depuis cpep.fr
 
 Nom : {$name}
 Email : {$email}
-Téléphone : {$phone}
-Type de projet : {$projectType}
+Téléphone : " . ($phone ?: 'Non renseigné') . "
+Société / structure : " . ($company ?: 'Non renseignée') . "
 
 Message :
 {$message}
@@ -124,7 +250,7 @@ $clientHtml = "
 
     <p>Votre message a bien été reçu. Nous revenons vers vous dès que possible avec une réponse claire et utile.</p>
 
-    <p>Résumé de votre demande :</p>
+    <p><strong>Résumé de votre demande :</strong></p>
 
     <blockquote>{$safeMessage}</blockquote>
 
@@ -144,38 +270,43 @@ Résumé de votre demande :
 L’équipe CPEP
 ";
 
-// 1. Email vers CPEP
-$adminSent = sendMail(
-    $config,
-    $config['mail_to'],
-    $config['mail_to_name'],
-    $adminSubject,
-    $adminHtml,
-    $adminText,
-    $email,
-    $name
-);
+try {
+    // 1. Email vers CPEP
+    $adminSent = sendMail(
+        $config,
+        $config['mail_to'],
+        $config['mail_to_name'],
+        $adminSubject,
+        $adminHtml,
+        $adminText,
+        $email,
+        $name
+    );
 
-// 2. Confirmation client
-$clientSent = sendMail(
-    $config,
-    $email,
-    $name,
-    $clientSubject,
-    $clientHtml,
-    $clientText
-);
+    if (!$adminSent) {
+        throw new RuntimeException('Échec de l’envoi admin.');
+    }
 
-if (!$adminSent) {
+    // 2. Confirmation client
+    sendMail(
+        $config,
+        $email,
+        $name,
+        $clientSubject,
+        $clientHtml,
+        $clientText
+    );
+
+    echo json_encode([
+        'success' => true,
+        'message' => 'Merci, votre message a bien été envoyé.'
+    ]);
+} catch (Throwable $e) {
+    error_log('Erreur formulaire contact CPEP : ' . $e->getMessage());
+
     http_response_code(500);
     echo json_encode([
         'success' => false,
         'message' => 'Une erreur est survenue lors de l’envoi du message.'
     ]);
-    exit;
 }
-
-echo json_encode([
-    'success' => true,
-    'message' => 'Merci, votre message a bien été envoyé.'
-]);

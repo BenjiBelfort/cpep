@@ -1,12 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/vendor/autoload.php';
 
-function sendMail(array $config, string $toEmail, string $toName, string $subject, string $htmlBody, string $textBody, ?string $replyToEmail = null, ?string $replyToName = null): bool
-{
+function sendMail(
+    array $config,
+    string $toEmail,
+    string $toName,
+    string $subject,
+    string $htmlBody,
+    string $textBody,
+    ?string $replyToEmail = null,
+    ?string $replyToName = null
+): bool {
     $mail = new PHPMailer(true);
 
     try {
@@ -18,12 +28,12 @@ function sendMail(array $config, string $toEmail, string $toName, string $subjec
         $mail->Username = $config['smtp_user'];
         $mail->Password = $config['smtp_pass'];
         $mail->SMTPSecure = $config['smtp_secure'];
-        $mail->Port = $config['smtp_port'];
+        $mail->Port = (int) $config['smtp_port'];
 
         $mail->setFrom($config['mail_from'], $config['mail_from_name']);
         $mail->addAddress($toEmail, $toName);
 
-        if ($replyToEmail) {
+        if ($replyToEmail && filter_var($replyToEmail, FILTER_VALIDATE_EMAIL)) {
             $mail->addReplyTo($replyToEmail, $replyToName ?: $replyToEmail);
         }
 

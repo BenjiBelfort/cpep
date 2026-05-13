@@ -1,0 +1,11 @@
+Options -Indexes
+
+RedirectMatch 403 ^/api/vendor/.*$
+
+<FilesMatch "^(composer\.json|composer\.lock)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>

@@ -1,4 +1,5 @@
 ---
+// src/components/ContactCPEP.astro
 import { Icon } from 'astro-icon/components';
 
 const contactItems = [
@@ -22,23 +23,101 @@ const contactItems = [
   },
 ];
 
-const projectTypes = [
-  'Packaging & sacs personnalisés',
-  'Print & supports imprimés',
-  'Objets publicitaires & goodies',
-  'Site web vitrine',
-  'SEO, performance & maintenance',
-  'Développement spécifique',
-  'Autre demande',
-];
+const fieldClasses =
+  'mt-1 w-full rounded-xl border border-white/80 bg-white/65 px-3 py-2.5 text-text shadow-sm outline-none backdrop-blur-md transition placeholder:text-text/40 focus:border-accent focus:bg-white/80 focus:ring-2 focus:ring-accent/30';
+
+const cardClasses =
+  'group relative overflow-hidden rounded-2xl border border-white/70 bg-white/55 p-6 shadow-[0_18px_45px_rgba(8,7,8,0.12)] backdrop-blur-xl transition duration-300 hover:border-accent/45 hover:bg-white/65 hover:shadow-[0_24px_60px_rgba(8,7,8,0.16)]';
 ---
+
+<!-- Modal feedback contact -->
+<div
+  id="contact-feedback"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-primary-900/45 px-4 backdrop-blur-md"
+  aria-live="polite"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-feedback-title"
+>
+  <div
+    class="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/70 bg-white/85 p-6 text-center text-text shadow-[0_24px_80px_rgba(8,7,8,0.28)] backdrop-blur-xl"
+  >
+    <!-- Reflet liquid -->
+    <div
+      class="pointer-events-none absolute inset-0 rounded-3xl bg-linear-to-br from-white/90 via-white/30 to-primary/10 opacity-80"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Ligne brillante -->
+    <div
+      class="pointer-events-none absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-white to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10">
+      <!-- Icône succès -->
+      <div
+        data-contact-ok-icon
+        class="mx-auto hidden h-16 w-16 items-center justify-center rounded-full border border-success/25 bg-success/10 text-success shadow-sm"
+      >
+        <Icon name="lucide:check" class="h-9 w-9" aria-hidden="true" />
+      </div>
+
+      <!-- Icône erreur -->
+      <div
+        data-contact-error-icon
+        class="mx-auto hidden h-16 w-16 items-center justify-center rounded-full border border-error/25 bg-error/10 text-error shadow-sm"
+      >
+        <Icon name="lucide:triangle-alert" class="h-9 w-9" aria-hidden="true" />
+      </div>
+
+      <h3
+        id="contact-feedback-title"
+        data-contact-title
+        class="mt-5 text-2xl font-bold text-text"
+      >
+        Message envoyé
+      </h3>
+
+      <p data-contact-ok class="mt-3 hidden text-sm leading-relaxed text-text/75">
+        Merci, votre message a bien été envoyé. Nous revenons vers vous rapidement
+        avec une réponse claire et utile.
+      </p>
+
+      <p data-contact-error class="mt-3 hidden text-sm leading-relaxed text-text/75">
+        Le message n’a pas pu être envoyé. Vous pouvez réessayer dans un instant ou nous écrire directement à
+        <a
+          href="mailto:contact@cpep.fr"
+          class="font-medium text-primary underline decoration-accent underline-offset-4"
+        >
+          contact@cpep.fr
+        </a>.
+      </p>
+
+      <!-- Petite barre de validation -->
+      <div class="mt-6 h-1.5 overflow-hidden rounded-full bg-text/10">
+        <div
+          data-contact-progress
+          class="h-full w-0 rounded-full bg-success transition-all duration-1000 ease-out"
+        ></div>
+      </div>
+
+      <button
+        type="button"
+        data-contact-close
+        class="mt-6 inline-flex cursor-pointer items-center justify-center rounded-full border border-primary/30 bg-primary px-5 py-2.5 text-sm font-medium text-bg transition hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        Fermer
+      </button>
+    </div>
+  </div>
+</div>
 
 <section
   id="contact"
   aria-labelledby="contact-title"
   class="relative scroll-m-4 cpep-contact-blueprint"
 >
-
   <!-- Image décorative blueprint gauche -->
   <div
     class="pointer-events-none absolute left-[-18rem] top-[40%] -z-10 hidden aspect-square w-[clamp(34rem,52vw,58rem)] -translate-y-1/2 -rotate-6 opacity-20 mix-blend-screen lg:block"
@@ -65,7 +144,7 @@ const projectTypes = [
     />
   </div>
 
-  <div class=" mx-auto max-w-6xl px-4 py-20">
+  <div class="mx-auto max-w-6xl px-4 py-20">
     <div class="my-12 flex justify-center">
       <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-white/85 sm:flex-row sm:text-left">
         <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 sm:h-auto sm:w-auto sm:bg-transparent">
@@ -93,69 +172,118 @@ const projectTypes = [
 
     <div class="mt-12 grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <!-- Infos -->
-      <aside class="rounded-2xl border border-white/35 bg-white/92 p-6 shadow-xl shadow-primary-900/20 backdrop-blur-sm">
-        <h3 class="text-xl font-semibold text-text">
-          Coordonnées
-        </h3>
+      <aside class={cardClasses}>
+        <!-- Reflet liquid glass -->
+        <div
+          class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/80 via-white/20 to-primary/10 opacity-70"
+          aria-hidden="true"
+        ></div>
 
-        <p class="mt-3 text-sm leading-relaxed text-text/75">
-          Pour un premier échange, une demande de prix ou un projet encore un peu flou :
-          envoyez les infos que vous avez. On rangera les câbles ensemble.
-        </p>
+        <!-- Ligne brillante -->
+        <div
+          class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
+          aria-hidden="true"
+        ></div>
 
-        <ul class="mt-6 space-y-4">
-          {contactItems.map((item) => (
-            <li class="flex items-start gap-3">
-              <span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />
-              </span>
+        <div class="relative z-10">
+          <h3 class="text-xl font-semibold text-text">
+            Coordonnées
+          </h3>
 
-              <div>
-                <p class="font-semibold text-text">{item.title}</p>
+          <p class="mt-3 text-sm leading-relaxed text-text/75">
+            Décrivez-nous votre besoin, même si le projet n’est pas encore totalement cadré.
+            Nous vous aidons à préciser les bonnes options, les contraintes utiles et les prochaines étapes.
+          </p>
 
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    class="text-sm text-text underline decoration-accent underline-offset-4 transition hover:text-accent"
-                  >
-                    {item.content}
-                  </a>
-                ) : (
-                  <p class="text-sm text-text">{item.content}</p>
-                )}
+          <ul class="mt-6 space-y-4">
+            {contactItems.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/70 bg-white/45 text-primary shadow-sm backdrop-blur-md">
+                  <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />
+                </span>
 
-                {item.description && (
-                  <p class="mt-1 text-sm leading-relaxed text-text/70">
-                    {item.description}
-                  </p>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
+                <div>
+                  <p class="font-semibold text-text">{item.title}</p>
 
-        <div class="mt-7 rounded-2xl bg-primary/5 p-5 text-sm text-text">
-          <div class="flex items-center gap-2 font-semibold">
-            <Icon name="lucide:lightbulb" class="h-4 w-4 text-primary" aria-hidden="true" />
-            <p>Pour un devis plus précis</p>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      class="text-sm text-text underline decoration-accent underline-offset-4 transition hover:text-accent"
+                    >
+                      {item.content}
+                    </a>
+                  ) : (
+                    <p class="text-sm text-text">{item.content}</p>
+                  )}
+
+                  {item.description && (
+                    <p class="mt-1 text-sm leading-relaxed text-text/70">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-7 overflow-hidden rounded-2xl border border-white/70 bg-white/45 p-5 text-sm text-text shadow-sm backdrop-blur-md">
+            <div class="flex items-center gap-2 font-semibold">
+              <Icon name="lucide:lightbulb" class="h-4 w-4 text-primary" aria-hidden="true" />
+              <p>Pour un devis plus précis</p>
+            </div>
+
+            <p class="mt-3 leading-relaxed text-text/80">
+              Indiquez les <strong>quantités</strong>, <strong>formats</strong>,
+              <strong> matières</strong>, <strong>finitions</strong> ou les
+              <strong> fonctionnalités web</strong> souhaitées.
+            </p>
+
+            <p class="mt-2 leading-relaxed text-text/80">
+              Plus le brief est clair, plus la réponse est juste et adaptée à votre besoin.
+            </p>
           </div>
-
-          <p class="mt-3 leading-relaxed text-text/80">
-            Indiquez les <strong>quantités</strong>, <strong>formats</strong>,
-            <strong> matières</strong>, <strong>finitions</strong> ou les
-            <strong> fonctionnalités web</strong> souhaitées.
-          </p>
-
-          <p class="mt-2 leading-relaxed text-text/80">
-            Plus le brief est clair, plus la réponse est juste. C’est mathématique,
-            mais sans tableau Excel triste.
-          </p>
         </div>
       </aside>
 
       <!-- Formulaire -->
-      <form class="rounded-2xl border border-white/35 bg-white/95 p-6 shadow-xl shadow-primary-900/20 backdrop-blur-sm">
-        <div class="grid gap-4 md:grid-cols-2">
+      <form
+        id="contact-form"
+        action="/api/contact.php"
+        method="POST"
+        accept-charset="UTF-8"
+        class={cardClasses}
+      >
+
+      <!-- Honeypot -->
+      <input
+        type="text"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+        class="hidden"
+        aria-hidden="true"
+      />
+
+      <!-- Temps de remplissage -->
+      <input
+        type="hidden"
+        name="started_at"
+        id="contact-started-at"
+      />
+
+        <!-- Reflet liquid glass -->
+        <div
+          class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/85 via-white/25 to-accent/10 opacity-75"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Ligne brillante -->
+        <div
+          class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative z-10 grid gap-4 md:grid-cols-2">
           <label class="block">
             <span class="text-sm font-medium text-text">
               Votre nom <span class="text-accent">*</span>
@@ -165,7 +293,7 @@ const projectTypes = [
               name="name"
               required
               autocomplete="name"
-              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+              class={fieldClasses}
             />
           </label>
 
@@ -179,7 +307,7 @@ const projectTypes = [
               name="email"
               required
               autocomplete="email"
-              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+              class={fieldClasses}
             />
           </label>
 
@@ -190,7 +318,7 @@ const projectTypes = [
               type="tel"
               name="phone"
               autocomplete="tel"
-              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+              class={fieldClasses}
             />
           </label>
 
@@ -200,21 +328,8 @@ const projectTypes = [
             <input
               name="company"
               autocomplete="organization"
-              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+              class={fieldClasses}
             />
-          </label>
-
-          <label class="block md:col-span-2">
-            <span class="text-sm font-medium text-text">Type de projet</span>
-
-            <select
-              name="project_type"
-              class="mt-1 w-full rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
-            >
-              {projectTypes.map((type) => (
-                <option value={type}>{type}</option>
-              ))}
-            </select>
           </label>
 
           <label class="block md:col-span-2">
@@ -225,13 +340,13 @@ const projectTypes = [
             <textarea
               name="message"
               required
-              rows={6}
+              rows={7}
               placeholder="Expliquez votre besoin, vos quantités, vos délais, vos contraintes ou votre idée encore en chantier..."
-              class="mt-1 w-full resize-y rounded-xl border border-bg-alt bg-bg px-3 py-2.5 text-text outline-none transition placeholder:text-text/40 focus:border-accent focus:ring-2 focus:ring-accent/30"
+              class={`${fieldClasses} resize-y`}
             ></textarea>
           </label>
 
-          <label class="flex items-start gap-3 rounded-xl bg-bg/70 p-4 md:col-span-2">
+          <label class="flex items-start gap-3 rounded-xl border border-white/70 bg-white/45 p-4 shadow-sm backdrop-blur-md md:col-span-2">
             <input
               type="checkbox"
               name="consent"
@@ -248,10 +363,23 @@ const projectTypes = [
           <div class="md:col-span-2">
             <button
               type="submit"
-              class="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              class="group inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-full border border-primary/30 bg-primary px-4 py-2 font-medium text-bg backdrop-blur-md transition hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:min-h-12 sm:px-6 sm:py-3"
             >
-              <Icon name="lucide:send" class="h-4 w-4" aria-hidden="true" />
-              Envoyer ma demande
+              <Icon
+                name="lucide:send"
+                class="h-4 w-4 shrink-0"
+                aria-hidden="true"
+              />
+
+              <span class="text-sm md:text-base">
+                Envoyer ma demande
+              </span>
+
+              <Icon
+                name="lucide:arrow-right"
+                class="h-4 w-4 shrink-0 opacity-100 transition duration-300 sm:opacity-0 sm:group-hover:translate-x-1 sm:group-hover:opacity-100"
+                aria-hidden="true"
+              />
             </button>
 
             <p class="mt-3 text-xs leading-relaxed text-text/60">
@@ -264,3 +392,154 @@ const projectTypes = [
     </div>
   </div>
 </section>
+
+<script is:inline>
+  const contactForm = document.querySelector("#contact-form");
+  const startedAtInput = document.querySelector("#contact-started-at");
+  const feedback = document.querySelector("#contact-feedback");
+  const feedbackTitle = document.querySelector("[data-contact-title]");
+  const successMessage = document.querySelector("[data-contact-ok]");
+  const errorMessage = document.querySelector("[data-contact-error]");
+  const successIcon = document.querySelector("[data-contact-ok-icon]");
+  const errorIcon = document.querySelector("[data-contact-error-icon]");
+  const progressBar = document.querySelector("[data-contact-progress]");
+  const closeButton = document.querySelector("[data-contact-close]");
+
+  if (startedAtInput) {
+    startedAtInput.value = String(Date.now());
+  }
+
+  const closeFeedback = () => {
+    if (!feedback) return;
+
+    feedback.classList.add("hidden");
+    feedback.classList.remove("flex");
+
+    if (progressBar) {
+      progressBar.classList.remove("w-full", "bg-success", "bg-error");
+      progressBar.classList.add("w-0");
+    }
+  };
+
+  const showFeedback = (type) => {
+    if (
+      !feedback ||
+      !feedbackTitle ||
+      !successMessage ||
+      !errorMessage ||
+      !successIcon ||
+      !errorIcon ||
+      !progressBar
+    ) {
+      return;
+    }
+
+    feedback.classList.remove("hidden");
+    feedback.classList.add("flex");
+
+    successMessage.classList.add("hidden");
+    errorMessage.classList.add("hidden");
+
+    successIcon.classList.add("hidden");
+    successIcon.classList.remove("flex");
+
+    errorIcon.classList.add("hidden");
+    errorIcon.classList.remove("flex");
+
+    progressBar.classList.remove("w-full", "bg-success", "bg-error");
+    progressBar.classList.add("w-0");
+
+    feedbackTitle.classList.remove("text-success", "text-error");
+    feedbackTitle.classList.add("text-text");
+
+    if (type === "ok") {
+      feedbackTitle.textContent = "Message envoyé";
+      feedbackTitle.classList.remove("text-text");
+      feedbackTitle.classList.add("text-success");
+
+      successMessage.classList.remove("hidden");
+      successIcon.classList.remove("hidden");
+      successIcon.classList.add("flex");
+
+      progressBar.classList.add("bg-success");
+    } else {
+      feedbackTitle.textContent = "Envoi impossible";
+      feedbackTitle.classList.remove("text-text");
+      feedbackTitle.classList.add("text-error");
+
+      errorMessage.classList.remove("hidden");
+      errorIcon.classList.remove("hidden");
+      errorIcon.classList.add("flex");
+
+      progressBar.classList.add("bg-error");
+    }
+
+    window.setTimeout(() => {
+      progressBar.classList.remove("w-0");
+      progressBar.classList.add("w-full");
+    }, 80);
+  };
+
+  closeButton?.addEventListener("click", closeFeedback);
+
+  feedback?.addEventListener("click", (event) => {
+    if (event.target === feedback) {
+      closeFeedback();
+    }
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeFeedback();
+    }
+  });
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const formData = new FormData(contactForm);
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.classList.add("opacity-70", "cursor-not-allowed");
+        submitButton.classList.remove("cursor-pointer");
+      }
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          showFeedback("error");
+          return;
+        }
+
+        contactForm.reset();
+
+        if (startedAtInput) {
+          startedAtInput.value = String(Date.now());
+        }
+
+        showFeedback("ok");
+      } catch (error) {
+          console.error("Erreur formulaire contact :", error);
+          showFeedback("error");
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.classList.remove("opacity-70", "cursor-not-allowed");
+          submitButton.classList.add("cursor-pointer");
+        }
+      }
+    });
+  }
+</script>

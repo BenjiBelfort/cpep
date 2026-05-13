@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:TISSERAND;Benjamin;;;
+FN:Benjamin TISSERAND
+ORG:CPEP
+TITLE:Développeur d'idées simples
+TEL;TYPE=CELL:+33613991231
+EMAIL;TYPE=INTERNET,WORK:benjamin@cpep.fr
+URL;TYPE=WORK:https://cpep.fr
+PHOTO;VALUE=URI:https://cpep.fr/photos/benjamin.webp
+NOTE:Supports de communication : sacs personnalisés, packaging, print, objets publicitaires\nDéveloppement web : sites vitrines, boutiques en ligne, SEO
+END:VCARD
