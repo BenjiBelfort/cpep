@@ -24,10 +24,10 @@ const contactItems = [
 ];
 
 const fieldClasses =
-  'mt-1 w-full rounded-xl border border-white/80 bg-white/65 px-3 py-2.5 text-text shadow-sm outline-none backdrop-blur-md transition placeholder:text-text/40 focus:border-accent focus:bg-white/80 focus:ring-2 focus:ring-accent/30';
+  'mt-1 w-full rounded-xl border border-white/80 bg-white/80 px-3 py-2.5 text-text shadow-sm outline-none transition placeholder:text-text/40 focus:border-accent focus:bg-white focus:ring-2 focus:ring-accent/25';
 
 const cardClasses =
-  'group relative overflow-hidden rounded-2xl border border-white/70 bg-white/55 p-6 shadow-[0_18px_45px_rgba(8,7,8,0.12)] backdrop-blur-xl transition duration-300 hover:border-accent/45 hover:bg-white/65 hover:shadow-[0_24px_60px_rgba(8,7,8,0.16)]';
+  'relative rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_18px_45px_rgba(8,7,8,0.12)]';
 ---
 
 <!-- Modal feedback contact -->
@@ -40,21 +40,9 @@ const cardClasses =
   aria-labelledby="contact-feedback-title"
 >
   <div
-    class="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/70 bg-white/85 p-6 text-center text-text shadow-[0_24px_80px_rgba(8,7,8,0.28)] backdrop-blur-xl"
+    class="relative max-h-[calc(100vh-2rem)] w-full max-w-md overflow-y-auto rounded-3xl border border-white/70 bg-white/90 p-6 text-center text-text shadow-[0_24px_80px_rgba(8,7,8,0.28)]"
   >
-    <!-- Reflet liquid -->
-    <div
-      class="pointer-events-none absolute inset-0 rounded-3xl bg-linear-to-br from-white/90 via-white/30 to-primary/10 opacity-80"
-      aria-hidden="true"
-    ></div>
-
-    <!-- Ligne brillante -->
-    <div
-      class="pointer-events-none absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-white to-transparent"
-      aria-hidden="true"
-    ></div>
-
-    <div class="relative z-10">
+    <div class="relative">
       <!-- Icône succès -->
       <div
         data-contact-ok-icon
@@ -94,7 +82,6 @@ const cardClasses =
         </a>.
       </p>
 
-      <!-- Petite barre de validation -->
       <div class="mt-6 h-1.5 overflow-hidden rounded-full bg-text/10">
         <div
           data-contact-progress
@@ -173,19 +160,8 @@ const cardClasses =
     <div class="mt-12 grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <!-- Infos -->
       <aside class={cardClasses}>
-        <!-- Reflet liquid glass -->
-        <div
-          class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/80 via-white/20 to-primary/10 opacity-70"
-          aria-hidden="true"
-        ></div>
 
-        <!-- Ligne brillante -->
-        <div
-          class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
-          aria-hidden="true"
-        ></div>
-
-        <div class="relative z-10">
+        <div>
           <h3 class="text-xl font-semibold text-text">
             Coordonnées
           </h3>
@@ -270,20 +246,7 @@ const cardClasses =
         name="started_at"
         id="contact-started-at"
       />
-
-        <!-- Reflet liquid glass -->
-        <div
-          class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/85 via-white/25 to-accent/10 opacity-75"
-          aria-hidden="true"
-        ></div>
-
-        <!-- Ligne brillante -->
-        <div
-          class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
-          aria-hidden="true"
-        ></div>
-
-        <div class="relative z-10 grid gap-4 md:grid-cols-2">
+        <div class="grid gap-4 md:grid-cols-2">
           <label class="block">
             <span class="text-sm font-medium text-text">
               Votre nom <span class="text-accent">*</span>

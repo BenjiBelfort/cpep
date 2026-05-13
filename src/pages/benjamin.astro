@@ -1,5 +1,6 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import { Icon } from "astro-icon/components";
 
 const contact = {
   name: "Benjamin TISSERAND",
@@ -127,16 +128,23 @@ const socialLinks = [
           aria-hidden="true"
         ></span>
 
-        <span class="relative">
+        <span class="relative uppercase tracking-wide">
           Ajouter le contact
         </span>
       </a>
 
       <a
         href="/#qui-sommes-nous"
-        class="mt-5 inline-flex text-sm font-semibold text-primary/75 transition hover:text-accent"
+        class="mt-5 group inline-flex items-center gap-2 text-sm underline decoration-accent underline-offset-4
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        aria-label="Retour à la page d’accueil"
       >
-        ← Retour au site CPEP!
+        <Icon
+          name="lucide:arrow-left"
+          class="h-4 w-4 transition-transform duration-150 group-hover:-translate-x-1"
+          aria-hidden="true"
+        />
+        <span>Retour au site CPEP!</span>
       </a>
     </div>
   </section>

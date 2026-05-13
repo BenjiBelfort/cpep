@@ -8,7 +8,15 @@ interface Props {
   icon: string;
   variant?: 'default' | 'highlight';
 }
-const { step, title, description, icon, variant = 'default' } = Astro.props as Props;
+
+const {
+  step,
+  title,
+  description,
+  icon,
+  variant = 'default',
+} = Astro.props as Props;
+
 const isHighlight = variant === 'highlight';
 ---
 
@@ -16,9 +24,9 @@ const isHighlight = variant === 'highlight';
   <!-- pastille étape -->
   <span
     class:list={{
-        'absolute left-0 top-1/2 -translate-y-1/2 inline-grid place-items-center leading-none select-none h-8 w-8 rounded-full text-sm font-display shadow-2xs': true,      
-        'bg-info text-white': !isHighlight,
-        'bg-accent text-white': isHighlight,
+      'absolute left-0 top-1/2 z-20 inline-grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full text-sm font-display leading-none text-white shadow-[0_10px_25px_rgba(8,7,8,0.16)] ring-4 ring-bg select-none': true,
+      'bg-info': !isHighlight,
+      'bg-accent': isHighlight,
     }}
     aria-hidden="true"
   >
@@ -28,21 +36,56 @@ const isHighlight = variant === 'highlight';
   <!-- carte -->
   <article
     class:list={{
-      'rounded-xl border p-5 transition shadow-2xs': true,
-      'bg-white border-bg-alt': !isHighlight,
-      'bg-primary text-white border-primary': isHighlight,
+      'group relative overflow-hidden rounded-2xl border p-5 backdrop-blur-xl transition duration-300': true,
+
+      /* default */
+      'border-white/80 bg-white/45 text-text shadow-[0_18px_45px_rgba(8,7,8,0.08)] hover:border-accent/50 hover:bg-white/55 hover:shadow-[0_24px_60px_rgba(8,7,8,0.12)]': !isHighlight,
+
+      /* highlight */
+      'border-primary/40 bg-primary text-white shadow-[0_18px_45px_rgba(60,110,113,0.22)] hover:border-accent/60 hover:bg-primary/95 hover:shadow-[0_24px_60px_rgba(60,110,113,0.28)]': isHighlight,
     }}
   >
-    <div class="flex items-start gap-3">
-      <Icon
-        name={icon}
+    <!-- Reflet liquid glass -->
+    <div
+      class:list={{
+        'pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br opacity-70': true,
+        'from-white/80 via-white/20 to-primary/10': !isHighlight,
+        'from-white/25 via-white/10 to-accent/20': isHighlight,
+      }}
+      aria-hidden="true"
+    ></div>
+
+    <!-- Ligne brillante -->
+    <div
+      class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Halo doux -->
+    <div
+      class:list={{
+        'pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full blur-2xl transition duration-300 group-hover:scale-125': true,
+        'bg-primary/15': !isHighlight,
+        'bg-accent/25': isHighlight,
+      }}
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 flex items-start gap-3">
+      <div
         class:list={{
-          'w-8 h-8 self-center shrink-0 mr-2 hidden md:block': true,
-          'text-text': !isHighlight,
-          'text-white': isHighlight,
+          'mr-2 hidden h-12 w-12 shrink-0 items-center justify-center self-center rounded-full border shadow-sm backdrop-blur-md md:inline-flex': true,
+          'border-white/70 bg-white/45 text-primary': !isHighlight,
+          'border-white/25 bg-white/15 text-white': isHighlight,
         }}
-        aria-hidden="true"
-      />
+      >
+        <Icon
+          name={icon}
+          class="h-6 w-6"
+          aria-hidden="true"
+        />
+      </div>
+
       <div>
         <h3
           class:list={{
@@ -53,10 +96,11 @@ const isHighlight = variant === 'highlight';
         >
           {title}
         </h3>
+
         <p
           class:list={{
-            'mt-1 text-sm': true,
-            'text-gray-800': !isHighlight,
+            'mt-1 text-sm leading-relaxed': true,
+            'text-text/80': !isHighlight,
             'text-white/90': isHighlight,
           }}
         >

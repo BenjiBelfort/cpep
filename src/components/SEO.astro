@@ -44,7 +44,7 @@ const ogImageAbs = Astro.site ? new URL(image, Astro.site).toString() : image;
 
 <meta name="description" content={pageDesc} />
 
-{noindex && <meta name="robots" content="noindex,nofollow" />}
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 {canonical && <link rel="canonical" href={canonical} />}
 {canonical && <link rel="alternate" href={canonical} hreflang="fr-FR" />}
