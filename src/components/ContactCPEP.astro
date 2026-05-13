@@ -479,7 +479,17 @@ const cardClasses =
           },
         });
 
-        const result = await response.json();
+        const rawResponse = await response.text();
+
+let result;
+
+try {
+  result = JSON.parse(rawResponse);
+} catch {
+  console.error("Réponse serveur non JSON :", rawResponse);
+  showFeedback("error");
+  return;
+}
 
         if (!response.ok || !result.success) {
           showFeedback("error");
