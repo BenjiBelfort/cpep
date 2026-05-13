@@ -106,7 +106,12 @@ const socialLinks = [
           class="text-xl font-bold leading-tight text-text md:text-2xl"
         >
           <span class="text-text/90">Entre packaging, terrain et développement web</span> <br />
-          <span class="text-4xl">Hello, je suis Benjamin.</span>
+          <span
+            id="benjamin-dynamic-title"
+            class="inline-block text-4xl transition-all duration-500 ease-out"
+          >
+            Hello, je suis Benjamin.
+          </span>
         </h2>
 
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-text/90 md:text-lg">
@@ -197,37 +202,228 @@ const socialLinks = [
   const photoButton = document.querySelector("#benjamin-photo-button");
   const portraitImage = document.querySelector("#benjamin-photo-portrait");
   const workImage = document.querySelector("#benjamin-photo-work");
+  const dynamicTitle = document.querySelector("#benjamin-dynamic-title");
+
+  const helloTitles = [
+    "Hello, je suis Benjamin.",
+    "Bonjour, je suis Benjamin.",
+  ];
+
+  const workTitles = [
+    "npm run boss — Benjamin is bossing.",
+    "const benji = enModeProd();",
+    "git commit -m \"ça part en prod !\"",
+    "Benjamin.compile(projetClient);",
+    "while(project) { coffee++; ship(); }",
+  ];
+
+  const backTitles = [
+    "Je suis Benjamin, comment puis-je vous aider ?",
+    "Benjamin de retour. Print, web ou les deux ?",
+    "Disponible pour parler sacs, sites et bonnes idées.",
+    "Un projet print ou web ? Je vous écoute.",
+  ];
 
   let isWorkPhotoVisible = false;
   let isAnimating = false;
+  let clickCount = 0;
+
+  let shuffledWorkTitles: string[] = [];
+  let shuffledBackTitles: string[] = [];
+
+  function shuffleItems(items: string[]) {
+    return [...items].sort(() => Math.random() - 0.5);
+  }
+
+  function getRandomItem(items: string[]) {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+
+  function getNextShuffledWorkTitle() {
+    if (shuffledWorkTitles.length === 0) {
+      shuffledWorkTitles = shuffleItems(workTitles);
+    }
+
+    return shuffledWorkTitles.shift() || getRandomItem(workTitles);
+  }
+
+  function getNextShuffledBackTitle() {
+    if (shuffledBackTitles.length === 0) {
+      shuffledBackTitles = shuffleItems(backTitles);
+    }
+
+    return shuffledBackTitles.shift() || getRandomItem(backTitles);
+  }
+
+  function setRandomInitialTitle() {
+    if (!dynamicTitle) return;
+
+    dynamicTitle.textContent = getRandomItem(helloTitles);
+  }
+
+  function updateTitle(text: string, mode: "default" | "code" = "default") {
+    if (!dynamicTitle) return;
+
+    dynamicTitle.classList.add("opacity-0", "translate-y-1");
+
+    window.setTimeout(() => {
+      dynamicTitle.textContent = text;
+
+      if (mode === "code") {
+        dynamicTitle.classList.add(
+          "rounded-lg",
+          "bg-text",
+          "px-3",
+          "py-1.5",
+          "font-mono",
+          "text-2xl",
+          "text-creative",
+          "shadow-sm"
+        );
+
+        dynamicTitle.classList.remove("text-4xl");
+      } else {
+        dynamicTitle.classList.remove(
+          "rounded-lg",
+          "bg-text",
+          "px-3",
+          "py-1.5",
+          "font-mono",
+          "text-2xl",
+          "text-creative",
+          "shadow-sm"
+        );
+
+        dynamicTitle.classList.add("text-4xl");
+      }
+
+      dynamicTitle.classList.remove("opacity-0", "translate-y-1");
+    }, 250);
+  }
+
+  function showPortraitMode() {
+    workImage?.classList.remove("opacity-100");
+    workImage?.classList.add("opacity-0");
+
+    portraitImage?.classList.remove("opacity-0");
+    portraitImage?.classList.add("opacity-100");
+
+    photoButton?.classList.remove("bg-accent");
+    photoButton?.classList.add("bg-success");
+
+    isWorkPhotoVisible = false;
+    photoButton?.setAttribute("aria-pressed", "false");
+  }
+
+  function showWorkMode() {
+    portraitImage?.classList.remove("opacity-100");
+    portraitImage?.classList.add("opacity-0");
+
+    workImage?.classList.remove("opacity-0");
+    workImage?.classList.add("opacity-100");
+
+    photoButton?.classList.remove("bg-success");
+    photoButton?.classList.add("bg-accent");
+
+    isWorkPhotoVisible = true;
+    photoButton?.setAttribute("aria-pressed", "true");
+  }
+
+  function lockButtonAfterVictory() {
+    showPortraitMode();
+
+    photoButton?.setAttribute("disabled", "true");
+    photoButton?.setAttribute("aria-label", "Mini-jeu terminé");
+    photoButton?.classList.remove(
+      "bg-success",
+      "bg-accent",
+      "hover:bg-accent",
+      "hover:scale-125",
+      "cursor-pointer"
+    );
+    photoButton?.classList.add(
+      "bg-bg-alt",
+      "cursor-not-allowed",
+      "opacity-70"
+    );
+
+    updateTitle("Bravo 50 cliks ! On bosse ensemble ?", "default");
+  }
+
+  function getSpecialTitle() {
+    if (clickCount === 7) {
+      return {
+        text: "7 clics = spam mode activé.",
+        mode: "code" as const,
+      };
+    }
+
+    if (clickCount === 14) {
+      return {
+        text: `${clickCount} clics sur ce bouton ! Vous êtes tenace.`,
+        mode: "default" as const,
+      };
+    }
+
+    if (clickCount === 21) {
+      return {
+        text: "function hireBenjamin() { return \"bonne idée\"; }",
+        mode: "code" as const,
+      };
+    }
+
+    if (clickCount === 28) {
+      return {
+        text: `${clickCount} clics... est-ce que TVB ?`,
+        mode: "default" as const,
+      };
+    }
+
+    if (clickCount > 28 && clickCount < 50) {
+      if (isWorkPhotoVisible) {
+        return {
+          text: "contactForm.submit() // bonne idée !",
+          mode: "code" as const,
+        };
+      }
+
+      return {
+        text: "Vous voulez pas plutôt m’envoyer un mail ?",
+        mode: "default" as const,
+      };
+    }
+
+    return null;
+  }
+
+  setRandomInitialTitle();
 
   photoButton?.addEventListener("click", () => {
-    if (isAnimating) return;
+    if (isAnimating || clickCount >= 50) return;
+
+    clickCount++;
+
+    if (clickCount === 50) {
+      lockButtonAfterVictory();
+      return;
+    }
 
     isAnimating = true;
-    isWorkPhotoVisible = !isWorkPhotoVisible;
-
-    photoButton.setAttribute("disabled", "true");
-    photoButton.setAttribute("aria-pressed", String(isWorkPhotoVisible));
 
     if (isWorkPhotoVisible) {
-      portraitImage?.classList.remove("opacity-100");
-      portraitImage?.classList.add("opacity-0");
-
-      workImage?.classList.remove("opacity-0");
-      workImage?.classList.add("opacity-100");
-
-      photoButton.classList.remove("bg-success");
-      photoButton.classList.add("bg-accent");
+      showPortraitMode();
     } else {
-      workImage?.classList.remove("opacity-100");
-      workImage?.classList.add("opacity-0");
+      showWorkMode();
+    }
 
-      portraitImage?.classList.remove("opacity-0");
-      portraitImage?.classList.add("opacity-100");
+    const specialTitle = getSpecialTitle();
 
-      photoButton.classList.remove("bg-accent");
-      photoButton.classList.add("bg-success");
+    if (specialTitle) {
+      updateTitle(specialTitle.text, specialTitle.mode);
+    } else if (isWorkPhotoVisible) {
+      updateTitle(getNextShuffledWorkTitle(), "code");
+    } else {
+      updateTitle(getNextShuffledBackTitle(), "default");
     }
 
     window.setTimeout(() => {

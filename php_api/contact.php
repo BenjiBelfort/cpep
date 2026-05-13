@@ -51,7 +51,11 @@ function isValidEmail(string $email): bool
 
 function tooLong(string $value, int $max): bool
 {
-    return mb_strlen($value, 'UTF-8') > $max;
+    if (function_exists('mb_strlen')) {
+        return mb_strlen($value, 'UTF-8') > $max;
+    }
+
+    return strlen($value) > $max;
 }
 
 function countLinks(string $text): int
@@ -67,15 +71,21 @@ function getClientIp(): string
 
 function checkRateLimit(array $config): bool
 {
-    $dir = $config['ratelimit_dir'] ?? (__DIR__ . '/var/ratelimit');
+    $dir = $config['ratelimit_dir'] ?? (__DIR__ . '/../../private/ratelimit');
 
-    if (!is_dir($dir)) {
-        mkdir($dir, 0755, true);
+    if (!is_dir($dir) && !mkdir($dir, 0755, true)) {
+        error_log('Impossible de créer le dossier rate limit : ' . $dir);
+        return false;
+    }
+
+    if (!is_writable($dir)) {
+        error_log('Dossier rate limit non inscriptible : ' . $dir);
+        return false;
     }
 
     $ip = getClientIp();
     $hash = hash('sha256', $ip);
-    $file = $dir . '/' . $hash . '.json';
+    $file = rtrim($dir, '/') . '/' . $hash . '.json';
 
     $now = time();
     $window = (int) ($config['rate_limit_window'] ?? 3600);
@@ -103,7 +113,12 @@ function checkRateLimit(array $config): bool
 
     $attempts[] = $now;
 
-    file_put_contents($file, json_encode($attempts), LOCK_EX);
+    $written = file_put_contents($file, json_encode($attempts), LOCK_EX);
+
+    if ($written === false) {
+        error_log('Impossible d’écrire le fichier rate limit : ' . $file);
+        return false;
+    }
 
     return true;
 }
@@ -154,16 +169,6 @@ if ($elapsedSeconds > $maxSubmitTime) {
     exit;
 }
 
-// Rate limit IP
-if (!checkRateLimit($config)) {
-    http_response_code(429);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Trop de tentatives. Merci de réessayer plus tard.'
-    ]);
-    exit;
-}
-
 // Validation
 $errors = [];
 
@@ -202,6 +207,16 @@ if (!empty($errors)) {
     echo json_encode([
         'success' => false,
         'message' => implode(' ', $errors)
+    ]);
+    exit;
+}
+
+// Rate limit IP
+if (!checkRateLimit($config)) {
+    http_response_code(429);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Trop de tentatives. Merci de réessayer plus tard.'
     ]);
     exit;
 }
@@ -271,7 +286,10 @@ L’équipe CPEP
 ";
 
 try {
-    // 1. Email vers CPEP
+    // 1. Email vers CPEP : celui-ci est indispensable.
+    $replyToEmail = isValidEmail($email) ? $email : null;
+    $replyToName = $name !== '' ? $name : $email;
+
     $adminSent = sendMail(
         $config,
         $config['mail_to'],
@@ -279,23 +297,31 @@ try {
         $adminSubject,
         $adminHtml,
         $adminText,
-        $email,
-        $name
+        $replyToEmail,
+        $replyToName
     );
 
     if (!$adminSent) {
         throw new RuntimeException('Échec de l’envoi admin. Vérifier les logs PHPMailer.');
     }
 
-    // 2. Confirmation client
-    sendMail(
-        $config,
-        $email,
-        $name,
-        $clientSubject,
-        $clientHtml,
-        $clientText
-    );
+    // 2. Confirmation client : utile, mais ne doit pas bloquer la demande.
+    try {
+        $clientSent = sendMail(
+            $config,
+            $email,
+            $name,
+            $clientSubject,
+            $clientHtml,
+            $clientText
+        );
+
+        if (!$clientSent) {
+            error_log('Confirmation client non envoyée à : ' . $email);
+        }
+    } catch (Throwable $clientError) {
+        error_log('Erreur confirmation client : ' . $clientError->getMessage());
+    }
 
     echo json_encode([
         'success' => true,
@@ -303,6 +329,10 @@ try {
     ]);
 } catch (Throwable $e) {
     error_log('Erreur formulaire contact CPEP : ' . $e->getMessage());
+    error_log('Fichier : ' . $e->getFile());
+    error_log('Ligne : ' . $e->getLine());
+    error_log('HTTP_HOST : ' . ($_SERVER['HTTP_HOST'] ?? 'unknown'));
+    error_log('Email testé : ' . $email);
 
     http_response_code(500);
     echo json_encode([
