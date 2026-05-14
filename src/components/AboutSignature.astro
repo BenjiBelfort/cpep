@@ -99,55 +99,64 @@ const socialLinks = [
       </div>
     </div>
 
-    <div class="grid gap-8 lg:grid-cols-[1fr_260px] lg:items-center">
-      <div>
-        <h2
-          id="about-signature-title"
-          class="text-xl font-bold leading-tight text-text md:text-2xl"
-        >
-          <span class="text-text/90">Entre packaging, terrain et développement web</span> <br />
-            <span
-              id="benjamin-dynamic-title"
-              class="inline-block max-w-full break-words text-3xl transition-all duration-500 ease-out md:text-4xl"
-            >
-              Hello, je suis Benjamin.
-            </span>
-        </h2>
-
-        <p class="mt-4 max-w-2xl text-base leading-relaxed text-text/90 md:text-lg">
-          Avec plus de 25 ans d’expérience dans l’emballage, le packaging,
-          le print et les supports personnalisés, j’aide les entreprises à faire
-          les bons choix pour leurs emballages et supports de communication :
-          <strong>utiles, durables, bien sourcés et bien placés</strong>.
-        </p>
-
-        <p class="mt-3 max-w-2xl text-base leading-relaxed text-text/85">
-          Depuis 2024, j’ai intégré le développement web pour créer mes propres
-          outils, automatiser ce qui peut l’être, et gagner en efficacité. Cette
-          approche me permet aujourd’hui de proposer à mes clients des solutions
-          digitales utiles, sobres et pensées pour leur quotidien.
-        </p>
-      </div>
-
-      <!-- CTA contact -->
-      <div
-        class="group relative block overflow-hidden rounded-sm bg-primary p-3 text-white shadow-[0_18px_45px_rgba(60,110,113,0.24)] transition duration-300 hover:shadow-[0_24px_60px_rgba(60,110,113,0.30)]"
+    <div>
+      <h2
+        id="about-signature-title"
+        class="text-xl font-bold leading-tight text-text md:text-2xl"
       >
-        <!-- reflet -->
-        <span
-          class="pointer-events-none absolute inset-0 bg-linear-to-br from-white/25 via-white/5 to-transparent opacity-80"
-          aria-hidden="true"
-        ></span>
+        <span class="text-text/90">
+          Entre packaging, terrain et développement web.
+        </span>
+        <br />
 
-        <!-- petit motif grille discret -->
         <span
-          class="pointer-events-none absolute inset-0 opacity-15"
-          style="background-image: linear-gradient(rgba(255,255,255,.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.45) 1px, transparent 1px); background-size: 18px 18px;"
-          aria-hidden="true"
-        ></span>
+          id="benjamin-title-box"
+          class="flex h-[8rem] max-w-full items-center overflow-visible md:h-[7rem] lg:h-[5rem]"
+        >
+          <span
+            id="benjamin-dynamic-title"
+            class="inline-block max-w-full text-3xl transition-opacity duration-500 ease-out [overflow-wrap:anywhere] md:text-4xl"
+          >
+            Hello, je suis Benjamin.
+          </span>
+        </span>
+      </h2>
 
-        <div class="relative flex min-h-40 flex-col justify-between">
-          <div>
+      <div class="mt-4 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
+        <div class="min-w-0">
+          <p class="max-w-2xl text-base leading-relaxed text-text/90 md:text-lg">
+            Avec plus de 25 ans d’expérience dans l’emballage, le packaging,
+            le print et les supports personnalisés, j’aide les entreprises à faire
+            les bons choix pour leurs emballages et supports de communication :
+            <strong>utiles, durables, bien sourcés et bien placés</strong>.
+          </p>
+
+          <p class="mt-3 max-w-2xl text-base leading-relaxed text-text/85">
+            Depuis 2024, j’ai intégré le développement web pour créer mes propres
+            outils, automatiser ce qui peut l’être, et gagner en efficacité. Cette
+            approche me permet aujourd’hui de proposer à mes clients des solutions
+            digitales utiles, sobres et pensées pour leur quotidien.
+          </p>
+        </div>
+
+        <!-- CTA contact -->
+        <div
+          class="group relative block w-full overflow-hidden rounded-sm bg-primary p-3 text-white shadow-[0_18px_45px_rgba(60,110,113,0.24)] transition duration-300 hover:shadow-[0_24px_60px_rgba(60,110,113,0.30)] lg:justify-self-end"
+        >
+          <!-- reflet -->
+          <span
+            class="pointer-events-none absolute inset-0 bg-linear-to-br from-white/25 via-white/5 to-transparent opacity-80"
+            aria-hidden="true"
+          ></span>
+
+          <!-- petit motif grille discret -->
+          <span
+            class="pointer-events-none absolute inset-0 opacity-15"
+            style="background-image: linear-gradient(rgba(255,255,255,.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.45) 1px, transparent 1px); background-size: 18px 18px;"
+            aria-hidden="true"
+          ></span>
+
+          <div class="relative">
             <span class="block text-xs font-bold uppercase tracking-[0.18em] text-white/70">
               Contact
             </span>
@@ -187,11 +196,11 @@ const socialLinks = [
                 </span>
               </a>
             </div>
-          </div>
 
-          <p class="mt-5 text-sm text-white/70">
-            Une question, un projet, un devis&nbsp;?
-          </p>
+            <p class="mt-5 text-sm text-white/70">
+              Une question, un projet, un devis&nbsp;?
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -218,10 +227,10 @@ const socialLinks = [
   ];
 
   const backTitles = [
-    "Je suis Benjamin, comment puis-je vous aider ?",
-    "Benjamin de retour. Print, web ou les deux ?",
+    "Je suis Benjamin, comment puis-je vous aider\u00A0?",
+    "Benjamin de retour. Print, web ou les deux\u00A0?",
     "Disponible pour parler sacs, sites et bonnes idées.",
-    "Un projet print ou web ? Je vous écoute.",
+    "Un projet print ou web\u00A0? Je vous écoute.",
   ];
 
   let isWorkPhotoVisible = false;
@@ -264,7 +273,7 @@ const socialLinks = [
   function updateTitle(text: string, mode: "default" | "code" = "default") {
     if (!dynamicTitle) return;
 
-    dynamicTitle.classList.add("opacity-0", "translate-y-1");
+    dynamicTitle.classList.add("opacity-0");
 
     window.setTimeout(() => {
       dynamicTitle.textContent = text;
@@ -277,7 +286,8 @@ const socialLinks = [
           "px-3",
           "py-1.5",
           "font-mono",
-          "text-xl",
+          "text-lg",
+          "sm:text-xl",
           "text-creative",
           "shadow-sm",
           "break-words",
@@ -293,7 +303,8 @@ const socialLinks = [
           "px-3",
           "py-1.5",
           "font-mono",
-          "text-xl",
+          "text-lg",
+          "sm:text-xl",
           "text-creative",
           "shadow-sm",
           "break-words",
@@ -303,7 +314,7 @@ const socialLinks = [
         dynamicTitle.classList.add("text-3xl", "md:text-4xl");
       }
 
-      dynamicTitle.classList.remove("opacity-0", "translate-y-1");
+      dynamicTitle.classList.remove("opacity-0");
     }, 250);
   }
 
@@ -352,7 +363,7 @@ const socialLinks = [
       "cursor-not-allowed",
     );
 
-    updateTitle("Bravo 50 clics ! On bosse ensemble ?", "default");
+    updateTitle("Bravo 50 clics\u00A0! On bosse ensemble\u00A0?", "default");
   }
 
   function getSpecialTitle() {
@@ -365,7 +376,7 @@ const socialLinks = [
 
     if (clickCount === 14) {
       return {
-        text: `${clickCount} clics sur ce bouton ! Vous êtes tenace.`,
+        text: `${clickCount} clics sur ce bouton\u00A0! Vous êtes tenace.`,
         mode: "default" as const,
       };
     }
@@ -379,7 +390,7 @@ const socialLinks = [
 
     if (clickCount === 28) {
       return {
-        text: `${clickCount} clics... est-ce que TVB ?`,
+        text: `${clickCount} clics... est-ce que TVB\u00A0?`,
         mode: "default" as const,
       };
     }
@@ -387,13 +398,13 @@ const socialLinks = [
     if (clickCount > 28 && clickCount < 50) {
       if (isWorkPhotoVisible) {
         return {
-          text: "contactForm.submit() // bonne idée !",
+          text: "contactForm.submit() // bonne idée\u00A0!",
           mode: "code" as const,
         };
       }
 
       return {
-        text: "Vous voulez pas plutôt m’envoyer un mail ?",
+        text: "Vous voulez pas plutôt m’envoyer un mail\u00A0?",
         mode: "default" as const,
       };
     }

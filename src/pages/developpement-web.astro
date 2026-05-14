@@ -1,0 +1,453 @@
+---
+// src/pages/developpement-web.astro
+import { Icon } from "astro-icon/components";
+import PageLayout from "../layouts/PageLayout.astro";
+import QuoteButton from "../components/ui/QuoteButton.astro";
+
+const projects = [
+  {
+    title: "EMS Audit",
+    label: "En ligne",
+    subtitle: "Expertise comptable",
+    image: "/photos/realisations/ems-audit.webp",
+    href: "https://www.emsaudit.com/",
+    description: ["Site multipages", "Animations", "Simulateur fiscal"],
+    problem: "Intégrer un simulateur fiscal sur un site professionnel clair et rassurant.",
+    solution: "Développement d’un site structuré avec intégration PHP pour gérer la logique métier.",
+    tags: ["Next.js", "Tailwind CSS", "PHPMailer"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Batuca Noventa",
+    label: "En ligne",
+    subtitle: "Troupe de batucada",
+    image: "/photos/realisations/batuca-noventa.webp",
+    href: "https://www.batucanoventa.fr/",
+    description: ["Site multipages", "Formulaires de contact", "Objets interactifs"],
+    problem: "Faire connaître le groupe, présenter les prestations et faciliter la prise de contact.",
+    solution: "Création d’un site vivant avec SEO local, formulaires et animations CSS.",
+    tags: ["Astro", "Tailwind CSS", "PHPMailer"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Sylvie Bastaroli",
+    label: "En ligne",
+    subtitle: "Courtière",
+    image: "/photos/realisations/bscourtage.webp",
+    href: "https://www.bscourtage.com/",
+    description: ["Site multipages", "Formulaire de contact"],
+    problem: "Créer un site sobre avec un formulaire fiable et une notification par email.",
+    solution: "Mise en place d’un formulaire de contact relié à un envoi PHP.",
+    tags: ["Astro", "Tailwind CSS", "PHPMailer"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Baptiste Jeandel",
+    label: "En ligne",
+    subtitle: "Musicothérapeute",
+    image: "/photos/realisations/baptiste-jeandel.webp",
+    href: "https://www.baptistejeandel.fr/",
+    description: ["Tunnel de communication", "Formulaires personnalisés"],
+    problem: "Accompagner plusieurs parcours de demande avec des formulaires adaptés.",
+    solution: "Création de formulaires personnalisés avec envoi Mailgun et webhook.",
+    tags: ["Astro", "Tailwind CSS", "Netlify", "Mailgun"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Happy Dog",
+    label: "En ligne",
+    subtitle: "Boutique canine",
+    image: "/photos/realisations/happy-dog.webp",
+    href: "https://happy-dog-belfort.fr/",
+    description: ["Site vitrine multipages"],
+    problem: "Créer une présence web simple tout en expérimentant un nouveau framework.",
+    solution: "Développement d’un site vitrine avec Next.js et Tailwind CSS.",
+    tags: ["Next.js", "Tailwind CSS"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Best Off'",
+    label: "En ligne",
+    subtitle: "Rock symphonique",
+    image: "/photos/realisations/bestoff.webp",
+    href: "https://bestoffmusic.fr/",
+    description: ["Vitrine du groupe", "Archives"],
+    problem: "Mettre en ligne un site pour présenter le groupe et conserver ses archives.",
+    solution: "Déploiement d’un site React avec navigation interne et hébergement classique.",
+    tags: ["React", "React Router", "GitHub", "Tailwind CSS"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Phil Bullet Art",
+    label: "En ligne",
+    subtitle: "Bullet artiste",
+    image: "/photos/realisations/phil-bullet-art.webp",
+    href: "https://www.bullet-art.com/",
+    description: ["Site one page", "Galerie d’images"],
+    problem: "Simplifier la présentation des œuvres et moderniser le style.",
+    solution: "Création d’une interface plus directe avec une galerie claire.",
+    tags: ["React", "Tailwind CSS"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Charlotte Litot-Picard",
+    label: "En ligne",
+    subtitle: "Parentalité & vivre ensemble",
+    image: "/photos/realisations/charlotte.webp",
+    href: "https://parentalite-vivreensemble.fr/",
+    description: ["Site WordPress"],
+    problem: "Permettre une gestion autonome du contenu au quotidien.",
+    solution: "Mise en place d’un site WordPress simple à administrer.",
+    tags: ["WordPress", "Plugins"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+  {
+    title: "Les Aiguilles du Baron",
+    label: "En ligne",
+    subtitle: "Salon de tatouage",
+    image: "/photos/realisations/ladb.webp",
+    href: "https://www.lesaiguillesdubaron.fr/",
+    description: ["Site one page", "Galerie filtrée", "Formulaire de contact", "SEO"],
+    problem: "Présenter le salon, les artistes et gérer les demandes de contact.",
+    solution: "Création d’un site vitrine avec galerie filtrée, gestion cookies, SEO et EmailJS.",
+    tags: ["HTML", "CSS", "JavaScript", "React", "SEO", "EmailJS"],
+        lighthouse: {
+        performance: 94,
+        accessibility: 100,
+        bestPractices: 100,
+        seo: 100,
+    },
+  },
+];
+---
+
+<PageLayout
+  title="Développement web — CPEP"
+  description="Sites vitrines, refontes, SEO technique et développements spécifiques : découvrez quelques réalisations web concrètes."
+  showHero={false}
+>
+  <section
+    id="developpement-web"
+    aria-labelledby="developpement-web-title"
+    class="relative isolate overflow-x-clip"
+  >
+    <div class="mx-auto px-4 py-20 cpep-web-radial">
+      <div class="mx-auto max-w-6xl">
+        <!-- Intro -->
+        <header class="relative z-20 max-w-4xl">
+
+          <h1
+            id="developpement-web-title"
+            class="mt-6 max-w-5xl text-5xl font-bold text-text md:text-7xl"
+          >
+            Des sites web sobres, utiles et faits pour durer.
+          </h1>
+
+          <p class="mt-6 max-w-3xl text-lg leading-relaxed text-text/85">
+            Sites vitrines, refontes, formulaires, galeries, SEO, tunnels de contact
+            ou développements spécifiques&nbsp;: chaque projet répond à un besoin concret.
+            Pas de poudre aux yeux, sauf si elle est bien optimisée.
+          </p>
+        </header>
+
+        <!-- Intro secondaire -->
+        <div class="mt-14 grid gap-6 md:grid-cols-3">
+          <article class="rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_18px_45px_rgba(8,7,8,0.08)] backdrop-blur-xl">
+            <Icon name="lucide:layout-template" class="h-5 w-5 text-primary" aria-hidden="true" />
+            <h2 class="mt-4 font-semibold text-text">Des sites clairs</h2>
+            <p class="mt-2 text-sm leading-relaxed text-text/75">
+              Une structure lisible, une navigation simple et des contenus bien hiérarchisés.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_18px_45px_rgba(8,7,8,0.08)] backdrop-blur-xl">
+            <Icon name="lucide:gauge" class="h-5 w-5 text-primary" aria-hidden="true" />
+            <h2 class="mt-4 font-semibold text-text">Des sites rapides</h2>
+            <p class="mt-2 text-sm leading-relaxed text-text/75">
+              Performance, responsive design, SEO technique et bonnes pratiques front-end.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-white/80 bg-white/45 p-5 shadow-[0_18px_45px_rgba(8,7,8,0.08)] backdrop-blur-xl">
+            <Icon name="lucide:wrench" class="h-5 w-5 text-primary" aria-hidden="true" />
+            <h2 class="mt-4 font-semibold text-text">Des solutions utiles</h2>
+            <p class="mt-2 text-sm leading-relaxed text-text/75">
+              Formulaires, automatisations, galeries, intégrations et outils adaptés au projet.
+            </p>
+          </article>
+        </div>
+
+        <!-- Réalisations -->
+        <section
+          id="realisations-web"
+          aria-labelledby="realisations-web-title"
+          class="mt-24"
+        >
+          <div class="mb-10 max-w-3xl">
+            <p class="text-sm font-medium uppercase tracking-[0.18em] text-primary">
+              Réalisations
+            </p>
+
+            <h2
+              id="realisations-web-title"
+              class="mt-3 text-4xl font-bold leading-tight text-text md:text-5xl"
+            >
+              Quelques projets déjà passés en prod.
+            </h2>
+
+            <p class="mt-4 text-text/80">
+              Chaque carte présente le contexte du site, le problème à résoudre
+              et la solution mise en place. Simple, concret, efficace.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {projects.map((project) => (
+              <article class="group relative overflow-hidden rounded-2xl border border-white/80 bg-white/45 shadow-[0_18px_45px_rgba(8,7,8,0.08)] backdrop-blur-xl transition duration-300 hover:border-accent/50 hover:bg-white/55 hover:shadow-[0_24px_60px_rgba(8,7,8,0.12)]">
+                <!-- Reflet liquid glass -->
+                <div
+                  class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-white/80 via-white/20 to-primary/10 opacity-70"
+                  aria-hidden="true"
+                ></div>
+
+                <!-- Ligne brillante -->
+                <div
+                  class="pointer-events-none absolute inset-x-4 top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent"
+                  aria-hidden="true"
+                ></div>
+
+                <div class="relative z-10 flex h-full flex-col">
+                  <div class="overflow-hidden p-3">
+                    <img
+                      src={project.image}
+                      alt={`Aperçu du site ${project.title}`}
+                      width="900"
+                      height="600"
+                      loading="lazy"
+                      decoding="async"
+                      class="aspect-[16/10] w-full rounded-xl object-cover shadow-sm transition duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+
+                  <div class="flex flex-1 flex-col px-5 pb-5">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                        {project.subtitle}
+                      </p>
+
+                      <span class="rounded-full border border-primary/10 bg-white/60 px-2.5 py-1 text-xs font-medium text-text/60">
+                        {project.label}
+                      </span>
+                    </div>
+
+                    <h3 class="mt-3 text-2xl font-bold text-text">
+                      {project.title}
+                    </h3>
+
+                    <ul class="mt-4 flex flex-wrap gap-2">
+                      {project.description.map((item) => (
+                        <li class="rounded-full border border-white/80 bg-white/55 px-2.5 py-1 text-xs font-medium text-text/70">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div class="mt-5 space-y-4">
+                      <div>
+                        <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+                          <Icon name="lucide:circle-alert" class="h-4 w-4" aria-hidden="true" />
+                          Problème
+                        </p>
+
+                        <p class="mt-2 text-sm leading-relaxed text-text/75">
+                          {project.problem}
+                        </p>
+                      </div>
+
+                      <div>
+                        <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                          <Icon name="lucide:check-circle-2" class="h-4 w-4" aria-hidden="true" />
+                          Solution
+                        </p>
+
+                        <p class="mt-2 text-sm leading-relaxed text-text/75">
+                          {project.solution}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="mt-6 flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span class="rounded-full border border-primary/15 bg-white/55 px-2.5 py-1 text-xs font-medium text-text/70">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div class="mt-auto pt-6">
+                        {project.lighthouse && (
+                            <div class="mb-5 rounded-2xl border border-white/80 bg-white/50 p-4 shadow-inner backdrop-blur-md">
+                            <div class="mb-3 flex items-center justify-between gap-3">
+                                <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                                <Icon name="lucide:gauge" class="h-4 w-4" aria-hidden="true" />
+                                Lighthouse
+                                </p>
+
+                                <span class="text-xs font-medium text-text/45">
+                                Scores desktop
+                                </span>
+                            </div>
+
+                            <div class="grid grid-cols-4 gap-2">
+                                <div class="text-center">
+                                <div class="mx-auto grid h-11 w-11 place-items-center rounded-full border border-primary/15 bg-white/70 text-sm font-bold text-primary">
+                                    {project.lighthouse.performance}
+                                </div>
+                                <p class="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.08em] text-text/50">
+                                    Perf
+                                </p>
+                                </div>
+
+                                <div class="text-center">
+                                <div class="mx-auto grid h-11 w-11 place-items-center rounded-full border border-primary/15 bg-white/70 text-sm font-bold text-primary">
+                                    {project.lighthouse.accessibility}
+                                </div>
+                                <p class="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.08em] text-text/50">
+                                    A11y
+                                </p>
+                                </div>
+
+                                <div class="text-center">
+                                <div class="mx-auto grid h-11 w-11 place-items-center rounded-full border border-primary/15 bg-white/70 text-sm font-bold text-primary">
+                                    {project.lighthouse.bestPractices}
+                                </div>
+                                <p class="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.08em] text-text/50">
+                                    BP
+                                </p>
+                                </div>
+
+                                <div class="text-center">
+                                <div class="mx-auto grid h-11 w-11 place-items-center rounded-full border border-primary/15 bg-white/70 text-sm font-bold text-primary">
+                                    {project.lighthouse.seo}
+                                </div>
+                                <p class="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.08em] text-text/50">
+                                    SEO
+                                </p>
+                                </div>
+                            </div>
+                            </div>
+                        )}
+
+                        <a
+                            href={project.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-accent"
+                        >
+                            Voir le site
+                            <Icon name="lucide:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
+                        </a>
+                        </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <!-- CTA final -->
+        <div class="relative mt-20 overflow-hidden rounded-3xl border border-white/80 bg-primary p-8 text-white shadow-[0_24px_70px_rgba(60,110,113,0.25)] md:p-10">
+          <div
+            class="pointer-events-none absolute inset-0 bg-linear-to-br from-white/20 via-white/5 to-transparent"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="pointer-events-none absolute inset-0 opacity-15"
+            style="background-image: linear-gradient(rgba(255,255,255,.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.45) 1px, transparent 1px); background-size: 18px 18px;"
+            aria-hidden="true"
+          ></div>
+
+          <div class="relative z-10 grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
+                Un projet web en tête&nbsp;?
+              </p>
+
+              <h2 class="mt-2 text-3xl font-bold text-white md:text-4xl">
+                On part du besoin, puis on code proprement.
+              </h2>
+
+              <p class="mt-3 max-w-2xl text-white/80">
+                Site vitrine, refonte, formulaire, galerie, SEO ou outil spécifique&nbsp;:
+                l’objectif est de créer quelque chose d’utile, clair et durable.
+              </p>
+            </div>
+
+            <QuoteButton
+              label="Parler de mon projet web"
+              class="border-white/40 bg-white text-primary hover:bg-white/90"
+            />
+          </div>
+        </div>
+
+        <!-- Séparateur fin -->
+        <div class="mx-auto mt-20 max-w-2xl" aria-hidden="true">
+          <div class="flex items-center justify-center gap-4">
+            <span class="h-px flex-1 bg-linear-to-r from-transparent via-primary/30 to-primary/10"></span>
+
+            <div class="flex items-center gap-2 rounded-full border border-white/70 bg-white/45 px-4 py-2 text-primary shadow-sm backdrop-blur-xl">
+              <Icon name="lucide:layout-template" class="h-4 w-4" />
+              <span class="h-1 w-1 rounded-full bg-accent/70"></span>
+              <Icon name="lucide:code-2" class="h-4 w-4" />
+              <span class="h-1 w-1 rounded-full bg-accent/70"></span>
+              <Icon name="lucide:rocket" class="h-4 w-4" />
+            </div>
+
+            <span class="h-px flex-1 bg-linear-to-l from-transparent via-primary/30 to-primary/10"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
