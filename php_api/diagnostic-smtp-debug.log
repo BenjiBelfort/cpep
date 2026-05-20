@@ -1,0 +1,375 @@
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 220 GARM-111S005 Wednesday, May 20, 2026
+
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: EHLO www.cpep.fr
+
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250-OVH SMTP PROXY Hello
+250-SIZE 104857600
+250-ENHANCEDSTATUSCODES
+250-AUTH LOGIN PLAIN
+250-AUTH=LOGIN PLAIN
+250 8BITMIME
+
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: AUTH LOGIN
+
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: [credentials hidden]
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-05-20 15:45:25] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: [credentials hidden]
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 235 2.7.0 Authentication successful
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: MAIL FROM:<formulaire@cpep.fr>
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250 2.1.0 Ok
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: RCPT TO:<benjamin.belfort@gmail.com>
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250 2.1.5 Ok
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: RCPT TO:<contact@cpep.fr>
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250 2.1.5 Ok
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: DATA
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 354 OK
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Date: Wed, 20 May 2026 15:45:25 +0200
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: To: benjamin.belfort@gmail.com
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: From: CPEP <formulaire@cpep.fr>
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Reply-To: CPEP <formulaire@cpep.fr>
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Subject: =?UTF-8?Q?Votre_diagnostic_visibilit=C3=A9_web_-_CPEP?=
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Message-ID: <ZwLQSTJr1Yyr8yF8B9QLhyTYD629DADmIWBd26IQjE@www.cpep.fr>
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.2 (https://github.com/PHPMailer/PHPMailer)
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: MIME-Version: 1.0
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Type: multipart/alternative;
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER:  boundary="b1=_ZwLQSTJr1Yyr8yF8B9QLhyTYD629DADmIWBd26IQjE"
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: --b1=_ZwLQSTJr1Yyr8yF8B9QLhyTYD629DADmIWBd26IQjE
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Type: text/plain; charset=UTF-8
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Bonjour,
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Voici votre premier diagnostic de visibilité web.
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Site analysé : https://www.bscourtage.com/
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Score provisoire : 100 / 100
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Temps de chargement : 0.04s
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Poids HTML : 54.9 Ko
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Entreprise : Test CPEP
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Données détectées :
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Title : Sylvie Bastaroli — Courtier immobilier à Belfort (48 caractères)
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Meta description : Courtier en prêts immobiliers à Belfort, spécialisée en négociation de prêt, rachat de crédit et assurance emprunteur. (118 caractères)
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - H1 : 1
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Images : 3, dont 0 sans attribut alt
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Points à vérifier :
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Aucun point bloquant évident détecté dans cette première analyse.
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Ce diagnostic est volontairement simple pour ce premier test.
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Benjamin — CPEP
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: https://www.cpep.fr
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: --b1=_ZwLQSTJr1Yyr8yF8B9QLhyTYD629DADmIWBd26IQjE
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Bonjour,
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Voici votre premier diagnostic de visibilité web.
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Site analysé : https://www.bscourtage.com/
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Score provisoire : 100 / 100
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Temps de chargement : 0.04s
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Poids HTML : 54.9 Ko
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Entreprise : Test CPEP
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Données détectées :
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Title : Sylvie Bastaroli — Courtier immobilier à Belfort (48 caractères)
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Meta description : Courtier en prêts immobiliers à Belfort, spécialisée en négociation de prêt, rachat de crédit et assurance emprunteur. (118 caractères)
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - H1 : 1
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Images : 3, dont 0 sans attribut alt
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Points à vérifier :
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Aucun point bloquant évident détecté dans cette première analyse.
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Ce diagnostic est volontairement simple pour ce premier test.
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Benjamin — CPEP
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: https://www.cpep.fr
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: --b1=_ZwLQSTJr1Yyr8yF8B9QLhyTYD629DADmIWBd26IQjE--
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: .
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250 2.0.0 Ok: 2705 bytes queued as 2DDBE81013
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: QUIT
+
+[2026-05-20 15:45:26] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 221 cpep.fr Service closing transmission channel
+
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 220 GARM-110S004 Wednesday, May 20, 2026
+
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: EHLO www.cpep.fr
+
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250-OVH SMTP PROXY Hello
+250-SIZE 104857600
+250-ENHANCEDSTATUSCODES
+250-AUTH LOGIN PLAIN
+250-AUTH=LOGIN PLAIN
+250 8BITMIME
+
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: AUTH LOGIN
+
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: [credentials hidden]
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-05-20 15:46:18] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: [credentials hidden]
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 235 2.7.0 Authentication successful
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: MAIL FROM:<formulaire@cpep.fr>
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250 2.1.0 Ok
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: RCPT TO:<contact@cpep.fr>
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 250 2.1.5 Ok
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: DATA
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 354 Start mail input; end with <CRLF>.<CRLF>
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Date: Wed, 20 May 2026 15:46:18 +0200
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: To: contact@cpep.fr
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: From: CPEP <formulaire@cpep.fr>
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Reply-To: CPEP <formulaire@cpep.fr>
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Subject: =?UTF-8?Q?Votre_diagnostic_visibilit=C3=A9_web_-_CPEP?=
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Message-ID: <yktuwdbJGoc0wh2mxNH3FA2ejA2YJ00gdAo5tkeAy0@www.cpep.fr>
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.2 (https://github.com/PHPMailer/PHPMailer)
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: MIME-Version: 1.0
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Type: multipart/alternative;
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER:  boundary="b1=_yktuwdbJGoc0wh2mxNH3FA2ejA2YJ00gdAo5tkeAy0"
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: --b1=_yktuwdbJGoc0wh2mxNH3FA2ejA2YJ00gdAo5tkeAy0
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Type: text/plain; charset=UTF-8
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Bonjour,
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Voici votre premier diagnostic de visibilité web.
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Site analysé : https://www.bscourtage.com/
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Score provisoire : 100 / 100
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Temps de chargement : 0.02s
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Poids HTML : 54.9 Ko
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Entreprise : Test CPEP
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Données détectées :
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Title : Sylvie Bastaroli — Courtier immobilier à Belfort (48 caractères)
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Meta description : Courtier en prêts immobiliers à Belfort, spécialisée en négociation de prêt, rachat de crédit et assurance emprunteur. (118 caractères)
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - H1 : 1
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Images : 3, dont 0 sans attribut alt
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Points à vérifier :
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Aucun point bloquant évident détecté dans cette première analyse.
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Ce diagnostic est volontairement simple pour ce premier test.
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Benjamin — CPEP
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: https://www.cpep.fr
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: --b1=_yktuwdbJGoc0wh2mxNH3FA2ejA2YJ00gdAo5tkeAy0
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Bonjour,
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Voici votre premier diagnostic de visibilité web.
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Site analysé : https://www.bscourtage.com/
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Score provisoire : 100 / 100
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Temps de chargement : 0.02s
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Poids HTML : 54.9 Ko
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Entreprise : Test CPEP
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Données détectées :
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Title : Sylvie Bastaroli — Courtier immobilier à Belfort (48 caractères)
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Meta description : Courtier en prêts immobiliers à Belfort, spécialisée en négociation de prêt, rachat de crédit et assurance emprunteur. (118 caractères)
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - H1 : 1
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Images : 3, dont 0 sans attribut alt
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Points à vérifier :
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: - Aucun point bloquant évident détecté dans cette première analyse.
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Ce diagnostic est volontairement simple pour ce premier test.
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: Benjamin — CPEP
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: https://www.cpep.fr
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: --b1=_yktuwdbJGoc0wh2mxNH3FA2ejA2YJ00gdAo5tkeAy0--
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: 
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: .
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 550-5.7.0 Mail quota exceeded for formulaire@cpep.fr: You have exceeded the limit of 200 messages per hour and per account. Please, re-try later.
+221 Closing connection, please refrain from sending too many mails
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : SMTP ERROR: DATA END command failed: 550-5.7.0 Mail quota exceeded for formulaire@cpep.fr: You have exceeded the limit of 200 messages per hour and per account. Please, re-try later.
+221 Closing connection, please refrain from sending too many mails
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 2 : SMTP Error: data not accepted.
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 1 : CLIENT -> SERVER: QUIT
+
+[2026-05-20 15:46:19] SMTP DEBUG LEVEL 2 : SERVER -> CLIENT: 221 cpep.fr Service closing transmission channel
+
