@@ -5,7 +5,7 @@ import QuoteButton from "./ui/QuoteButton.astro";
 
 <section
   id="hero"
-  class="relative isolate min-h-[100svh]"
+  class="relative isolate min-h-[100svh] overflow-hidden"
   aria-labelledby="hero-title"
 >
   <picture>
@@ -21,6 +21,18 @@ import QuoteButton from "./ui/QuoteButton.astro";
       fetchpriority="high"
     />
   </picture>
+
+  <!-- Halo accent très discret côté contenu / web -->
+  <div
+    class="pointer-events-none absolute left-[-10rem] top-[18%] -z-10 h-[28rem] w-[28rem] rounded-full bg-accent/8 blur-3xl md:left-[-14rem] md:top-[22%] md:h-[34rem] md:w-[34rem]"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Halo primary très discret côté sac / packaging -->
+  <div
+    class="pointer-events-none absolute right-[-12rem] bottom-[8%] -z-10 h-[30rem] w-[30rem] rounded-full bg-primary/10 blur-3xl md:right-[-16rem] md:bottom-[6%] md:h-[38rem] md:w-[38rem]"
+    aria-hidden="true"
+  ></div>
 
   <div class="mx-auto grid min-h-[100svh] max-w-6xl items-center gap-8 px-4 py-16 md:grid-cols-[1.1fr,1fr] md:py-24">
     <div class="max-w-[56ch] justify-self-start md:max-w-[52ch]">

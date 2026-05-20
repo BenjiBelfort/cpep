@@ -10,7 +10,7 @@
   --color-primary: #3C6E71;      /* Primaire : Bleu doux CPEP */
   --color-accent: #F9564F;       /* Secondaire accent : CPEP orange : #F9564F*/
   --color-bg: #F6F4F3;           /* Blanc cassé (fond principal) */
-  --color-bg-alt: #CFCAC7; 
+  --color-bg-alt: #CFCAC7;       /* un peu plus foncé que blanc cassé */
   --color-text: #080708;         /* TEXTES Raisin Black, avant : #585858*/
   --color-bg-light: #C8D8E4;     /* Fond clair : Bleu clair */
   --color-hover: #D0BCD5;        /* Rose pâle (hover bouton) */
@@ -167,24 +167,32 @@
     /* glow central pour éclairer la zone texte */
     radial-gradient(
       70% 55% at 50% 18%,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0.055) 38%,
+      rgba(255, 255, 255, 0.11) 0%,
+      rgba(255, 255, 255, 0.05) 38%,
       rgba(255, 255, 255, 0) 72%
     ),
 
-    /* halo accent discret */
+    /* halo web gauche — accent très discret */
     radial-gradient(
-      44rem 34rem at 92% 84%,
-      rgba(249, 86, 79, 0.18) 0%,
-      rgba(249, 86, 79, 0.075) 42%,
-      rgba(249, 86, 79, 0) 74%
+      44rem 34rem at 6% 30%,
+      rgba(249, 86, 79, 0.12) 0%,
+      rgba(249, 86, 79, 0.045) 42%,
+      rgba(249, 86, 79, 0) 76%
     ),
 
-    /* halo clair gauche */
+    /* halo packaging droite — primary très discret */
     radial-gradient(
-      38rem 28rem at 8% 20%,
-      rgba(200, 216, 228, 0.16) 0%,
-      rgba(200, 216, 228, 0.07) 44%,
+      48rem 36rem at 94% 72%,
+      rgba(60, 110, 113, 0.20) 0%,
+      rgba(60, 110, 113, 0.08) 42%,
+      rgba(60, 110, 113, 0) 76%
+    ),
+
+    /* petite lumière froide pour garder l'esprit blueprint */
+    radial-gradient(
+      38rem 28rem at 50% 95%,
+      rgba(200, 216, 228, 0.08) 0%,
+      rgba(200, 216, 228, 0.035) 45%,
       rgba(200, 216, 228, 0) 75%
     ),
 
