@@ -20,6 +20,46 @@ const webCards = [
     desc: "Intégrations API, formulaires avancés, back-offices, automatisations et outils métier.",
   },
 ];
+
+const webProjects = [
+  {
+    name: "EMS Audit",
+    image: "/photos/sites-web-responsives-ems.webp",
+    href: "https://www.emsaudit.com/",
+    alt: "Site web responsive EMS Audit adapté mobile tablette et desktop",
+  },
+  {
+    name: "Happy Dog Belfort",
+    image: "/photos/sites-web-responsives-happy.webp",
+    href: "https://www.happy-dog-belfort.fr/",
+    alt: "Site web responsive Happy Dog Belfort adapté mobile tablette et desktop",
+  },
+  {
+    name: "Baptiste Jeandel",
+    image: "/photos/sites-web-responsives-baptiste-jeandel.webp",
+    href: "https://www.baptistejeandel.fr/",
+    alt: "Site web responsive Baptiste Jeandel adapté mobile tablette et desktop",
+  },
+  {
+    name: "Batuca Noventa",
+    image: "/photos/sites-web-responsives-batuca-noventa.webp",
+    href: "https://www.batucanoventa.fr/",
+    alt: "Site web responsive Batuca Noventa adapté mobile tablette et desktop",
+  },
+  {
+    name: "Best Off Music",
+    image: "/photos/sites-web-responsives-best-off.webp",
+    href: "https://bestoffmusic.fr/",
+    alt: "Site web responsive Best Off Music adapté mobile tablette et desktop",
+  },
+  {
+    name: "Phil Bullet Art",
+    image: "/photos/sites-web-responsives-phil-bullet-art.webp",
+    href: "https://www.bullet-art.com/",
+    alt: "Site web responsive Phil Bullet Art adapté mobile tablette et desktop",
+  },
+];
+
 ---
 
 <section
@@ -27,6 +67,20 @@ const webCards = [
   aria-labelledby="web-title"
   class="relative isolate scroll-m-4 overflow-x-clip"
 >
+
+  <button
+    id="web-showcase-switch"
+    type="button"
+    class="absolute left-0 z-40 inline-flex cursor-pointer items-center justify-center rounded-r-full border border-l-0 border-white/70 bg-white/75 px-3 py-4 text-primary shadow-lg backdrop-blur-xl transition hover:bg-white/90 hover:text-accent"
+    aria-label="Changer le visuel du site présenté"
+  >
+    <Icon
+      name="lucide:refresh-ccw"
+      class="web-showcase-switch-icon h-5 w-5"
+      aria-hidden="true"
+    />
+  </button>
+
   <div class="mx-auto px-4 py-20 cpep-web-radial">
     <div class="relative z-20 my-12 flex justify-center">
       <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
@@ -62,15 +116,42 @@ const webCards = [
             ></div> -->
 
             <!-- Image sans cadre, volontairement débordante -->
-            <img
-              src="/photos/sites-web-responsives.webp"
-              alt="Site web responsive adapté mobile tablette et desktop"
-              width="900"
-              height="900"
-              loading="lazy"
-              decoding="async"
-              class="relative z-0 w-[115%] max-w-none -translate-x-6 -translate-y-6 object-contain opacity-90 drop-shadow-xl/20 sm:w-[105%] lg:w-[135%] lg:-translate-x-32 lg:-translate-y-20 xl:w-[150%] xl:-translate-x-44 xl:-translate-y-28"
-            />
+            <figure class="relative z-0">
+              <img
+                id="web-showcase-image"
+                src={webProjects[0].image}
+                alt={webProjects[0].alt}
+                width="900"
+                height="900"
+                loading="lazy"
+                decoding="async"
+                class="w-[115%] max-w-none -translate-x-6 -translate-y-6 object-contain opacity-90 drop-shadow-xl/20 sm:w-[105%] lg:w-[135%] lg:-translate-x-32 lg:-translate-y-20 xl:w-[150%] xl:-translate-x-44 xl:-translate-y-28"
+              />
+
+              <figcaption
+                id="web-showcase-caption"
+                class="absolute left-1/2 bottom-2 z-10 flex -translate-x-1/2 items-center justify-center gap-2 whitespace-nowrap text-center text-xs text-text/55 lg:bottom-18"
+              >
+                <span>
+                  Réalisation web : <span id="web-showcase-name">{webProjects[0].name}</span>
+                </span>
+
+                <a
+                  id="web-showcase-caption-link"
+                  href={webProjects[0].href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex h-6 w-6 items-center justify-center rounded-full text-primary/70 transition hover:bg-white/55 hover:text-primary"
+                  aria-label={`Visiter le site ${webProjects[0].name}`}
+                >
+                  <Icon
+                    name="lucide:external-link"
+                    class="h-3.5 w-3.5"
+                    aria-hidden="true"
+                  />
+                </a>
+              </figcaption>
+            </figure>
           </div>
         </div>
 
@@ -195,3 +276,71 @@ const webCards = [
     </div>
   </div>
 </section>
+
+<script define:vars={{ webProjects }}>
+  const section = document.getElementById("web");
+  const image = document.getElementById("web-showcase-image");
+  const caption = document.getElementById("web-showcase-caption");
+  const captionLink = document.getElementById("web-showcase-caption-link");
+  const name = document.getElementById("web-showcase-name");
+  const switchButton = document.getElementById("web-showcase-switch");
+  const switchIcon = switchButton?.querySelector(".web-showcase-switch-icon");
+
+  let currentIndex = Math.floor(Math.random() * webProjects.length);
+
+  const updateProject = (index) => {
+    const project = webProjects[index];
+
+    if (!image || !captionLink || !name) return;
+
+    image.src = project.image;
+    image.alt = project.alt;
+
+    captionLink.href = project.href;
+    captionLink.setAttribute("aria-label", `Visiter le site ${project.name}`);
+
+    name.textContent = project.name;
+  };
+
+  const alignSwitchButton = () => {
+    if (!section || !caption || !switchButton) return;
+
+    const sectionRect = section.getBoundingClientRect();
+    const captionRect = caption.getBoundingClientRect();
+
+    const captionCenter = captionRect.top + captionRect.height / 2;
+    const topInSection = captionCenter - sectionRect.top;
+
+    switchButton.style.top = `${topInSection}px`;
+    switchButton.style.transform = "translateY(-50%)";
+  };
+
+  updateProject(currentIndex);
+  alignSwitchButton();
+
+  window.addEventListener("resize", alignSwitchButton);
+  window.addEventListener("load", alignSwitchButton);
+
+  switchButton?.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % webProjects.length;
+
+    switchIcon?.classList.remove("animate-[webSwitchSpin_800ms_cubic-bezier(0.4,0,0.2,1)]");
+    void switchIcon?.clientWidth;
+    switchIcon?.classList.add("animate-[webSwitchSpin_800ms_cubic-bezier(0.4,0,0.2,1)]");
+
+    updateProject(currentIndex);
+    alignSwitchButton();
+  });
+</script>
+
+<style>
+  @keyframes webSwitchSpin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+</style>
