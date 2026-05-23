@@ -110,7 +110,8 @@ const webProjects = [
                 alt={webProjects[0].alt}
                 width="900"
                 height="900"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="low"
                 decoding="async"
                 class="w-[115%] max-w-none -translate-x-6 -translate-y-6 object-contain opacity-90 drop-shadow-xl/20 sm:w-[105%] lg:w-[135%] lg:-translate-x-32 lg:-translate-y-20 xl:w-[150%] xl:-translate-x-44 xl:-translate-y-28"
               />
@@ -282,6 +283,7 @@ const webProjects = [
   const switchButton = document.getElementById("web-showcase-switch");
   const switchIcon = switchButton?.querySelector(".web-showcase-switch-icon");
 
+  const fallbackProject = webProjects[0];
   let currentIndex = Math.floor(Math.random() * webProjects.length);
 
   const updateProject = (index) => {
@@ -297,6 +299,20 @@ const webProjects = [
 
     name.textContent = project.name;
   };
+
+  image?.addEventListener("error", () => {
+    if (!image || !captionLink || !name) return;
+
+    image.src = fallbackProject.image;
+    image.alt = fallbackProject.alt;
+
+    captionLink.href = fallbackProject.href;
+    captionLink.setAttribute("aria-label", `Visiter le site ${fallbackProject.name}`);
+
+    name.textContent = fallbackProject.name;
+
+    currentIndex = 0;
+  });
 
   updateProject(currentIndex);
 
