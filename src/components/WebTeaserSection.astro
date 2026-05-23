@@ -68,19 +68,6 @@ const webProjects = [
   class="relative isolate scroll-m-4 overflow-x-clip"
 >
 
-  <button
-    id="web-showcase-switch"
-    type="button"
-    class="absolute left-0 z-40 inline-flex cursor-pointer items-center justify-center rounded-r-full border border-l-0 border-white/70 bg-white/75 px-3 py-4 text-primary shadow-lg backdrop-blur-xl transition hover:bg-white/90 hover:text-accent"
-    aria-label="Changer le visuel du site présenté"
-  >
-    <Icon
-      name="lucide:refresh-ccw"
-      class="web-showcase-switch-icon h-5 w-5"
-      aria-hidden="true"
-    />
-  </button>
-
   <div class="mx-auto px-4 py-20 cpep-web-radial">
     <div class="relative z-20 my-12 flex justify-center">
       <p class="inline-flex flex-col items-center gap-2 text-center text-sm font-medium uppercase tracking-[0.18em] text-primary sm:flex-row sm:text-left">
@@ -127,7 +114,18 @@ const webProjects = [
                 decoding="async"
                 class="w-[115%] max-w-none -translate-x-6 -translate-y-6 object-contain opacity-90 drop-shadow-xl/20 sm:w-[105%] lg:w-[135%] lg:-translate-x-32 lg:-translate-y-20 xl:w-[150%] xl:-translate-x-44 xl:-translate-y-28"
               />
-
+              <button
+                id="web-showcase-switch"
+                type="button"
+                class="absolute left-1/2 bottom-12 z-20 inline-flex -translate-x-1/2 cursor-pointer items-center justify-center rounded-full border border-white/70 bg-white/75 p-2.5 text-primary shadow-lg backdrop-blur-xl transition hover:bg-white/90 hover:text-accent lg:bottom-28"
+                aria-label="Changer le visuel présenté"
+              >
+                <Icon
+                  name="lucide:refresh-ccw"
+                  class="web-showcase-switch-icon h-4 w-4"
+                  aria-hidden="true"
+                />
+              </button>
               <figcaption
                 id="web-showcase-caption"
                 class="absolute left-1/2 bottom-2 z-10 flex -translate-x-1/2 items-center justify-center gap-2 whitespace-nowrap text-center text-xs text-text/55 lg:bottom-18"
@@ -161,7 +159,7 @@ const webProjects = [
             id="web-title"
             class="relative z-20 order-1 mt-6 text-left text-5xl font-bold text-text md:text-6xl lg:mt-6 lg:text-7xl"
           >
-            Des sites web sobres, rapides et faits pour durer.
+            Des sites web sobres, rapides et responsives, pensés pour servir votre activité.
           </h2>
           <div class="order-3 text-left lg:order-none">
             <p class="md:mt-6 max-w-3xl text-text/90">
@@ -278,9 +276,7 @@ const webProjects = [
 </section>
 
 <script define:vars={{ webProjects }}>
-  const section = document.getElementById("web");
   const image = document.getElementById("web-showcase-image");
-  const caption = document.getElementById("web-showcase-caption");
   const captionLink = document.getElementById("web-showcase-caption-link");
   const name = document.getElementById("web-showcase-name");
   const switchButton = document.getElementById("web-showcase-switch");
@@ -302,24 +298,7 @@ const webProjects = [
     name.textContent = project.name;
   };
 
-  const alignSwitchButton = () => {
-    if (!section || !caption || !switchButton) return;
-
-    const sectionRect = section.getBoundingClientRect();
-    const captionRect = caption.getBoundingClientRect();
-
-    const captionCenter = captionRect.top + captionRect.height / 2;
-    const topInSection = captionCenter - sectionRect.top;
-
-    switchButton.style.top = `${topInSection}px`;
-    switchButton.style.transform = "translateY(-50%)";
-  };
-
   updateProject(currentIndex);
-  alignSwitchButton();
-
-  window.addEventListener("resize", alignSwitchButton);
-  window.addEventListener("load", alignSwitchButton);
 
   switchButton?.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % webProjects.length;
@@ -329,7 +308,6 @@ const webProjects = [
     switchIcon?.classList.add("animate-[webSwitchSpin_800ms_cubic-bezier(0.4,0,0.2,1)]");
 
     updateProject(currentIndex);
-    alignSwitchButton();
   });
 </script>
 
