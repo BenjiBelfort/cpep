@@ -47,7 +47,7 @@ const packagingCards = [
             id="pack-title"
             class="order-1 mt-6 min-w-0 text-left text-5xl font-bold text-text md:text-6xl lg:text-7xl lg:mt-6"
           >
-            Des sacs personnalisés qui portent votre image.
+            Des sacs personnalisés qui portent votre image et votre savoir-faire.
           </h2>
 
           <div class="order-3 min-w-0 text-left lg:order-none">
@@ -69,32 +69,27 @@ const packagingCards = [
 
         <!-- Image produit droite -->
         <div class="order-2 min-w-0 lg:order-none">
-          <div class="relative mx-auto flex max-w-xl items-center justify-center lg:mx-0 lg:max-w-none lg:justify-end">
+          <div class="relative mx-auto flex max-w-xl items-center justify-center lg:mx-0 lg:max-w-none lg:justify-start">
             <!-- Halo de mise en valeur : primary pour le packaging -->
             <div
-              class="pointer-events-none absolute -right-20 -top-10 h-72 w-72 rounded-full bg-primary/20 blur-3xl lg:-right-40 lg:-top-24 lg:h-96 lg:w-96"
+              class="pointer-events-none absolute -right-20 -top-5 h-72 w-72 rounded-full bg-primary/20 blur-3xl lg:-right-40 lg:top-20 lg:h-96 lg:w-96"
               aria-hidden="true"
             ></div>
 
-            <!-- Ombre posée -->
-            <!-- <div
-              class="pointer-events-none absolute bottom-2 left-1/2 h-10 w-[78%] -translate-x-1/2 rounded-full bg-black/15 blur-2xl lg:-right-20 lg:left-auto lg:w-[90%] lg:translate-x-0"
-              aria-hidden="true"
-            ></div> -->
-
             <!-- Image sans cadre, volontairement débordante -->
-            <img
-              src="/photos/sacs-ensemble.webp"
-              alt="Ensemble de sacs papier personnalisés CPEP"
-              width="900"
-              height="900"
-              loading="lazy"
-              decoding="async"
-              class="relative z-0 w-[115%] max-w-none -translate-y-6 translate-x-6 object-contain opacity-90 drop-shadow-xl sm:w-[105%] lg:w-[135%] lg:-translate-y-20 lg:translate-x-32 xl:w-[150%] xl:-translate-y-28 xl:translate-x-44"
-            />
+            <figure class="relative z-0 w-full overflow-visible">
+              <img
+                src="/photos/sacs-ensemble.webp"
+                alt="Ensemble de sacs papier personnalisés CPEP"
+                width="900"
+                height="900"
+                loading="lazy"
+                decoding="async"
+                class="block h-auto w-[120%] -translate-y-6 -translate-x-12 max-w-none object-contain drop-shadow-xl sm:w-[115%] lg:w-[160%] xl:w-[170%]"
+              />
+            </figure>
           </div>
         </div>
-
       </div>
 
       <!-- manifest -->
