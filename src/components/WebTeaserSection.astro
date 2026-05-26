@@ -23,38 +23,44 @@ const webCards = [
 
 const webProjects = [
   {
+    slug: "ems-audit",
     name: "EMS Audit",
-    image: "/photos/sites-web-responsives-ems.webp",
+    image: "/photos/web/sites-web-responsives-ems.webp",
     href: "https://www.emsaudit.com/",
     alt: "Site web responsive EMS Audit adapté mobile tablette et desktop",
   },
   {
+    slug: "happy-dog-belfort",
     name: "Happy Dog Belfort",
-    image: "/photos/sites-web-responsives-happy.webp",
+    image: "/photos/web/sites-web-responsives-happy.webp",
     href: "https://www.happy-dog-belfort.fr/",
     alt: "Site web responsive Happy Dog Belfort adapté mobile tablette et desktop",
   },
   {
+    slug: "baptiste-jeandel",
     name: "Baptiste Jeandel",
-    image: "/photos/sites-web-responsives-baptiste-jeandel.webp",
+    image: "/photos/web/sites-web-responsives-baptiste-jeandel.webp",
     href: "https://www.baptistejeandel.fr/",
     alt: "Site web responsive Baptiste Jeandel adapté mobile tablette et desktop",
   },
   {
+    slug: "batuca-noventa",
     name: "Batuca Noventa",
-    image: "/photos/sites-web-responsives-batuca-noventa.webp",
+    image: "/photos/web/sites-web-responsives-batuca-noventa.webp",
     href: "https://www.batucanoventa.fr/",
     alt: "Site web responsive Batuca Noventa adapté mobile tablette et desktop",
   },
   {
+    slug: "best-off-music",
     name: "Best Off Music",
-    image: "/photos/sites-web-responsives-best-off.webp",
+    image: "/photos/web/sites-web-responsives-best-off.webp",
     href: "https://bestoffmusic.fr/",
     alt: "Site web responsive Best Off Music adapté mobile tablette et desktop",
   },
   {
+    slug: "phil-bullet-art",
     name: "Phil Bullet Art",
-    image: "/photos/sites-web-responsives-phil-bullet-art.webp",
+    image: "/photos/web/sites-web-responsives-phil-bullet-art.webp",
     href: "https://www.bullet-art.com/",
     alt: "Site web responsive Phil Bullet Art adapté mobile tablette et desktop",
   },
@@ -284,7 +290,18 @@ const webProjects = [
   const switchIcon = switchButton?.querySelector(".web-showcase-switch-icon");
 
   const fallbackProject = webProjects[0];
-  let currentIndex = Math.floor(Math.random() * webProjects.length);
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedProjectSlug = params.get("webProject");
+
+  const requestedProjectIndex = webProjects.findIndex(
+    (project) => project.slug === requestedProjectSlug
+  );
+
+  let currentIndex =
+    requestedProjectIndex >= 0
+      ? requestedProjectIndex
+      : Math.floor(Math.random() * webProjects.length);
 
   const updateProject = (index) => {
     const project = webProjects[index];
