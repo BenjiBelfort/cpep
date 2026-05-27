@@ -64,6 +64,14 @@ const webProjects = [
     href: "https://www.bullet-art.com/",
     alt: "Site web responsive Phil Bullet Art adapté mobile tablette et desktop",
   },
+    {
+    slug: "cpep",
+    name: "CPEP",
+    image: "/photos/web/sites-web-responsives-cpep.webp",
+    href: "https://www.cpep.fr/",
+    alt: "Site web responsive CPEP adapté mobile tablette et desktop",
+    isCurrentSite: true,
+  },
 ];
 
 ---
@@ -135,7 +143,7 @@ const webProjects = [
               </button>
               <figcaption
                 id="web-showcase-caption"
-                class="absolute left-1/2 bottom-2 z-10 flex -translate-x-1/2 items-center justify-center gap-2 whitespace-nowrap text-center text-xs text-text/55 lg:bottom-18"
+                class="absolute left-1/2 bottom-2 z-10 flex -translate-x-1/2 items-center justify-center gap-2 whitespace-nowrap text-center text-xs text-text/60 lg:bottom-18"
               >
                 <span>
                   Réalisation web : <span id="web-showcase-name">{webProjects[0].name}</span>
@@ -146,7 +154,7 @@ const webProjects = [
                   href={webProjects[0].href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex h-6 w-6 items-center justify-center rounded-full text-primary/70 transition hover:bg-white/55 hover:text-primary"
+                  class="inline-flex h-6 w-6 items-center justify-center rounded-full text-text/60 transition hover:bg-white/55 hover:text-accent"
                   aria-label={`Visiter le site ${webProjects[0].name}`}
                 >
                   <Icon
@@ -311,10 +319,23 @@ const webProjects = [
     image.src = project.image;
     image.alt = project.alt;
 
-    captionLink.href = project.href;
-    captionLink.setAttribute("aria-label", `Visiter le site ${project.name}`);
-
     name.textContent = project.name;
+
+    if (project.isCurrentSite) {
+      captionLink.removeAttribute("href");
+      captionLink.removeAttribute("aria-label");
+      captionLink.setAttribute("aria-hidden", "true");
+      captionLink.setAttribute("tabindex", "-1");
+
+      captionLink.classList.add("invisible", "pointer-events-none");
+    } else {
+      captionLink.href = project.href;
+      captionLink.setAttribute("aria-label", `Visiter le site ${project.name}`);
+      captionLink.removeAttribute("aria-hidden");
+      captionLink.removeAttribute("tabindex");
+
+      captionLink.classList.remove("invisible", "pointer-events-none");
+    }
   };
 
   image?.addEventListener("error", () => {
@@ -323,10 +344,23 @@ const webProjects = [
     image.src = fallbackProject.image;
     image.alt = fallbackProject.alt;
 
-    captionLink.href = fallbackProject.href;
-    captionLink.setAttribute("aria-label", `Visiter le site ${fallbackProject.name}`);
-
     name.textContent = fallbackProject.name;
+
+    if (project.isCurrentSite) {
+      captionLink.removeAttribute("href");
+      captionLink.removeAttribute("aria-label");
+      captionLink.setAttribute("aria-hidden", "true");
+      captionLink.setAttribute("tabindex", "-1");
+
+      captionLink.classList.add("invisible", "pointer-events-none");
+    } else {
+      captionLink.href = project.href;
+      captionLink.setAttribute("aria-label", `Visiter le site ${project.name}`);
+      captionLink.removeAttribute("aria-hidden");
+      captionLink.removeAttribute("tabindex");
+
+      captionLink.classList.remove("invisible", "pointer-events-none");
+    }
 
     currentIndex = 0;
   });
