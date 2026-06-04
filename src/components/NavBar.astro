@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/#about", label: "À propos" },
   // { href: "/#faq", label: "FAQ" },
   { href: "/#contact", label: "Contact" },
+  // { href: "/", label: "Blog" },
 ];
 ---
 
@@ -37,7 +38,7 @@ const navLinks = [
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden items-center gap-6 md:flex">
+    <ul class="hidden items-center gap-6 md:flex lg:text-base md:text-sm">
       {
         navLinks.map((link) => (
           <li>

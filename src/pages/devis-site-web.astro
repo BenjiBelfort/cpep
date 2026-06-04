@@ -1,0 +1,759 @@
+---
+import QuoteFlowLayout from "../layouts/QuoteFlowLayout.astro";
+
+const steps = [
+  {
+    eyebrow: "Étape 1",
+    title: "Qui êtes-vous ?",
+    description: "On commence par les bases, promis ce n’est pas un interrogatoire fiscal.",
+  },
+  {
+    eyebrow: "Étape 2",
+    title: "Avez-vous déjà un site web ?",
+    description: "Cela permet de comprendre si on part d’une page blanche ou d’une refonte.",
+  },
+  {
+    eyebrow: "Étape 3",
+    title: "Quel type de projet web avez-vous en tête ?",
+    description: "Même si ce n’est pas encore très clair, on peut déjà cadrer le besoin.",
+  },
+  {
+    eyebrow: "Étape 4",
+    title: "Quel est votre objectif principal ?",
+    description: "Le but n’est pas juste d’avoir un site joli, mais un site utile.",
+  },
+  {
+    eyebrow: "Étape 5",
+    title: "Où en est votre projet ?",
+    description: "Idée floue, projet urgent ou brief déjà prêt : tout est accepté.",
+  },
+  {
+    eyebrow: "Étape 6",
+    title: "Vos coordonnées",
+    description: "Pour pouvoir vous répondre avec quelque chose de concret.",
+  },
+  {
+    eyebrow: "Récapitulatif",
+    title: "Votre demande web",
+    description: "Relisez rapidement avant l’envoi. Une petite feuille de notes, propre et utile.",
+  },
+];
+---
+
+<QuoteFlowLayout
+  title="Demande de devis site web — CPEP"
+  description="Un parcours simple pour préciser votre besoin en création, refonte, SEO ou maintenance web."
+  closeHref="/#web"
+>
+  <!-- Barre de progression -->
+  <div
+    class="fixed inset-x-0 top-14 z-40 bg-white/45 backdrop-blur-xl"
+    data-quote-flow-progress
+  >
+    <div class="h-1.5 w-full bg-primary/30">
+      <div
+        class="h-full w-[14%] bg-primary transition-all duration-500 ease-out"
+        data-progress-bar
+      ></div>
+    </div>
+  </div>
+
+  <section class="grid min-h-screen place-items-center bg-bg-alt px-4 py-20">
+    <div class="w-full max-w-3xl">
+      <div class="mb-6 text-center">
+        <p class="mx-auto max-w-xl text-base leading-relaxed text-muted md:text-lg">
+          Quelques questions rapides pour comprendre votre projet web.
+        </p>
+      </div>
+
+      <div class="mx-auto w-full max-w-2xl" data-quote-flow>
+        <form class="grid gap-8" data-form novalidate>
+          <!-- Sécurité simple -->
+          <input
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+            class="hidden"
+            aria-hidden="true"
+            data-honeypot
+          />
+          <input type="hidden" name="started_at" value="" data-started-at />
+
+          <!-- Step 1 -->
+          <section class="grid gap-6" data-step="0">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[0].eyebrow}
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[0].title}
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[0].description}
+              </p>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+              <label class="grid gap-2">
+                <span class="font-bold text-text">Prénom *</span>
+                <input
+                  name="firstname"
+                  type="text"
+                  autocomplete="given-name"
+                  required
+                  maxlength="80"
+                  class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                  placeholder="Votre prénom"
+                />
+              </label>
+
+              <label class="grid gap-2">
+                <span class="font-bold text-text">Nom *</span>
+                <input
+                  name="lastname"
+                  type="text"
+                  autocomplete="family-name"
+                  required
+                  maxlength="80"
+                  class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                  placeholder="Votre nom"
+                />
+              </label>
+
+              <label class="grid gap-2 md:col-span-2">
+                <span class="font-bold text-text">Entreprise</span>
+                <input
+                  name="company"
+                  type="text"
+                  autocomplete="organization"
+                  maxlength="120"
+                  class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                  placeholder="Nom de l’entreprise"
+                />
+              </label>
+            </div>
+          </section>
+
+          <!-- Step 2 -->
+          <section class="hidden gap-6" data-step="1">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[1].eyebrow}
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[1].title}
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[1].description}
+              </p>
+            </div>
+
+            <div class="grid gap-3">
+              {
+                [
+                  "Oui, j’ai déjà un site",
+                  "Non, je pars de zéro",
+                  "Il existe, mais il est vieux / pas à jour",
+                  "Je ne suis pas sûr",
+                ].map((label) => (
+                  <label class="group cursor-pointer rounded-2xl bg-white/70 p-4 ring-1 ring-black/5 transition hover:bg-white has-[:checked]:bg-primary has-[:checked]:text-white">
+                    <input
+                      class="sr-only"
+                      type="radio"
+                      name="has_current_site"
+                      value={label}
+                      required
+                    />
+                    <span class="block font-bold">{label}</span>
+                  </label>
+                ))
+              }
+            </div>
+
+            <label class="grid gap-2">
+              <span class="font-bold text-text">Adresse du site actuel</span>
+              <input
+                name="current_site_url"
+                type="url"
+                inputmode="url"
+                autocomplete="url"
+                maxlength="250"
+                class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                placeholder="https://www.exemple.fr"
+                data-url-field
+              />
+              <span class="text-sm text-muted" data-url-feedback>
+                Facultatif si vous n’avez pas encore de site.
+              </span>
+            </label>
+          </section>
+
+          <!-- Step 3 -->
+          <section class="hidden gap-6" data-step="2">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[2].eyebrow}
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[2].title}
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[2].description}
+              </p>
+            </div>
+
+            <div class="grid gap-3 md:grid-cols-2">
+              {
+                [
+                  "Création d’un nouveau site",
+                  "Refonte d’un site existant",
+                  "Site vitrine",
+                  "Site e-commerce",
+                  "Maintenance / amélioration",
+                  "SEO / visibilité Google",
+                  "Développement spécifique",
+                  "Je ne sais pas encore",
+                ].map((label) => (
+                  <label class="group cursor-pointer rounded-2xl bg-white/70 p-4 ring-1 ring-black/5 transition hover:bg-white has-[:checked]:bg-primary has-[:checked]:text-white">
+                    <input
+                      class="sr-only"
+                      type="radio"
+                      name="project_type"
+                      value={label}
+                      required
+                    />
+                    <span class="block font-bold">{label}</span>
+                  </label>
+                ))
+              }
+            </div>
+          </section>
+
+          <!-- Step 4 -->
+          <section class="hidden gap-6" data-step="3">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[3].eyebrow}
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[3].title}
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[3].description}
+              </p>
+            </div>
+
+            <div class="grid gap-3">
+              {
+                [
+                  "Être mieux trouvé sur Google",
+                  "Présenter clairement mon activité",
+                  "Générer plus de demandes",
+                  "Moderniser mon image",
+                  "Vendre en ligne",
+                  "Rassurer mes clients",
+                  "Améliorer la vitesse du site",
+                  "Simplifier la mise à jour du contenu",
+                ].map((label) => (
+                  <label class="group flex cursor-pointer items-start gap-3 rounded-2xl bg-white/70 p-4 ring-1 ring-black/5 transition hover:bg-white has-[:checked]:bg-primary has-[:checked]:text-white">
+                    <input
+                      class="mt-1 size-4 accent-current"
+                      type="checkbox"
+                      name="goals"
+                      value={label}
+                    />
+                    <span class="block font-bold">{label}</span>
+                  </label>
+                ))
+              }
+            </div>
+          </section>
+
+          <!-- Step 5 -->
+          <section class="hidden gap-6" data-step="4">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[4].eyebrow}
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[4].title}
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[4].description}
+              </p>
+            </div>
+
+            <div class="grid gap-3">
+              {
+                [
+                  "J’ai juste une idée",
+                  "J’ai déjà un brief",
+                  "J’ai déjà des textes / images",
+                  "J’ai une maquette ou des exemples",
+                  "J’ai besoin d’être accompagné",
+                  "C’est urgent",
+                ].map((label) => (
+                  <label class="group cursor-pointer rounded-2xl bg-white/70 p-4 ring-1 ring-black/5 transition hover:bg-white has-[:checked]:bg-primary has-[:checked]:text-white">
+                    <input
+                      class="sr-only"
+                      type="radio"
+                      name="project_status"
+                      value={label}
+                      required
+                    />
+                    <span class="block font-bold">{label}</span>
+                  </label>
+                ))
+              }
+            </div>
+
+            <label class="grid gap-2">
+              <span class="font-bold text-text">Une précision utile ?</span>
+              <textarea
+                name="message"
+                rows="5"
+                maxlength="1500"
+                placeholder="Ex : site actuel trop lent, pas visible sur Google, besoin d’une page services, d’un formulaire, d’un espace admin…"
+                class="resize-none rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+              ></textarea>
+            </label>
+          </section>
+
+          <!-- Step 6 -->
+          <section class="hidden gap-6" data-step="5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[5].eyebrow}
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[5].title}
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[5].description}
+              </p>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+              <label class="grid gap-2 md:col-span-2">
+                <span class="font-bold text-text">Email *</span>
+                <input
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  maxlength="160"
+                  class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                  placeholder="vous@entreprise.fr"
+                />
+              </label>
+
+              <label class="grid gap-2">
+                <span class="font-bold text-text">Téléphone</span>
+                <input
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  maxlength="40"
+                  class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition placeholder:text-muted/70 focus:bg-white focus:ring-primary"
+                  placeholder="06 00 00 00 00"
+                />
+              </label>
+
+              <label class="grid gap-2">
+                <span class="font-bold text-text">Préférence de contact</span>
+                <select
+                  name="contact_preference"
+                  class="rounded-2xl bg-white/75 px-4 py-3 text-text outline-none ring-1 ring-black/5 transition focus:bg-white focus:ring-primary"
+                >
+                  <option value="Email">Email</option>
+                  <option value="Téléphone">Téléphone</option>
+                  <option value="Peu importe">Peu importe</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="flex cursor-pointer items-start gap-3 rounded-2xl bg-white/70 p-4 ring-1 ring-black/5">
+              <input
+                type="checkbox"
+                name="consent"
+                value="Oui"
+                required
+                class="consent-checkbox mt-1 size-4"
+              />
+              <span class="text-sm leading-relaxed text-muted">
+                J’accepte que CPEP utilise ces informations pour me répondre au sujet de ma demande.
+              </span>
+            </label>
+          </section>
+
+          <!-- Step 7 : Récap -->
+          <section class="hidden gap-6" data-step="6">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {steps[6].eyebrow}
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-text md:text-4xl">
+                {steps[6].title}
+              </h2>
+              <p class="mt-3 text-base leading-relaxed text-muted">
+                {steps[6].description}
+              </p>
+            </div>
+
+            <div
+              class="rounded-[2rem] bg-white/80 p-5 shadow-[0_18px_45px_rgba(8,7,8,0.08)] ring-1 ring-black/5 md:p-7"
+            >
+              <div class="mb-5 flex items-center justify-between gap-4 border-b border-border pb-4">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-[0.18em] text-accent">
+                    Note de brief
+                  </p>
+                  <h3 class="mt-1 text-xl font-bold text-text">
+                    Projet web
+                  </h3>
+                </div>
+                <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
+                  CPEP
+                </span>
+              </div>
+
+              <dl class="grid gap-4 text-sm" data-summary></dl>
+            </div>
+          </section>
+
+          <!-- Actions -->
+          <div class="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="button"
+              class="rounded-full px-5 py-3 text-sm font-bold text-muted transition hover:bg-white/60 hover:text-text disabled:pointer-events-none disabled:opacity-35"
+              data-prev
+              disabled
+            >
+              Retour
+            </button>
+
+            <button
+              type="button"
+              class="rounded-full bg-text px-6 py-3 text-sm font-bold text-white shadow-[0_14px_35px_rgba(8,7,8,0.14)] transition hover:-translate-y-0.5 hover:bg-primary"
+              data-next
+            >
+              Continuer
+            </button>
+
+            <button
+              type="submit"
+              class="hidden rounded-full bg-accent px-6 py-3 text-sm font-bold text-white shadow-[0_14px_35px_rgba(249,86,79,0.22)] transition hover:-translate-y-0.5 hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60"
+              data-submit
+            >
+              Envoyer la demande
+            </button>
+          </div>
+
+          <p
+            class="hidden rounded-2xl bg-white/70 p-4 text-sm font-semibold text-primary"
+            data-success
+          >
+            Demande préparée. Pour l’instant, elle est affichée dans la console.
+            Prochaine étape : branchement API + email récap.
+          </p>
+
+          <p
+            class="hidden rounded-2xl bg-error/10 p-4 text-sm font-semibold text-error"
+            data-error
+          ></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  const root = document.querySelector<HTMLElement>("[data-quote-flow]");
+
+  if (root) {
+    const steps = Array.from(root.querySelectorAll<HTMLElement>("[data-step]"));
+
+    const progressBarQuery = document.querySelector<HTMLElement>("[data-progress-bar]");
+    const prevButtonQuery = root.querySelector<HTMLButtonElement>("[data-prev]");
+    const nextButtonQuery = root.querySelector<HTMLButtonElement>("[data-next]");
+    const submitButtonQuery = root.querySelector<HTMLButtonElement>("[data-submit]");
+    const formQuery = root.querySelector<HTMLFormElement>("[data-form]");
+    const successQuery = root.querySelector<HTMLElement>("[data-success]");
+    const errorMessageQuery = root.querySelector<HTMLElement>("[data-error]");
+    const summaryQuery = root.querySelector<HTMLElement>("[data-summary]");
+    const startedAtInputQuery = root.querySelector<HTMLInputElement>("[data-started-at]");
+    const urlField = root.querySelector<HTMLInputElement>("[data-url-field]");
+    const urlFeedback = root.querySelector<HTMLElement>("[data-url-feedback]");
+
+    if (
+      steps.length > 0 &&
+      progressBarQuery &&
+      prevButtonQuery &&
+      nextButtonQuery &&
+      submitButtonQuery &&
+      formQuery &&
+      successQuery &&
+      errorMessageQuery &&
+      summaryQuery &&
+      startedAtInputQuery
+    ) {
+      const progressBar = progressBarQuery;
+      const prevButton = prevButtonQuery;
+      const nextButton = nextButtonQuery;
+      const submitButton = submitButtonQuery;
+      const form = formQuery;
+      const success = successQuery;
+      const errorMessage = errorMessageQuery;
+      const summary = summaryQuery;
+      const startedAtInput = startedAtInputQuery;
+
+      let currentStep = 0;
+
+      startedAtInput.value = String(Date.now());
+
+      function updateStep() {
+        steps.forEach((step, index) => {
+          const isActive = index === currentStep;
+
+          step.classList.toggle("hidden", !isActive);
+          step.classList.toggle("grid", isActive);
+        });
+
+        const progress = Math.round(((currentStep + 1) / steps.length) * 100);
+        progressBar.style.width = `${progress}%`;
+
+        prevButton.disabled = currentStep === 0;
+
+        const isLastStep = currentStep === steps.length - 1;
+
+        nextButton.classList.toggle("hidden", isLastStep);
+        submitButton.classList.toggle("hidden", !isLastStep);
+
+        if (isLastStep) {
+          renderSummary();
+        }
+
+        success.classList.add("hidden");
+        errorMessage.classList.add("hidden");
+      }
+
+      function getCurrentStepRequiredFields() {
+        return Array.from(
+          steps[currentStep].querySelectorAll<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >("input[required], textarea[required], select[required]")
+        );
+      }
+
+      function isCurrentUrlValid() {
+        if (!urlField || !steps[currentStep].contains(urlField)) {
+          return true;
+        }
+
+        const value = urlField.value.trim();
+
+        if (!value) {
+          return true;
+        }
+
+        try {
+          const url = new URL(value);
+          return url.protocol === "http:" || url.protocol === "https:";
+        } catch {
+          return false;
+        }
+      }
+
+      function isCurrentStepValid() {
+        const currentRadios = Array.from(
+          steps[currentStep].querySelectorAll<HTMLInputElement>(
+            'input[type="radio"]'
+          )
+        );
+
+        const radioNames = [...new Set(currentRadios.map((radio) => radio.name))];
+
+        const radiosAreValid = radioNames.every((name) => {
+          return Boolean(
+            steps[currentStep].querySelector<HTMLInputElement>(
+              `input[name="${name}"]:checked`
+            )
+          );
+        });
+
+        const requiredFieldsAreValid = getCurrentStepRequiredFields().every(
+          (field) => field.checkValidity()
+        );
+
+        return radiosAreValid && requiredFieldsAreValid && isCurrentUrlValid();
+      }
+
+      function showCurrentStepErrors() {
+        const firstRequiredField = getCurrentStepRequiredFields().find(
+          (field) => !field.checkValidity()
+        );
+
+        if (firstRequiredField) {
+          firstRequiredField.reportValidity();
+          return;
+        }
+
+        if (!isCurrentUrlValid() && urlField) {
+          urlField.setCustomValidity(
+            "Merci de saisir une URL valide, avec https:// si possible."
+          );
+          urlField.reportValidity();
+          urlField.setCustomValidity("");
+        }
+      }
+
+      function getStringValue(formData: FormData, key: string) {
+        const value = formData.get(key);
+        return typeof value === "string" ? value.trim() : "";
+      }
+
+      function getStringValues(formData: FormData, key: string) {
+        return formData
+          .getAll(key)
+          .filter((value): value is string => typeof value === "string")
+          .map((value) => value.trim())
+          .filter(Boolean);
+      }
+
+      function getFormValues() {
+        const formData = new FormData(form);
+
+        return {
+          firstname: getStringValue(formData, "firstname"),
+          lastname: getStringValue(formData, "lastname"),
+          company: getStringValue(formData, "company"),
+          has_current_site: getStringValue(formData, "has_current_site"),
+          current_site_url: getStringValue(formData, "current_site_url"),
+          project_type: getStringValue(formData, "project_type"),
+          goals: getStringValues(formData, "goals"),
+          project_status: getStringValue(formData, "project_status"),
+          message: getStringValue(formData, "message"),
+          email: getStringValue(formData, "email"),
+          phone: getStringValue(formData, "phone"),
+          contact_preference: getStringValue(formData, "contact_preference"),
+          consent: getStringValue(formData, "consent"),
+          started_at: getStringValue(formData, "started_at"),
+          website: getStringValue(formData, "website"),
+        };
+      }
+
+      function createSummaryItem(label: string, value: string | string[]) {
+        const normalizedValue = Array.isArray(value)
+          ? value.filter(Boolean).join(", ")
+          : value;
+
+        if (!normalizedValue) {
+          return "";
+        }
+
+        return `
+          <div class="grid gap-1 rounded-2xl bg-bg/70 p-4">
+            <dt class="text-xs font-bold uppercase tracking-[0.16em] text-muted">${label}</dt>
+            <dd class="font-semibold leading-relaxed text-text">${normalizedValue}</dd>
+          </div>
+        `;
+      }
+
+      function renderSummary() {
+        const values = getFormValues();
+
+        summary.innerHTML = [
+          createSummaryItem("Contact", `${values.firstname} ${values.lastname}`),
+          createSummaryItem("Entreprise", values.company),
+          createSummaryItem("Email", values.email),
+          createSummaryItem("Téléphone", values.phone),
+          createSummaryItem("Préférence de contact", values.contact_preference),
+          createSummaryItem("Site actuel", values.has_current_site),
+          createSummaryItem("URL", values.current_site_url),
+          createSummaryItem("Type de projet", values.project_type),
+          createSummaryItem("Objectifs", values.goals),
+          createSummaryItem("Avancement", values.project_status),
+          createSummaryItem("Précisions", values.message),
+        ].join("");
+      }
+
+      function showError(message: string) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove("hidden");
+      }
+
+      urlField?.addEventListener("input", () => {
+        if (!urlFeedback || !urlField) return;
+
+        const value = urlField.value.trim();
+
+        if (!value) {
+          urlFeedback.textContent = "Facultatif si vous n’avez pas encore de site.";
+          urlFeedback.className = "text-sm text-muted";
+          return;
+        }
+
+        if (isCurrentUrlValid()) {
+          urlFeedback.textContent = "Format du lien OK.";
+          urlFeedback.className = "text-sm text-primary";
+        } else {
+          urlFeedback.textContent =
+            "Le lien semble incomplet. Exemple : https://www.exemple.fr";
+          urlFeedback.className = "text-sm text-error";
+        }
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (!isCurrentStepValid()) {
+          showCurrentStepErrors();
+          return;
+        }
+
+        currentStep = Math.min(currentStep + 1, steps.length - 1);
+        updateStep();
+      });
+
+      prevButton.addEventListener("click", () => {
+        currentStep = Math.max(currentStep - 1, 0);
+        updateStep();
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const values = getFormValues();
+
+        if (values.website) {
+          showError("Une erreur est survenue. Merci de réessayer.");
+          return;
+        }
+
+        const startedAt = Number(values.started_at);
+        const elapsed = Date.now() - startedAt;
+
+        if (!startedAt || elapsed < 3000) {
+          showError(
+            "Envoi trop rapide. Merci de patienter quelques secondes avant d’envoyer."
+          );
+          return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Envoi en cours...";
+
+        console.log("Demande web :", values);
+
+        success.classList.remove("hidden");
+        submitButton.textContent = "Demande préparée";
+      });
+
+      updateStep();
+    }
+  }
+</script>
+</QuoteFlowLayout>

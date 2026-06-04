@@ -62,6 +62,18 @@ const socialLinks = [
           class="absolute inset-2 h-[calc(100%-1rem)] w-[calc(100%-1rem)] rounded-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out"
         />
 
+        <!-- Image pixel troll -->
+          <img
+            id="benjamin-photo-pixel"
+            src="/photos/portrait-pixel.webp"
+            alt=""
+            width="420"
+            height="420"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-2 h-[calc(100%-1rem)] w-[calc(100%-1rem)] rounded-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out"
+          />
+
         <!-- Petit point accent cliquable -->
         <button
           type="button"
@@ -211,6 +223,7 @@ const socialLinks = [
   const photoButton = document.querySelector("#benjamin-photo-button");
   const portraitImage = document.querySelector("#benjamin-photo-portrait");
   const workImage = document.querySelector("#benjamin-photo-work");
+  const pixelImage = document.querySelector("#benjamin-photo-pixel");
   const dynamicTitle = document.querySelector("#benjamin-dynamic-title");
 
   const helloTitles = [
@@ -322,10 +335,13 @@ const socialLinks = [
     workImage?.classList.remove("opacity-100");
     workImage?.classList.add("opacity-0");
 
+    pixelImage?.classList.remove("opacity-100");
+    pixelImage?.classList.add("opacity-0");
+
     portraitImage?.classList.remove("opacity-0");
     portraitImage?.classList.add("opacity-100");
 
-    photoButton?.classList.remove("bg-accent");
+    photoButton?.classList.remove("bg-accent", "bg-warning");
     photoButton?.classList.add("bg-success");
 
     isWorkPhotoVisible = false;
@@ -336,17 +352,34 @@ const socialLinks = [
     portraitImage?.classList.remove("opacity-100");
     portraitImage?.classList.add("opacity-0");
 
+    pixelImage?.classList.remove("opacity-100");
+    pixelImage?.classList.add("opacity-0");
+
     workImage?.classList.remove("opacity-0");
     workImage?.classList.add("opacity-100");
 
-    photoButton?.classList.remove("bg-success");
+    photoButton?.classList.remove("bg-success", "bg-warning");
     photoButton?.classList.add("bg-accent");
 
     isWorkPhotoVisible = true;
     photoButton?.setAttribute("aria-pressed", "true");
   }
 
-  function lockButtonAfterVictory() {
+  function showPixelMode() {
+    portraitImage?.classList.remove("opacity-100");
+    portraitImage?.classList.add("opacity-0");
+
+    workImage?.classList.remove("opacity-100");
+    workImage?.classList.add("opacity-0");
+
+    pixelImage?.classList.remove("opacity-0");
+    pixelImage?.classList.add("opacity-100");
+
+    photoButton?.classList.remove("bg-success", "bg-accent");
+    photoButton?.classList.add("bg-warning");
+  }
+
+    function lockButtonAfterVictory() {
     showPortraitMode();
 
     photoButton?.setAttribute("disabled", "true");
@@ -354,11 +387,12 @@ const socialLinks = [
     photoButton?.classList.remove(
       "bg-success",
       "bg-accent",
+      "bg-warning",
       "hover:scale-125",
       "cursor-pointer"
     );
     photoButton?.classList.add(
-      "bg-bg-alt",
+      "bg-success",
       "cursor-not-allowed",
     );
 
@@ -434,6 +468,7 @@ const socialLinks = [
     const specialTitle = getSpecialTitle();
 
     if (specialTitle) {
+      showPixelMode();
       updateTitle(specialTitle.text, specialTitle.mode);
     } else if (isWorkPhotoVisible) {
       updateTitle(getNextShuffledWorkTitle(), "code");
